@@ -8,15 +8,15 @@ package bullet;
  * 子弹的图片： image
  */
 
-import java.awt.Image;
+import javax.swing.JLabel;
 
-public class BaseBullet {
+public class BasicBullet {
 	public int posX, posY;
 	public int speedX, speedY;
 	public int power;
-	public Image image;
+	public JLabel label;
 	
-	public BaseBullet(int posX, int posY) {
+	public BasicBullet(int posX, int posY) {
 		this.posX = posX;
 		this.posY = posY;
 	}
@@ -25,7 +25,7 @@ public class BaseBullet {
 	public void move() {
 		posX += speedX;
 		posY += speedY;
-		System.out.printf("The bullet is moving: posX: %d, posY: %d\n", posX, posY);
+		// System.out.printf("The bullet is moving: posX: %d, posY: %d\n", posX, posY);
 	}
 	
 	// 检测子弹是否还可用（通过检测子弹位置）
