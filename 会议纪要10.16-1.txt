@@ -1,0 +1,27 @@
+时间：10月16日 10：00
+地点：教三楼道
+内容：0子弹类和僵尸类合并   -> Product基类 
+
+BaseProduct（基类）
+   属性：
+      	posX,posY          //当前位置
+      	speedX，Y         //速度
+      	AttackPower      //攻击伤害
+      	Image                //图标
+    实现方法：
+	初始化；
+	move（）；//刷新坐标函数
+	isAvaiable（右边界）//只判断
+		//isAvaiable（重载，全边界）
+
+BaseZombie（僵尸类） extends BaseProduct
+    继承属性：
+	posX,posY          //当前位置
+      	speedX，Y         //速度
+      	AttackPower      //攻击伤害
+      	Image                //图标
+     属性：
+	IceCount		//冰冻计时器（初值0，未冰冻）
+                //被减速后攻速移速减半，攻速减半由攻击减半代替
+	StopCount	//停止计时器
+	health		//僵尸血量

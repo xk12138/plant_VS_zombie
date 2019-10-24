@@ -1,0 +1,65 @@
+基类
+僵尸：BasicZombie()
+    int posX,posY;   //位置
+    int speedX,speedY;//移速
+    int power;  //攻击力
+    int health; //血量
+
+    GUI：JLable lable
+    Image: Static Image image
+
+子弹：BasicBullet()
+    int posX,posY;   //位置
+    int speedX,speedY;//移速
+    int power;  //攻击力
+    bool buffRate;  //减速buff
+
+    GUI：JLable lable
+    Image: Static Image image
+
+植物：BasicPlant()
+    int health;      //血量
+    int timer;       //计时器
+    int attackSpeed;    //攻速
+    static int coolDown;//CD
+    static int price;   //价格
+
+    GUI：JLable lable
+    Image: Static Image image
+
+太阳：BasicSum()     --MainController 连接主控
+    int timer;//计时器
+    int energy;//所含阳光值
+    int posY;//当前纵坐标
+    int targetX,targetY;//目的纵坐标
+    int speedY;//降落速度
+
+卡片：BasiCard()
+    BasicPlant //对应植物
+    int collDown;//植物CD
+    int timer;//计时器
+
+方块：BasicBlock()
+    BasicPlant //方块上的植物
+    int posX,posY;   //绝对位置
+    int height,width;//相对坐标(行列)
+
+
+控制器：
+    主控：联系其他控制器，定时掉阳光功能
+        略
+    行控制器：子弹僵尸位置及碰撞计算，让植物计算自身反应
+        1.僵尸移动
+        2.判断子弹状态，更新，预判打中僵尸，打中原地爆炸
+        3.子弹移动
+        4.更新行内有无僵尸的属性
+        5.告诉所有植物，作出反应
+    太阳控制器：等待阳光消失
+        1.每一个列表中太阳计时器-1
+        2.判0，原地消失
+        3.移动
+    卡片控制器：种植逻辑（阳光、冷却）
+        1.更新CD
+        2.。。。
+    僵尸生成器：按套路产生僵尸，随机分配到行
+        1.。。。。。
