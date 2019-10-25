@@ -16,6 +16,9 @@ public class BasicBullet {
 	public int power;
 	public JLabel label;
 	
+	// Buff
+	boolean moderate;
+	
 	public BasicBullet(int posX, int posY) {
 		this.posX = posX;
 		this.posY = posY;
