@@ -9,15 +9,16 @@ package bullet;
  */
 
 import javax.swing.JLabel;
+import java.util.concurrent.CopyOnWriteArrayList;
+import zombie.BasicZombie;
 
 public class BasicBullet {
 	public int posX, posY;
 	public int speedX, speedY;
 	public int power;
 	public JLabel label;
-	
-	// Buff
-	boolean moderate;
+
+	// 移除了寒冰减速效果，构造寒冰类子弹的时候重载实现。
 	
 	public BasicBullet(int posX, int posY) {
 		this.posX = posX;
@@ -32,11 +33,30 @@ public class BasicBullet {
 	}
 	
 	// 检测子弹是否还可用（通过检测子弹位置）
-	public boolean isAvaiable(int boundaryX, int boundaryY) {
-		int padding = 20;
-		return !(posX < -padding || posX > boundaryX + padding || posY < -padding || posY > boundaryY + padding);
+	public boolean isAvaliable(int boundary) {
+		return !(posX >= boundary || posX <= 0);
 	}
-	public boolean isAvaiable(int boundaryX, int boundaryY, int padding) {
-		return !(posX < -padding || posX > boundaryX + padding || posY < -padding || posY > boundaryY + padding);
+	
+	public void boom(BasicZombie zombie) {
+		zombie.health -= power;
+	}
+	
+	public boolean ifBoom(CopyOnWriteArrayList<BasicZombie> zombies) {
+		int start = posX, end = posX + speedX;
+		for(BasicZombie zombie: zombies) {
+			if(zombie.posX >= start) {
+				if(zombie.posX <= end) {
+					boom(zombie);		//目前只考虑单体输出
+					if(zombie.health <= 0) {
+						zombies.remove(zombie);
+					}
+					return true;
+				}
+				else {
+					return false;
+				}
+			}
+		}
+		return false;
 	}
 }
