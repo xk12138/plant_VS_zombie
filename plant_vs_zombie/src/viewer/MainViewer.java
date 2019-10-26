@@ -3,9 +3,14 @@ package viewer;
 import java.awt.*;
 import javax.swing.*;
 
+import controller.MainController;
+
 @SuppressWarnings("serial")
 public class MainViewer extends JFrame {
+	// 界面类属性
 	public Container container;
+	public JLayeredPane layeredPane;
+	public JPanel jp;
 	
 	public MainViewer() {
 		super("Plant VS Zombie");
@@ -13,9 +18,9 @@ public class MainViewer extends JFrame {
 		this.container = this.getContentPane();
 		
 		// 增加窗口的内容
-		JLayeredPane layeredPane = new JLayeredPane();
+		layeredPane = new JLayeredPane();
 		ImageIcon image = new ImageIcon("resource\\images\\interface\\Surface.png");
-		JPanel jp = new JPanel();
+		jp = new JPanel();
 		jp.setBounds(0, 0, image.getIconWidth(), image.getIconHeight());
 		JLabel jl = new JLabel(image);
 		jp.add(jl);
@@ -27,10 +32,5 @@ public class MainViewer extends JFrame {
 		this.setVisible(true);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setResizable(false);
-	}
-	
-	@SuppressWarnings("unused")
-	public static void main(String[] args) {
-		MainViewer mainViewer = new MainViewer();
 	}
 }
