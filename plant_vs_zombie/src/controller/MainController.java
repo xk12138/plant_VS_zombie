@@ -1,15 +1,26 @@
 package controller;
 
 import viewer.*;
-import bullet.*;
 
 public class MainController implements Runnable {
+	// connect all controller
+	public CardController cardController;
+	public LineController lineController;
+	public SunController sunController;
+	public ZombieController zombieController;
+	
 	public MainViewer mainViewer;
 	public Thread t;
+	public int sumSun;
+	public int clock;
+	public boolean alive;		//游戏未结束
 	
 	public MainController() {
+		// 初始化所有控制器
+		
 		mainViewer = new MainViewer();
 		start();
+		sumSun = 0;
 	}
 	
 	public void start() {

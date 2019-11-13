@@ -78,17 +78,9 @@ public class BasicCard {
 			System.out.println("点击了鼠标");
             //loadimage确定后，if(cd完成&&a >= plant.health)就拖拽出植物
 			//sumSun是收集的阳光总量，从主控来
-            if(sumSun >= plant.health) System.out.println("可以种植");
-            else System.out.println("能量不够");
 		}
 	}
 	public void mouseListener(JLabel label) {
 		label.addMouseListener(new CardListener());
 	}
-	//测试一下
-	public static void main(String[] args) {
-		BasicCard card = new BasicCard();
-		card.renewTimer("F://Repeater_03.gif","F://Repeater_01.gif");
-	}
-		
 }
