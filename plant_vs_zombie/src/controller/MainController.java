@@ -1,5 +1,6 @@
 package controller;
 
+import sun.BasicSun;
 import viewer.*;
 
 public class MainController implements Runnable {
@@ -11,16 +12,21 @@ public class MainController implements Runnable {
 	
 	public MainViewer mainViewer;
 	public Thread t;
-	public int sumSun;
-	public int clock;
+	
+	public int sumSun;			//储存阳光总数
+	public int coolDown, timer;	//用于生成新的太阳的定时器
+	
+	public int clock;			//每一帧的休眠时间
 	public boolean alive;		//游戏未结束
 	
 	public MainController() {
 		// 初始化所有控制器
 		
 		mainViewer = new MainViewer();
-		start();
 		sumSun = 0;
+		coolDown = 300;
+		timer = coolDown;
+		start();
 	}
 	
 	public void start() {
@@ -33,11 +39,17 @@ public class MainController implements Runnable {
 	@SuppressWarnings("static-access")
 	public void run() {
 		System.out.println("The MainController is running.");
-		while(true) {
-			
+		while(alive) {
+			timer--;
+			if(timer == 0) {
+				// 计时器到时，删除该太阳。
+				sunController.suns.add(new BasicSun(50, 0, 200, 25, this));
+				timer = coolDown;
+				System.out.println("Successfully create a sun.");
+			}
 			// 如何让多个线程能够同步，先运行完的等待后运行完的。
 			try {
-				t.sleep(300);
+				t.sleep(clock);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}

@@ -16,6 +16,7 @@ public class ZombieController implements Runnable {
 		}
 	}
 	
+	@SuppressWarnings("static-access")
 	public void run() {
 		while(mainController.alive) {
 			timer--;

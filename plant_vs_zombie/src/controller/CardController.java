@@ -18,6 +18,7 @@ public class CardController implements Runnable {
 			t.start();
 		}
 	}
+	@SuppressWarnings("static-access")
 	public void run() {
 		while(mainController.alive) {
 			cardsRefresh();
@@ -38,6 +39,6 @@ public class CardController implements Runnable {
 	}
 	
 	public void cardsRefresh() {
-		
+		for
 	}
 }

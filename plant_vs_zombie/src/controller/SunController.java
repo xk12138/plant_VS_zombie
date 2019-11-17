@@ -11,6 +11,10 @@ public class SunController implements Runnable {
 	
 	public Thread t;
 	
+	public SunController() {
+		suns = new CopyOnWriteArrayList<BasicSun>();
+	}
+	
 	public void start() {
 		if(t == null) {
 			t = new Thread(this);
@@ -18,20 +22,27 @@ public class SunController implements Runnable {
 		}
 	}
 	
+	@SuppressWarnings("static-access")
 	public void run() {
+		// Refresh all suns in the game.
 		while(mainController.alive) {
 			sunsRefresh();
 			
 			try {
 				t.sleep(mainController.clock);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
 	}
 	
 	public void sunsRefresh() {
-		
+		for(BasicSun sun: suns) {
+			sun.timer--;
+			if(sun.timer == 0) {
+				suns.remove(sun);
+				// We should remove the JLabel of this sun from the JPanel.
+			}
+		}
 	}
 }
