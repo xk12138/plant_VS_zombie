@@ -10,8 +10,7 @@ public class PeaShooter extends BasicPlant {
 	public PeaShooter() {
 		this.health = 100;
     	this.attackSpeed = 100;
-    	this.timer = 0;
-    	this.attackReady = false;
+    	this.timer = 100;
     	coolDown = 50;
     	price = 100;
 	}

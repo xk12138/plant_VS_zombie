@@ -14,19 +14,10 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStream;
 import java.util.TimerTask;
-import java.util.concurrent.CopyOnWriteArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Scanner;
 import java.util.Timer;
-import java.util.TimerTask;
 
 public class BasicCard {
 	public BasicPlant plant; 
@@ -71,6 +62,7 @@ public class BasicCard {
         long delay = 3000;
         timer.schedule(task, delay);
     }
+	
 	
 	//重写方法，监听鼠标点击卡片事件
 	class CardListener extends MouseAdapter{

@@ -39,6 +39,8 @@ public class CardController implements Runnable {
 	}
 	
 	public void cardsRefresh() {
-		for
+		for(BasicCard card: cards) {
+			card.refresh();
+		}
 	}
 }

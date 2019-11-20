@@ -23,9 +23,4 @@ public class BasicBlock {
     	this.posX = posX;
     	this.posY = posY;
     }
-    
-    //方格上的事件，目前只有攻击，返回是否攻击，每帧调用一次
-    public boolean event(boolean zombieExsit) {
-    	return this.plant.attack(zombieExsit);
-    }
 }
