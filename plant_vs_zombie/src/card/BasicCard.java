@@ -1,10 +1,10 @@
 package card;
 
 /*
- * å¡ç‰‡çš„åŸºç±»ï¼š
- * plant:æ¯å¼ å¡ç‰‡æ‰€å¯¹åº”çš„æ¤ç‰©
- * coolDown:æ¤ç‰©çš„å†·å´æ—¶é—´
- * timer:è®¡æ—¶å™¨
+ * ¿¨Æ¬µÄ»ùÀà£º
+ * plant:Ã¿ÕÅ¿¨Æ¬Ëù¶ÔÓ¦µÄÖ²Îï
+ * coolDown:Ö²ÎïµÄÀäÈ´Ê±¼ä
+ * timer:¼ÆÊ±Æ÷
  */
 
 import plant.BasicPlant;
@@ -14,23 +14,32 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStream;
 import java.util.TimerTask;
-import java.util.concurrent.CopyOnWriteArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Scanner;
 import java.util.Timer;
-import java.util.TimerTask;
 
 public class BasicCard {
 	public BasicPlant plant; 
     public int coolDown;
+<<<<<<< HEAD
+    public int timer;     //timer == 0±íÊ¾ÀäÈ´½áÊø
+	public JLabel label;  //Ö²Îï¿¨Æ¬µÄÍ¼Æ¬
+	public JLabel curtain; //Ä»²¼µÄÍ¼Æ¬
+	public static int cardHeight = 50,cardWidth = 50;
+	public BasicCard() {
+		/*
+		 * plant = ÌØ¶¨Ö²Îï ;
+		 * coolDown = ¹æ¶¨ÀäÈ´Ê±¼ä ;
+		 * timer = coolDown ;
+		 * label = ±¾Ö²ÎïµÄ¿¨Æ¬;
+		 * curtain ÉèÖÃÈ«ºÚ
+		 */
+		coolDown = 100;
+		timer = coolDown;
+		curtain.setSize(cardWidth, cardHeight);
+		
+=======
     public int timer;
 	public JLabel label;
 	
@@ -72,6 +81,7 @@ public class BasicCard {
         timer.schedule(task, delay);
     }
 	
+	
 	//é‡å†™æ–¹æ³•ï¼Œç›‘å¬é¼ æ ‡ç‚¹å‡»å¡ç‰‡äº‹ä»¶
 	class CardListener extends MouseAdapter{
 		public void mouseClicked(MouseEvent e){
@@ -79,8 +89,19 @@ public class BasicCard {
             //loadimageç¡®å®šåï¼Œif(cdå®Œæˆ&&a >= plant.health)å°±æ‹–æ‹½å‡ºæ¤ç‰©
 			//sumSunæ˜¯æ”¶é›†çš„é˜³å…‰æ€»é‡ï¼Œä»ä¸»æ§æ¥
 		}
+>>>>>>> a21730ee9fa23d9b894709a1772b51429d25bd4c
 	}
-	public void mouseListener(JLabel label) {
-		label.addMouseListener(new CardListener());
+	public void refresh() {//Ö´ĞĞ¶¨Ê±Æ÷µİ¼õ²Ù×÷£¬Èô¼õºóCDÎª0¿ÉÒÔÖÖÖ²£¬·µ»Øtrue£¬·´Ö®false
+		/*
+		 * ¼ÆÊ±Æ÷¼õ1(×îĞ¡ÎªÁã)
+		 * ÉèÖÃÄ»²¼¶ÔÓ¦µÄ³ß´ç
+		 * */
+		if(timer != 0) {
+			timer--;
+			curtain.setSize((int)((float)timer*cardWidth/coolDown), cardHeight);
+		}
+		
 	}
+	
+	
 }

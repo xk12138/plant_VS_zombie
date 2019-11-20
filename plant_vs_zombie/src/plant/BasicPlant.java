@@ -1,12 +1,11 @@
 package plant;
 
-import bullet.BasicBullet;
+import bullet.*;
 
 public class BasicPlant {
 	public int health;      //血量
     public int timer;       //计时器
     public int attackSpeed;    //攻速
-    public boolean attackReady;  //攻击就绪
     public static int coolDown;//CD
     public static int price;   //价格
     
@@ -21,24 +20,21 @@ public class BasicPlant {
     	price = 25;
     	this.attackSpeed = 100;
     	this.timer = this.attackSpeed;
-    	attackReady = (this.timer == this.attackSpeed);
     }
-    public boolean attackPrepare() { //内部函数————计算攻速计数器和攻击就绪
-    	if(attackReady)
-    		return true;
-    	else {
-    		this.timer++;
-    		attackReady = (this.timer == this.attackSpeed);
-    		return attackReady;
-    	}
+    public void attackPrepare() { //内部函数————计算攻速计数器和攻击就绪
+    	/*
+    	 * 检测攻击是否就绪
+    	 * 如果没有就绪，则攻击计时器减少
+    	 * */
     }
-    public boolean attack(boolean zombieExsit) {//外部函数————给出有无僵尸，得出当前是否攻击，每帧调用一次
+    public BasicBullet attack(boolean zombieExist) {//外部函数————给出有无僵尸，得出当前是否攻击，每帧调用一次
     	attackPrepare();
-    	if(this.attackReady && zombieExsit) {
-    		this.timer = 0;
-    		this.attackReady = (this.timer == this.attackSpeed);
-    		return true;
-    	}else
-    		return false;
+    	
+    	/*
+    	 * 如果计时器到时且存在僵尸
+    	 * 攻击并返回发出的子弹
+    	 * */
+    	
+    	return null;
     }
 }
