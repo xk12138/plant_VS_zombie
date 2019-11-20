@@ -1,13 +1,22 @@
 package controller;
 
+import zombie.BasicZombie;
+
 public class ZombieController implements Runnable {
 	// connect to MainController
 	public MainController mainController;
 	
-	public int coolDown;
+	public int coolDown = 3000;
 	public int timer;
 	
+	public int batch = 0;	// 用于控制正在第几波
+	
 	public Thread t;
+	
+	public ZombieController(MainController mainController) {
+		this.mainController = mainController;
+		this.start();
+	}
 	
 	public void start() {
 		if(t == null) {
@@ -36,6 +45,26 @@ public class ZombieController implements Runnable {
 	}
 	
 	public void createZombies() {
-		
+		int colomu;
+		switch(batch) {
+		case 0:
+			colomu = (int)(Math.random() * mainController.lineNum);
+			mainController.lineControllers[colomu].zombies.add(new BasicZombie(colomu, 10));
+			break;
+		case 1:
+			colomu = (int)(Math.random() * mainController.lineNum);
+			mainController.lineControllers[colomu].zombies.add(new BasicZombie(colomu, 10));
+			break;
+		case 2:
+			colomu = (int)(Math.random() * mainController.lineNum);
+			mainController.lineControllers[colomu].zombies.add(new BasicZombie(colomu, 10));
+			colomu = (int)(Math.random() * mainController.lineNum);
+			mainController.lineControllers[colomu].zombies.add(new BasicZombie(colomu, 10));
+			break;
+		case 3:
+			for(int i=0;i<mainController.lineNum;i++) {
+				mainController.lineControllers[i].zombies.add(new BasicZombie(i, 10));
+			}
+		}
 	}
 }

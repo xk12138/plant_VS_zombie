@@ -11,8 +11,11 @@ public class SunController implements Runnable {
 	
 	public Thread t;
 	
-	public SunController() {
+	public SunController(MainController mainController) {
 		suns = new CopyOnWriteArrayList<BasicSun>();
+		this.mainController = mainController;
+		
+		this.start();
 	}
 	
 	public void start() {

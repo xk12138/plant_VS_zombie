@@ -6,7 +6,9 @@ import viewer.*;
 public class MainController implements Runnable {
 	// connect all controller
 	public CardController cardController;
-	public LineController lineController;
+	int cardMaxNum = 6;
+	public LineController[] lineControllers;
+	int lineNum = 5;
 	public SunController sunController;
 	public ZombieController zombieController;
 	
@@ -21,6 +23,13 @@ public class MainController implements Runnable {
 	
 	public MainController() {
 		// 初始化所有控制器
+		lineControllers = new LineController[lineNum];
+		for(int i=0;i<lineNum;i++) {
+			lineControllers[i] = new LineController(i, this);
+		}
+		cardController = new CardController(this, cardMaxNum);
+		sunController = new SunController(this);
+		zombieController = new ZombieController(this);
 		
 		mainViewer = new MainViewer();
 		sumSun = 0;

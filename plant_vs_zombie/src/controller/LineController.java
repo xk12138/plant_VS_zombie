@@ -48,6 +48,8 @@ public class LineController implements Runnable {
 		}
 		bullets = new CopyOnWriteArrayList<BasicBullet>();
 		zombies = new CopyOnWriteArrayList<BasicZombie>();
+		
+		this.start();
 	}
 	
 	public void zombiesMove() {

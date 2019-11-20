@@ -1,10 +1,11 @@
 package card;
 
 /*
- * ��Ƭ�Ļ��ࣺ
- * plant:ÿ�ſ�Ƭ����Ӧ��ֲ��
- * coolDown:ֲ�����ȴʱ��
- * timer:��ʱ��
+ * plant = 植物;
+ * coolDown = 对应植物冷却时间 ;
+ * timer = coolDown ;
+ * label = 卡片图片初始;
+ * curtain 幕布初始全黑
  */
 
 import plant.BasicPlant;
@@ -22,13 +23,6 @@ public class BasicCard {
 
 	public static int cardHeight = 50,cardWidth = 50;
 	public BasicCard() {
-		/*
-		 * plant = 植物;
-		 * coolDown = 对应植物冷却时间 ;
-		 * timer = coolDown ;
-		 * label = 卡片图片初始;
-		 * curtain 幕布初始全黑
-		 */
 		coolDown = 100;
 		timer = coolDown;
 		curtain.setSize(cardWidth, cardHeight);

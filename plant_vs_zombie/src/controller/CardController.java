@@ -36,6 +36,8 @@ public class CardController implements Runnable {
 		cards = new CopyOnWriteArrayList<BasicCard>();
 		this.maxNum = maxNum;
 		this.mainController = mainController;
+		
+		this.start();
 	}
 	
 	public void cardsRefresh() {
