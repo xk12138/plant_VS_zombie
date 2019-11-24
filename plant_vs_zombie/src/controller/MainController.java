@@ -3,6 +3,7 @@ package controller;
 import bullet.Pea;
 import card.BasicCard;
 import card.PeaShooterCard;
+import plant.PeaShooter;
 import sun.Sun;
 import viewer.*;
 import zombie.Zombie;
@@ -39,6 +40,7 @@ public class MainController implements Runnable {
 		
 		mainViewer = new MainViewer();
 		mainViewer.setMainController(this);
+		clock = 30;
 		sumSun = 0;
 		coolDown = 300;
 		timer = 10;
@@ -61,7 +63,7 @@ public class MainController implements Runnable {
 				// 计时器到时，删除该太阳。
 				Sun t = new Sun(50,0,200,this);
 				sunController.suns.add(t);
-				mainViewer.addLable(t.label);
+				mainViewer.addLabel(t.label);
 
 				timer = coolDown;
 				System.out.println("Successfully create a sun.");

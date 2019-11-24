@@ -52,29 +52,29 @@ public class ZombieController implements Runnable {
 			colomu = (int)(Math.random() * mainController.lineNum);
 			t = new Zombie(colomu, 10);
 			mainController.lineControllers[colomu].zombies.add(t);
-			mainController.mainViewer.addLable(t.label);
+			mainController.mainViewer.addLabel(t.label);
 			break;
 		case 1:
 			colomu = (int)(Math.random() * mainController.lineNum);
 			t = new Zombie(colomu, 10);
 			mainController.lineControllers[colomu].zombies.add(t);
-			mainController.mainViewer.addLable(t.label);
+			mainController.mainViewer.addLabel(t.label);
 			break;
 		case 2:
 			colomu = (int)(Math.random() * mainController.lineNum);
 			t = new Zombie(colomu, 10);
 			mainController.lineControllers[colomu].zombies.add(t);
-			mainController.mainViewer.addLable(t.label);
+			mainController.mainViewer.addLabel(t.label);
 			colomu = (int)(Math.random() * mainController.lineNum);
 			t = new Zombie(colomu, 10);
 			mainController.lineControllers[colomu].zombies.add(t);
-			mainController.mainViewer.addLable(t.label);
+			mainController.mainViewer.addLabel(t.label);
 			break;
 		case 3:
 			for(int i=0;i<mainController.lineNum;i++) {
-				t = new Zombie(colomu, 10);
-				mainController.lineControllers[colomu].zombies.add(t);
-				mainController.mainViewer.addLable(t.label);
+				t = new Zombie(i, 10);
+				mainController.lineControllers[i].zombies.add(t);
+				mainController.mainViewer.addLabel(t.label);
 			}
 		}
 	}

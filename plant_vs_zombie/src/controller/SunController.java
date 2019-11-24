@@ -43,7 +43,7 @@ public class SunController implements Runnable {
 		for(BasicSun sun: suns) {
 			sun.timer--;
 			if(sun.timer == 0) {
-				mainController.mainViewer.removeLable(sun.label);
+				mainController.mainViewer.removeLabel(sun.label);
 				suns.remove(sun);
 				// We should remove the JLabel of this sun from the JPanel.
 			}

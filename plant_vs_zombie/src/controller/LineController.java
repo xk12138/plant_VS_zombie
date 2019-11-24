@@ -65,7 +65,7 @@ public class LineController implements Runnable {
 	public void bulletsResponse() {
 		for(BasicBullet bullet: bullets) {
 			if(bullet.ifBoom(zombies)) {
-				mainController.mainViewer.removeLable(bullet.label);
+				mainController.mainViewer.removeLabel(bullet.label);
 				bullets.remove(bullet);
 			}
 		}
@@ -86,7 +86,7 @@ public class LineController implements Runnable {
 			BasicBullet bullet = block.plant.attack(!zombies.isEmpty());
 			if(bullet != null) {
 				bullets.add(bullet);
-				mainController.mainViewer.addLable(bullet.label);
+				mainController.mainViewer.addLabel(bullet.label);
 			}
 		}
 	}
