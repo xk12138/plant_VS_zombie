@@ -44,7 +44,7 @@ public class LineController implements Runnable {
 		blocks = new CopyOnWriteArrayList<BasicBlock>();
 		//一行有11格，默认第一格是小推车，最后一格是僵尸出生点
 		for(int i=0;i<11;i++) {
-			blocks.add(new BasicBlock(line, i, line, i));
+			blocks.add(new BasicBlock(mainController,line, i, line, i));
 		}
 		bullets = new CopyOnWriteArrayList<BasicBullet>();
 		zombies = new CopyOnWriteArrayList<BasicZombie>();
