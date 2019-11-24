@@ -43,8 +43,12 @@ public class LineController implements Runnable {
 		this.mainController = mainController;
 		blocks = new CopyOnWriteArrayList<BasicBlock>();
 		//一行有11格，默认第一格是小推车，最后一格是僵尸出生点
+		int heightOffset = 100;
+		int widthOffset = 80;
+		int height = 125;
+		int width = 100;
 		for(int i=0;i<11;i++) {
-			blocks.add(new BasicBlock(mainController,line, i, line, i));
+			blocks.add(new BasicBlock(mainController,line, i, i*width+widthOffset, line*height+heightOffset));
 		}
 		bullets = new CopyOnWriteArrayList<BasicBullet>();
 		zombies = new CopyOnWriteArrayList<BasicZombie>();
@@ -61,6 +65,7 @@ public class LineController implements Runnable {
 	public void bulletsResponse() {
 		for(BasicBullet bullet: bullets) {
 			if(bullet.ifBoom(zombies)) {
+				mainController.mainViewer.removeLable(bullet.label);
 				bullets.remove(bullet);
 			}
 		}
@@ -81,6 +86,7 @@ public class LineController implements Runnable {
 			BasicBullet bullet = block.plant.attack(!zombies.isEmpty());
 			if(bullet != null) {
 				bullets.add(bullet);
+				mainController.mainViewer.addLable(bullet.label);
 			}
 		}
 	}

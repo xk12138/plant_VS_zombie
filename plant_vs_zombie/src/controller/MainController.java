@@ -1,15 +1,18 @@
 package controller;
 
+import bullet.Pea;
 import card.BasicCard;
+import card.PeaShooterCard;
 import sun.Sun;
 import viewer.*;
+import zombie.Zombie;
 
 public class MainController implements Runnable {
 	// connect all controller
 	public CardController cardController;
-	int cardMaxNum = 6;
+	public int cardMaxNum = 6;
 	public LineController[] lineControllers;
-	int lineNum = 5;
+	public int lineNum = 5;
 	public SunController sunController;
 	public ZombieController zombieController;
 	
@@ -28,16 +31,17 @@ public class MainController implements Runnable {
 		// 初始化所有控制器
 		lineControllers = new LineController[lineNum];
 		for(int i=0;i<lineNum;i++) {
-			lineControllers[i] = new LineController(i, this);
+			lineControllers[i] = new LineController(i, this); 
 		}
 		cardController = new CardController(this, cardMaxNum);
 		sunController = new SunController(this);
 		zombieController = new ZombieController(this);
 		
 		mainViewer = new MainViewer();
+		mainViewer.setMainController(this);
 		sumSun = 0;
 		coolDown = 300;
-		timer = coolDown;
+		timer = 10;
 		start();
 	}
 	
@@ -55,7 +59,10 @@ public class MainController implements Runnable {
 			timer--;
 			if(timer == 0) {
 				// 计时器到时，删除该太阳。
-				sunController.suns.add(new Sun(50, 0, 200, this));
+				Sun t = new Sun(50,0,200,this);
+				sunController.suns.add(t);
+				mainViewer.addLable(t.label);
+
 				timer = coolDown;
 				System.out.println("Successfully create a sun.");
 			}
@@ -70,6 +77,11 @@ public class MainController implements Runnable {
 	
 	@SuppressWarnings("unused")
 	public static void main(String[] args) {
+		Pea.loadImage();
+		PeaShooterCard.loadImage();
+		PeaShooter.loadImage();
+		Sun.loadImage();
+		Zombie.loadImage();
 		MainController mainController = new MainController();
 	}
 }

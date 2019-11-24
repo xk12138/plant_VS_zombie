@@ -1,6 +1,6 @@
 package controller;
 
-import zombie.BasicZombie;
+import zombie.*;
 
 public class ZombieController implements Runnable {
 	// connect to MainController
@@ -46,24 +46,35 @@ public class ZombieController implements Runnable {
 	
 	public void createZombies() {
 		int colomu;
+		BasicZombie t;
 		switch(batch) {
 		case 0:
 			colomu = (int)(Math.random() * mainController.lineNum);
-			mainController.lineControllers[colomu].zombies.add(new BasicZombie(colomu, 10));
+			t = new Zombie(colomu, 10);
+			mainController.lineControllers[colomu].zombies.add(t);
+			mainController.mainViewer.addLable(t.label);
 			break;
 		case 1:
 			colomu = (int)(Math.random() * mainController.lineNum);
-			mainController.lineControllers[colomu].zombies.add(new BasicZombie(colomu, 10));
+			t = new Zombie(colomu, 10);
+			mainController.lineControllers[colomu].zombies.add(t);
+			mainController.mainViewer.addLable(t.label);
 			break;
 		case 2:
 			colomu = (int)(Math.random() * mainController.lineNum);
-			mainController.lineControllers[colomu].zombies.add(new BasicZombie(colomu, 10));
+			t = new Zombie(colomu, 10);
+			mainController.lineControllers[colomu].zombies.add(t);
+			mainController.mainViewer.addLable(t.label);
 			colomu = (int)(Math.random() * mainController.lineNum);
-			mainController.lineControllers[colomu].zombies.add(new BasicZombie(colomu, 10));
+			t = new Zombie(colomu, 10);
+			mainController.lineControllers[colomu].zombies.add(t);
+			mainController.mainViewer.addLable(t.label);
 			break;
 		case 3:
 			for(int i=0;i<mainController.lineNum;i++) {
-				mainController.lineControllers[i].zombies.add(new BasicZombie(i, 10));
+				t = new Zombie(colomu, 10);
+				mainController.lineControllers[colomu].zombies.add(t);
+				mainController.mainViewer.addLable(t.label);
 			}
 		}
 	}
