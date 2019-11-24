@@ -10,12 +10,7 @@ package sun;
  * the speed of the sun: speedY.
  */
 
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
-import java.awt.Color ;
-import java.awt.Dimension;
-import javax.swing.Icon;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import controller.MainController;
@@ -30,13 +25,13 @@ public class BasicSun {
     
 	MainController mainController;
 	
-	public BasicSun(int targetX, int posY, int targetY, int energy, MainController mainController) {
+	public BasicSun(int targetX, int posY, int targetY, MainController mainController) {
 		this.targetX = targetX;
 		this.targetY = targetY;
 		this.posY = posY;
-		this.energy = energy;
 		this.mainController = mainController;
 		speedY = 5;
+		timer = 300;
 	}
 
     // Every frame the sun moves to the target position.

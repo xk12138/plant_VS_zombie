@@ -15,12 +15,10 @@ public class Pea extends BasicBullet {
 	public Pea(int posX, int posY) {
 		super(posX, posY);
 		// ≥ı ºªØ Ù–‘
-		power = 1;
+		power = 10;
 		speedX = 0;
 		speedY = 20;
 		label = new JLabel(getImage());
 		label.setBounds(posY, posX, peaImage.getIconWidth(), peaImage.getIconHeight());
 	}
-	
-	
 }
