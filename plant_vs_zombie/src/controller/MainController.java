@@ -1,6 +1,7 @@
 package controller;
 
-import sun.BasicSun;
+import card.BasicCard;
+import sun.Sun;
 import viewer.*;
 
 public class MainController implements Runnable {
@@ -20,6 +21,8 @@ public class MainController implements Runnable {
 	
 	public int clock;			//每一帧的休眠时间
 	public boolean alive;		//游戏未结束
+	
+	public BasicCard currentCard;
 	
 	public MainController() {
 		// 初始化所有控制器
@@ -52,7 +55,7 @@ public class MainController implements Runnable {
 			timer--;
 			if(timer == 0) {
 				// 计时器到时，删除该太阳。
-				sunController.suns.add(new BasicSun(50, 0, 200, 25, this));
+				sunController.suns.add(new Sun(50, 0, 200, this));
 				timer = coolDown;
 				System.out.println("Successfully create a sun.");
 			}
