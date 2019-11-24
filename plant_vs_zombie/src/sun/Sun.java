@@ -19,5 +19,14 @@ public class Sun extends BasicSun {
 		super(targetX, posY, targetY, mainController);
 		energy = 25;
 		label = new JLabel(getImage());
+		label.setSize(image.getIconWidth(), image.getIconHeight());
+		label.setBounds(targetX, posY, image.getIconWidth(), image.getIconHeight());
+	}
+	
+	public void move() {
+		if(posY <= targetY) {
+			posY += speedY;
+		}
+		label.setBounds(targetX, posY, image.getIconWidth(), image.getIconHeight());
 	}
 }

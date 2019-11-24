@@ -1,5 +1,7 @@
 package plant;
 
+import javax.swing.JLabel;
+
 import bullet.*;
 
 public class BasicPlant {
@@ -9,6 +11,8 @@ public class BasicPlant {
     public int coolDown;//CD
     public int price;   //价格
     public int posX, posY;
+    
+    public JLabel label;
     
     //植物所对应的子弹怎么记录？这个地方怎么弄还没想清楚
     //暂时想的是在继承后的植物类中写一个对应的子弹，没有实际作用，起到记录这个植物用什么子弹的作用

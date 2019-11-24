@@ -19,5 +19,20 @@ public class Zombie extends BasicZombie {
 		speedX = 0;
 		speedY = 20;
 		label = new JLabel(getImage());
+		label.setSize(image.getIconWidth(), image.getIconHeight());
+		label.setBounds(posX, posY, image.getIconWidth(), image.getIconHeight());
+	}
+	
+	public void move() {
+		if (moderateTimer > 0) {
+			posX += (speedX / 2);
+			posY += (speedY / 2);
+			moderateTimer--;
+		}
+		else {
+			posX += speedX;
+			posY += speedY;
+		}
+		label.setBounds(posX, posY, image.getIconWidth(), image.getIconHeight());
 	}
 }
