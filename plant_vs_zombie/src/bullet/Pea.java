@@ -19,6 +19,13 @@ public class Pea extends BasicBullet {
 		speedX = 0;
 		speedY = 20;
 		label = new JLabel(getImage());
+		label.setSize(peaImage.getIconWidth(), peaImage.getIconHeight());
+		label.setBounds(posY, posX, peaImage.getIconWidth(), peaImage.getIconHeight());
+	}
+	
+	public void move() {
+		posX += speedX;
+		posY += speedY;
 		label.setBounds(posY, posX, peaImage.getIconWidth(), peaImage.getIconHeight());
 	}
 }

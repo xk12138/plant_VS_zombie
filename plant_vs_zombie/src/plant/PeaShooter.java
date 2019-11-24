@@ -1,11 +1,18 @@
 package plant;
 
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+
 import bullet.Pea;
 
 public class PeaShooter extends BasicPlant {
-	
-	//public static Pea bullet(0,0);
-	//暂时记录这种植物对应的子弹，但是有bug，不懂为啥报错
+	private static ImageIcon image;
+	public static void loadImage() {
+		image = new ImageIcon("../../resource/images/plant/Peashooter/Peashooter.gif");
+	}
+	public static ImageIcon getImage() {
+		return image;
+	}
 	
 	public PeaShooter(int posX, int posY) {
 		super(posX, posY);
@@ -14,6 +21,8 @@ public class PeaShooter extends BasicPlant {
     	coolDown = 50;
     	timer = coolDown;
     	price = 100;
+    	label = new JLabel(getImage());
+    	label.setSize(image.getIconWidth(), image.getIconHeight());
 	}
 	
 	public Pea attack(boolean zombieExist) {

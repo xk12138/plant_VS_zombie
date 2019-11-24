@@ -29,7 +29,6 @@ public class BasicBullet {
 	public void move() {
 		posX += speedX;
 		posY += speedY;
-		// System.out.printf("The bullet is moving: posX: %d, posY: %d\n", posX, posY);
 	}
 	
 	// 检测子弹是否还可用（通过检测子弹位置）

@@ -47,6 +47,7 @@ public class BasicSun {
 		label.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e){
 				mainController.sumSun += energy;
+				mainController.mainViewer.removeLabel(label);
 				mainController.sunController.suns.remove(that);
 				// We need to remove the sun's JLabel from the viewer.
 			}
