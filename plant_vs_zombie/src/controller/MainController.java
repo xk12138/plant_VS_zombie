@@ -29,6 +29,12 @@ public class MainController implements Runnable {
 	public BasicCard currentCard;
 	
 	public MainController() {
+		clock = 30;
+		sumSun = 0;
+		coolDown = 300;
+		timer = 1;
+		alive = true;
+		
 		// 初始化所有控制器
 		lineControllers = new LineController[lineNum];
 		for(int i=0;i<lineNum;i++) {
@@ -40,10 +46,6 @@ public class MainController implements Runnable {
 		
 		mainViewer = new MainViewer();
 		mainViewer.setMainController(this);
-		clock = 30;
-		sumSun = 0;
-		coolDown = 300;
-		timer = 10;
 		start();
 	}
 	

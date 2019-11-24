@@ -41,6 +41,7 @@ public class SunController implements Runnable {
 	
 	public void sunsRefresh() {
 		for(BasicSun sun: suns) {
+			sun.move();
 			sun.timer--;
 			if(sun.timer == 0) {
 				mainController.mainViewer.removeLabel(sun.label);

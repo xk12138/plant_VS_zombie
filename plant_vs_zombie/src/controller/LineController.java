@@ -83,10 +83,12 @@ public class LineController implements Runnable {
 	
 	public void plantsRefresh() {
 		for(BasicBlock block: blocks) {
-			BasicBullet bullet = block.plant.attack(!zombies.isEmpty());
-			if(bullet != null) {
-				bullets.add(bullet);
-				mainController.mainViewer.addLabel(bullet.label);
+			if(block.plant != null) {
+				BasicBullet bullet = block.plant.attack(!zombies.isEmpty());
+				if(bullet != null) {
+					bullets.add(bullet);
+					mainController.mainViewer.addLabel(bullet.label);
+				}
 			}
 		}
 	}

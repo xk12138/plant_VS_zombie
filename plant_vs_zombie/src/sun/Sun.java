@@ -8,7 +8,7 @@ import controller.MainController;
 public class Sun extends BasicSun {
 	private static ImageIcon image;
 	public static void loadImage() {
-		image = new ImageIcon("../../resource/images/interface/Sun.gif");
+		image = new ImageIcon("resource\\images\\interface\\Sun.gif");
 	}
 	
 	public static ImageIcon getImage() {

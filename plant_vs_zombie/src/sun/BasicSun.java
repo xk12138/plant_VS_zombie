@@ -30,7 +30,7 @@ public class BasicSun {
 		this.targetY = targetY;
 		this.posY = posY;
 		this.mainController = mainController;
-		speedY = 5;
+		speedY = 50;
 		timer = 300;
 	}
 
