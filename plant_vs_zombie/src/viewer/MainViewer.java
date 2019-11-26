@@ -36,18 +36,18 @@ public class MainViewer extends JFrame {
 		
 		// 创建方块层
 		blockPanel = new JPanel();
-		blockPanel.setBounds(0, 0, 960, 600);
+		blockPanel.setBounds(0, 0, 1110, 750);
 		blockPanel.setLayout(null);
 		layeredPane.add(blockPanel, -1);
 		
 		jp = new JPanel();
 		jp.setLayout(null);
-		jp.setBounds(0, 0, 960, 600);
+		jp.setBounds(0, 0, 1110, 750);
 		layeredPane.add(jp, 0);
 		
 		// 让窗口显示出来
 		this.setLayeredPane(layeredPane);
-		this.setSize(905, 640);
+		this.setSize(1110, 750);
 		this.setVisible(true);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setResizable(false);

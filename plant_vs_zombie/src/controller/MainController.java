@@ -13,7 +13,7 @@ public class MainController implements Runnable {
 	public CardController cardController;
 	public int cardMaxNum = 6;
 	public LineController[] lineControllers;
-	public int lineNum = 5;
+	public int lineNum = 6;
 	public SunController sunController;
 	public ZombieController zombieController;
 	

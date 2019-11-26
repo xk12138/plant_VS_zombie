@@ -15,6 +15,7 @@ public class ZombieController implements Runnable {
 	
 	public ZombieController(MainController mainController) {
 		this.mainController = mainController;
+		timer = 500000;
 		this.start();
 	}
 	

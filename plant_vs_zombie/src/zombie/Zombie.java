@@ -6,7 +6,7 @@ import javax.swing.JLabel;
 public class Zombie extends BasicZombie {
 	private static ImageIcon image;
 	public static void loadImage() {
-		image = new ImageIcon("../../resource/images/zombie/Zombie/Zombie.gif");
+		image = new ImageIcon("resource\\images\\zombie\\Zombie\\Zombie.gif");
 	}
 	public static ImageIcon getImage() {
 		return image;

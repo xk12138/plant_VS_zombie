@@ -26,6 +26,7 @@ public class LawnBlock extends BasicBlock{
 					mainController.currentCard = null;
 
 					mainController.mainViewer.addLabel(plant.label);
+					mainController.mainViewer.repaint();
 					System.out.println("植物已被种植");
 				}
 				System.out.printf("位置（%d, %d）的方块被点击\n", line, column);
