@@ -8,7 +8,7 @@ import bullet.Pea;
 public class PeaShooter extends BasicPlant {
 	private static ImageIcon image;
 	public static void loadImage() {
-		image = new ImageIcon("../../resource/images/plant/Peashooter/Peashooter.gif");
+		image = new ImageIcon("resource\\images\\plant\\Peashooter\\Peashooter.gif");
 	}
 	public static ImageIcon getImage() {
 		return image;
@@ -23,6 +23,7 @@ public class PeaShooter extends BasicPlant {
     	price = 100;
     	label = new JLabel(getImage());
     	label.setSize(image.getIconWidth(), image.getIconHeight());
+    	label.setBounds(posX, posY, image.getIconWidth(), image.getIconHeight());
 	}
 	
 	public Pea attack(boolean zombieExist) {

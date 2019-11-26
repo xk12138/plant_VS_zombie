@@ -30,7 +30,7 @@ public class BasicSun {
 		this.targetY = targetY;
 		this.posY = posY;
 		this.mainController = mainController;
-		speedY = 50;
+		speedY = 5;
 		timer = 300;
 	}
 
@@ -42,13 +42,14 @@ public class BasicSun {
 	}
 
 	// If the sun is clicked, it will be deleted from the SunController and the MainController's sumSun will increase.
-	public void mouseListener(JLabel label) {
+	public void addMouseListener(JLabel label) {
 		BasicSun that = this;			// Use that to instead of this to avoid ambiguity.
 		label.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e){
 				mainController.sumSun += energy;
 				mainController.mainViewer.removeLabel(label);
 				mainController.sunController.suns.remove(that);
+				System.out.println("The sun is clicked.");
 				// We need to remove the sun's JLabel from the viewer.
 			}
 		});

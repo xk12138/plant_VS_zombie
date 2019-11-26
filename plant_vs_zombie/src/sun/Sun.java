@@ -21,6 +21,7 @@ public class Sun extends BasicSun {
 		label = new JLabel(getImage());
 		label.setSize(image.getIconWidth(), image.getIconHeight());
 		label.setBounds(targetX, posY, image.getIconWidth(), image.getIconHeight());
+		addMouseListener(label);
 	}
 	
 	public void move() {

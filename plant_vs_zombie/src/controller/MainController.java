@@ -29,7 +29,7 @@ public class MainController implements Runnable {
 	public BasicCard currentCard;
 	
 	public MainController() {
-		clock = 30;
+		clock = 100;
 		sumSun = 0;
 		coolDown = 300;
 		timer = 1;
@@ -46,6 +46,11 @@ public class MainController implements Runnable {
 		
 		mainViewer = new MainViewer();
 		mainViewer.setMainController(this);
+		mainViewer.draw();
+		
+		//²âÊÔ¹¦ÄÜÇøÓò
+		currentCard = new PeaShooterCard(this);
+		
 		start();
 	}
 	

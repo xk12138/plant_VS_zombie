@@ -24,8 +24,6 @@ public class BasicBlock {
     public MainController mainController;
     public BasicBlock(MainController mainController,int line,int column,int posX,int posY){
     	this.mainController = mainController;
-    	blockHeight = 100;
-    	blockWidth = 100;
     	this.line = line;
     	this.column = column;
     	this.posX = posX;

@@ -18,6 +18,7 @@ public class PeaShooterCard extends BasicCard {
 	public PeaShooterCard(MainController mainController) {
 		super(mainController);
 		label = new JLabel(getImage());
+		addMouseListener(label);
 		plant = new PeaShooter(0, 0);
 		coolDown = plant.coolDown;
 		label.setSize(cardWidth, cardHeight);

@@ -28,15 +28,21 @@ public class BasicCard {
 
 	public static int cardHeight = 50,cardWidth = 50;
 	public BasicCard(MainController mainController) {
-		BasicCard that = this;
 		this.mainController = mainController;
+		plant = null;
+		curtain = new JLabel();
 		curtain.setSize(cardWidth, cardHeight);
+	}
+		
+	public void addMouseListener(JLabel label) {
+		BasicCard that = this;
 		label.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e) {	
+			public void mouseClicked(MouseEvent e) {
 				mainController.currentCard = that;
 			}
 		});
 	}
+	
 	
 	public void refresh() {
 		/*

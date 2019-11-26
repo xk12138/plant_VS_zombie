@@ -2,6 +2,7 @@ package controller;
 
 import java.util.concurrent.CopyOnWriteArrayList;
 import block.BasicBlock;
+import block.LawnBlock;
 import bullet.BasicBullet;
 import zombie.BasicZombie;
 
@@ -45,10 +46,8 @@ public class LineController implements Runnable {
 		//一行有11格，默认第一格是小推车，最后一格是僵尸出生点
 		int heightOffset = 100;
 		int widthOffset = 80;
-		int height = 125;
-		int width = 100;
 		for(int i=0;i<11;i++) {
-			blocks.add(new BasicBlock(mainController,line, i, i*width+widthOffset, line*height+heightOffset));
+			blocks.add(new LawnBlock(mainController,line, i, i*LawnBlock.blockWidth+widthOffset, line*LawnBlock.blockHeight+heightOffset));
 		}
 		bullets = new CopyOnWriteArrayList<BasicBullet>();
 		zombies = new CopyOnWriteArrayList<BasicZombie>();
