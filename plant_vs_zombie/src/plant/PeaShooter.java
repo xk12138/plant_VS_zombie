@@ -4,6 +4,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 import bullet.Pea;
+import controller.MainController;
 
 public class PeaShooter extends BasicPlant {
 	private static ImageIcon image;
@@ -14,11 +15,11 @@ public class PeaShooter extends BasicPlant {
 		return image;
 	}
 	
-	public PeaShooter(int posX, int posY) {
-		super(posX, posY);
+	public PeaShooter(int posX, int posY, MainController mainController) {
+		super(posX, posY, mainController);
 		this.health = 100;
     	this.attackSpeed = 100;
-    	coolDown = 50;
+    	coolDown = 100;
     	timer = coolDown;
     	price = 100;
     	label = new JLabel(getImage());
@@ -33,7 +34,7 @@ public class PeaShooter extends BasicPlant {
 		}
 		else if(zombieExist) {
 			timer = coolDown;
-			bullet = new Pea(posX, posY);
+			bullet = new Pea(posX, posY, mainController);
 		}
 		return bullet;
 	}

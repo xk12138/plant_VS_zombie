@@ -3,6 +3,8 @@ package zombie;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
+import controller.MainController;
+
 public class Zombie extends BasicZombie {
 	private static ImageIcon image;
 	public static void loadImage() {
@@ -12,27 +14,30 @@ public class Zombie extends BasicZombie {
 		return image;
 	}
 	
-	public Zombie(int posX, int posY) {
-		super(posX, posY);
+	public Zombie(int posY, MainController mainController) {
+		super(posY, mainController);
 		health = 100;
-		power = 2;
-		speedX = 0;
-		speedY = 20;
+		power = 8;
+		attackSpeed = 20;
+		timer = attackSpeed;
+		speedX = 0.5;
+		speedY = 0;
 		label = new JLabel(getImage());
+		this.posX = 900;
 		label.setSize(image.getIconWidth(), image.getIconHeight());
-		label.setBounds(posX, posY, image.getIconWidth(), image.getIconHeight());
+		label.setBounds((int)posX, (int)posY, image.getIconWidth(), image.getIconHeight());
 	}
 	
 	public void move() {
 		if (moderateTimer > 0) {
-			posX += (speedX / 2);
-			posY += (speedY / 2);
+			posX -= (speedX / 2);
+			posY -= (speedY / 2);
 			moderateTimer--;
 		}
 		else {
-			posX += speedX;
-			posY += speedY;
+			posX -= speedX;
+			posY -= speedY;
 		}
-		label.setBounds(posX, posY, image.getIconWidth(), image.getIconHeight());
+		label.setBounds((int)posX, (int)posY, image.getIconWidth(), image.getIconHeight());
 	}
 }

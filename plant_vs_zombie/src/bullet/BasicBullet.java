@@ -9,6 +9,9 @@ package bullet;
  */
 
 import javax.swing.JLabel;
+
+import controller.MainController;
+
 import java.util.concurrent.CopyOnWriteArrayList;
 import zombie.BasicZombie;
 
@@ -17,12 +20,14 @@ public class BasicBullet {
 	public int speedX, speedY;
 	public int power;
 	public JLabel label;
+	public MainController mainController;
 
 	// 移除了寒冰减速效果，构造寒冰类子弹的时候重载实现。
 	
-	public BasicBullet(int posX, int posY) {
+	public BasicBullet(int posX, int posY, MainController mainController) {
 		this.posX = posX;
 		this.posY = posY;
+		this.mainController = mainController;
 	}
 	
 	// 子弹移动
@@ -48,6 +53,7 @@ public class BasicBullet {
 					boom(zombie);		//目前只考虑单体输出
 					if(zombie.health <= 0) {
 						zombies.remove(zombie);
+						mainController.mainViewer.removeLabel(zombie.label);
 					}
 					return true;
 				}

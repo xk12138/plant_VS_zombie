@@ -28,7 +28,6 @@ public class LineController implements Runnable {
 		while(mainController.alive) {
 			zombiesMove();
 			bulletsResponse();
-			zombiesAttack();
 			plantsRefresh();
 			
 			try {
@@ -57,25 +56,38 @@ public class LineController implements Runnable {
 	
 	public void zombiesMove() {
 		for(BasicZombie zombie: zombies) {
-			zombie.move();
+			int colomu = pos2index(zombie.getPosX());
+			try {
+				BasicBlock targetBlock = blocks.get(colomu);
+				if(targetBlock.plant != null) {
+					targetBlock.plant.health -= zombie.getPower();
+					if(targetBlock.plant.health <= 0) {
+						System.out.println("你的一株植物被吃掉了！");
+						mainController.mainViewer.removeLabel(targetBlock.plant.label);
+						targetBlock.plant = null;
+					}
+				}
+				else
+				{
+					zombie.move();
+				}
+			}
+			catch(Exception e) {
+				e.printStackTrace();
+			}
 		}
 	}
 	
 	public void bulletsResponse() {
 		for(BasicBullet bullet: bullets) {
 			if(bullet.ifBoom(zombies)) {
+				System.out.println("BOOM!");
 				mainController.mainViewer.removeLabel(bullet.label);
 				bullets.remove(bullet);
 			}
-		}
-	}
-	
-	public void zombiesAttack() {
-		for(BasicZombie zombie: zombies) {
-			int colomu = pos2index(zombie.posY);
-			BasicBlock targetBlock = blocks.get(colomu);
-			if(targetBlock.plant != null) {
-				targetBlock.plant.health -= zombie.power;
+			else
+			{
+				bullet.move();
 			}
 		}
 	}
@@ -93,7 +105,7 @@ public class LineController implements Runnable {
 	}
 	
 	public int pos2index(int pos) {
-		return pos;
+		return (int)(pos - 80) / LawnBlock.blockWidth;
 	}
 	
 }

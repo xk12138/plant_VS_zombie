@@ -29,7 +29,7 @@ public class MainController implements Runnable {
 	public BasicCard currentCard;
 	
 	public MainController() {
-		clock = 100;
+		clock = 30;
 		sumSun = 0;
 		coolDown = 300;
 		timer = 1;
@@ -66,6 +66,7 @@ public class MainController implements Runnable {
 		System.out.println("The MainController is running.");
 		while(alive) {
 			timer--;
+			mainViewer.jp.repaint();
 			if(timer == 0) {
 				// 计时器到时，删除该太阳。
 				Sun t = new Sun(50,0,200,this);

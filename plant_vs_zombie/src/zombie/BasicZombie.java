@@ -2,6 +2,8 @@ package zombie;
 
 import javax.swing.JLabel;
 
+import controller.MainController;
+
 /*
  * 僵尸的基类：
  *  位置： posX、posY
@@ -11,31 +13,33 @@ import javax.swing.JLabel;
  * */
 
 public class BasicZombie {
-	public int posX, posY;
-	public int speedX, speedY;
+	public double posX, posY;
+	public double speedX, speedY;
+	public int attackSpeed, timer;
 	public int power;
 	public int health;
 	
 	public JLabel label;
+	public MainController mainController;
 	
 	// Debuff timer
 	public int moderateTimer;
 	private final int moderateCoolDown = 100;
 	
-	public BasicZombie(int posX, int posY) {
-		this.posX = posX;
+	public BasicZombie(int posY, MainController mainController) {
 		this.posY = posY;
+		this.mainController = mainController;
 	}
 	
 	public void move() {
 		if (moderateTimer > 0) {
-			posX += (speedX / 2);
-			posY += (speedY / 2);
+			posX -= (speedX / 2);
+			posY -= (speedY / 2);
 			moderateTimer--;
 		}
 		else {
-			posX += speedX;
-			posY += speedY;
+			posX -= speedX;
+			posY -= speedY;
 		}
 	}
 	
@@ -49,5 +53,20 @@ public class BasicZombie {
 	
 	public void setModerateTimer() {
 		moderateTimer = moderateCoolDown;
+	}
+	
+	public int getPosX() {
+		return (int)posX;
+	}
+	
+	public int getPower() {
+		if(timer == 0) {
+			timer = attackSpeed;
+			return power;
+		}
+		else {
+			timer--;
+			return 0;
+		}
 	}
 }

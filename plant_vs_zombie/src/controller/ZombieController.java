@@ -6,7 +6,7 @@ public class ZombieController implements Runnable {
 	// connect to MainController
 	public MainController mainController;
 	
-	public int coolDown = 3000;
+	public int coolDown = 300;
 	public int timer;
 	
 	public int batch = 0;	// 用于控制正在第几波
@@ -15,7 +15,7 @@ public class ZombieController implements Runnable {
 	
 	public ZombieController(MainController mainController) {
 		this.mainController = mainController;
-		timer = 500000;
+		timer = coolDown;
 		this.start();
 	}
 	
@@ -46,37 +46,39 @@ public class ZombieController implements Runnable {
 	}
 	
 	public void createZombies() {
-		int colomu;
+		int column;
 		BasicZombie t;
 		switch(batch) {
 		case 0:
-			colomu = (int)(Math.random() * mainController.lineNum);
-			t = new Zombie(colomu, 10);
-			mainController.lineControllers[colomu].zombies.add(t);
+			column = (int)(Math.random() * mainController.lineNum);
+			t = new Zombie(80+125*column, mainController);
+			mainController.lineControllers[column].zombies.add(t);
 			mainController.mainViewer.addLabel(t.label);
 			break;
 		case 1:
-			colomu = (int)(Math.random() * mainController.lineNum);
-			t = new Zombie(colomu, 10);
-			mainController.lineControllers[colomu].zombies.add(t);
+			column = (int)(Math.random() * mainController.lineNum);
+			t = new Zombie(80+125*column, mainController);
+			mainController.lineControllers[column].zombies.add(t);
 			mainController.mainViewer.addLabel(t.label);
 			break;
 		case 2:
-			colomu = (int)(Math.random() * mainController.lineNum);
-			t = new Zombie(colomu, 10);
-			mainController.lineControllers[colomu].zombies.add(t);
+			column = (int)(Math.random() * mainController.lineNum);
+			t = new Zombie(80+125*column, mainController);
+			mainController.lineControllers[column].zombies.add(t);
 			mainController.mainViewer.addLabel(t.label);
-			colomu = (int)(Math.random() * mainController.lineNum);
-			t = new Zombie(colomu, 10);
-			mainController.lineControllers[colomu].zombies.add(t);
+			column = (int)(Math.random() * mainController.lineNum);
+			t = new Zombie(80+125*column, mainController);
+			mainController.lineControllers[column].zombies.add(t);
 			mainController.mainViewer.addLabel(t.label);
 			break;
 		case 3:
 			for(int i=0;i<mainController.lineNum;i++) {
-				t = new Zombie(i, 10);
+				t = new Zombie(80+125*i, mainController);
 				mainController.lineControllers[i].zombies.add(t);
 				mainController.mainViewer.addLabel(t.label);
 			}
 		}
+		
+		System.out.println("成功创建一个僵尸");
 	}
 }
