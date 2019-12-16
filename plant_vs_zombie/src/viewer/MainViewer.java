@@ -27,12 +27,12 @@ public class MainViewer extends JFrame {
 		// 增加窗口的内容
 		layeredPane = new JLayeredPane();
 		ImageIcon image = new ImageIcon("resource\\images\\interface\\background1.jpg");
-		//background = new JPanel();
-		//background.setBounds(0, 0, image.getIconWidth(), image.getIconHeight());
+		background = new JPanel();
+		background.setBounds(0, 0, image.getIconWidth(), image.getIconHeight());
 		JLabel jl = new JLabel(image);
 		jl.setBounds(0, 0, 1110, 750);
-		//background.add(jl);
-		//layeredPane.add(background, JLayeredPane.DEFAULT_LAYER);
+		background.add(jl);
+		layeredPane.add(background, JLayeredPane.DEFAULT_LAYER);
 		
 		// 创建方块层
 		blockPanel = new JPanel();
@@ -48,7 +48,6 @@ public class MainViewer extends JFrame {
 		
 		// 让窗口显示出来
 		this.setLayeredPane(layeredPane);
-		this.setLayout(null);
 		this.setSize(1110, 750);
 		this.setVisible(true);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -66,9 +65,11 @@ public class MainViewer extends JFrame {
 	
 	public void addLabel(JLabel label) {
 		jp.add(label);
+		jp.repaint();
 	}
 	public void removeLabel(JLabel label) {
 		jp.remove(label);
+		jp.repaint();
 	}
 
 }

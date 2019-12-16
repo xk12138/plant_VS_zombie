@@ -53,7 +53,7 @@ public class BasicBullet {
 					boom(zombie);		//目前只考虑单体输出
 					if(zombie.health <= 0) {
 						zombies.remove(zombie);
-						mainController.mainViewer.removeLabel(zombie.label);
+						zombies.die();
 					}
 					return true;
 				}

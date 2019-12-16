@@ -4,27 +4,27 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 import controller.MainController;
-import plant.PeaShooter;
+import plant.SunFlower;
 
-public class PeaShooterCard extends BasicCard {
+public class SunFlowerCard extends BasicCard {
 	private static ImageIcon image;
 	public static void loadImage() {
-		image = new ImageIcon("resource\\images\\card\\plants\\Peashooter_01.gif");
+		image = new ImageIcon("resource\\images\\card\\plants\\SunFlower_01.gif");
 	}
 	public static ImageIcon getImage() {
 		return image;
 	}
 	
-	public PeaShooterCard(MainController mainController) {
+	public SunFlowerCard(MainController mainController) {
 		super(mainController);
 		label = new JLabel(getImage());
 		addMouseListener(label);
-		plant = new PeaShooter(0, 0, mainController);
+		plant = new SunFlower(0, 0, mainController);
 		coolDown = plant.coolDown;
 		label.setSize(cardWidth, cardHeight);
 	}
 	
-	public PeaShooter getPlant(int posX, int posY) {
-		return new PeaShooter(posX, posY, mainController);
+	public SunFlower getPlant(int posX, int posY) {
+		return new SunFlower(posX, posY, mainController);
 	}
 }

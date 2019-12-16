@@ -3,7 +3,9 @@ package controller;
 import bullet.Pea;
 import card.BasicCard;
 import card.PeaShooterCard;
+import card.SunFlowerCard;
 import plant.PeaShooter;
+import plant.SunFlower;
 import sun.Sun;
 import viewer.*;
 import zombie.Zombie;
@@ -30,10 +32,13 @@ public class MainController implements Runnable {
 	
 	public MainController() {
 		clock = 30;
-		sumSun = 0;
+		sumSun = 5000;
 		coolDown = 300;
 		timer = 1;
 		alive = true;
+
+		mainViewer = new MainViewer();
+		mainViewer.setMainController(this);
 		
 		// 初始化所有控制器
 		lineControllers = new LineController[lineNum];
@@ -43,9 +48,7 @@ public class MainController implements Runnable {
 		cardController = new CardController(this, cardMaxNum);
 		sunController = new SunController(this);
 		zombieController = new ZombieController(this);
-		
-		mainViewer = new MainViewer();
-		mainViewer.setMainController(this);
+
 		mainViewer.draw();
 		
 		//测试功能区域
@@ -66,10 +69,9 @@ public class MainController implements Runnable {
 		System.out.println("The MainController is running.");
 		while(alive) {
 			timer--;
-			mainViewer.jp.repaint();
 			if(timer == 0) {
 				// 计时器到时，删除该太阳。
-				Sun t = new Sun(50,0,200,this);
+				Sun t = new Sun(((int)Math.random()*800+120), 60, 200, this);
 				sunController.suns.add(t);
 				mainViewer.addLabel(t.label);
 
@@ -85,13 +87,24 @@ public class MainController implements Runnable {
 		}
 	}
 	
-	@SuppressWarnings("unused")
 	public static void main(String[] args) {
+		//加载所有子弹的图片
 		Pea.loadImage();
+		
+		//加载所有卡片的图片
 		PeaShooterCard.loadImage();
+		SunFlowerCard.loadImage();
+		
+		//加载所有植物的图片
 		PeaShooter.loadImage();
+		SunFlower.loadImage();
+		
+		//加载所有太阳的图片
 		Sun.loadImage();
+		
+		//加载所有僵尸的图片
 		Zombie.loadImage();
-		MainController mainController = new MainController();
+
+		new MainController();
 	}
 }
