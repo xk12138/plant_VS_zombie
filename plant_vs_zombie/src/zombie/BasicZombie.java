@@ -69,4 +69,10 @@ public class BasicZombie {
 			return 0;
 		}
 	}
+	public void die() {
+		/*½øÈëËÀÍögif*/
+		try { Thread.sleep ( 1000 ) ;
+		} catch (InterruptedException ie){}
+		mainController.mainViewer.removeLabel(this.label);
+	}
 }
