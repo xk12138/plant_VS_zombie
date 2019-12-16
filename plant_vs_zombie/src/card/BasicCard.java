@@ -38,7 +38,14 @@ public class BasicCard {
 		BasicCard that = this;
 		label.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				mainController.currentCard = that;
+				if(mainController.sumSun < that.plant.price) {
+					System.out.printf("你的阳光储量不足，只有%d，需要%d\n", mainController.sumSun, that.plant.price);
+				}
+				else {
+					mainController.currentCard = that;
+					System.out.println("成功购买一个植物");
+					mainController.sumSun -= that.plant.price;
+				}
 			}
 		});
 	}

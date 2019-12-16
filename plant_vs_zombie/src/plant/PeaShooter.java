@@ -19,7 +19,7 @@ public class PeaShooter extends BasicPlant {
 		super(posX, posY, mainController);
 		this.health = 100;
     	this.attackSpeed = 100;
-    	coolDown = 100;
+    	coolDown = 80;
     	timer = coolDown;
     	price = 100;
     	label = new JLabel(getImage());
@@ -33,7 +33,7 @@ public class PeaShooter extends BasicPlant {
 			timer--;
 		}
 		else if(zombieExist) {
-			timer = coolDown;
+			timer = attackSpeed;
 			bullet = new Pea(posX, posY, mainController);
 		}
 		return bullet;

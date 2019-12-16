@@ -6,7 +6,7 @@ public class ZombieController implements Runnable {
 	// connect to MainController
 	public MainController mainController;
 	
-	public int coolDown = 300;
+	public int coolDown = 750;
 	public int timer;
 	
 	public int batch = 0;	// 用于控制正在第几波
