@@ -7,30 +7,20 @@ import javax.swing.JLabel;
 
 import controller.MainController;
 
-public class Zombie extends BasicZombie {
+
+public class FlagZombie extends BasicZombie {
 	public ImageIcon image;
 	private ImageIcon imageMove;
 	
-
 	
 	private void loadOtherImage() {
-		//if((int)(Math.random()*3) == 1)
-			//imageDie = imageLostHead;s
-		//else	
-		
-		int rand = (int)(Math.random()*3);
-		if(rand == 1)
-			imageMove = imageZombieMove2;
-		else if(rand == 2)
-			imageMove = imageZombieMove3;
-		else
-			imageMove = imageZombieMove1;
+		imageMove = imageFlagZombieMove;
 	}
 	public ImageIcon getImage() {
 		return image;
 	}
 	
-	public Zombie(int posY, MainController mainController) {
+	public FlagZombie(int posY, MainController mainController) {
 		super(posY, mainController);
 		health = 100;
 		power = 8;
@@ -41,24 +31,7 @@ public class Zombie extends BasicZombie {
 		/*动态加载一些一次性图片，选择僵尸个性等*/
 		loadOtherImage();
 		/*选好了*/
-		image = imageZombieStatic;
-		label = new JLabel(getImage());
-		this.posX = 1000;
-		label.setSize(image.getIconWidth(), image.getIconHeight());
-		label.setBounds((int)posX, (int)posY, image.getIconWidth(), image.getIconHeight());
-	}
-	public Zombie(double posX, double posY, MainController mainController) {
-		super(posX, posY, mainController);
-		health = 100;
-		//power = 8;
-		power = 20;
-		attackSpeed = 20;
-		timer = attackSpeed;
-		speedX = 0.5;
-		speedY = 0;
-		/*动态加载一些一次性图片，选择僵尸个性等*/
-		loadOtherImage();
-		image = imageZombieStatic;
+		image = imageFlagZombieStatic;
 		label = new JLabel(getImage());
 		this.posX = 1000;
 		label.setSize(image.getIconWidth(), image.getIconHeight());
@@ -84,7 +57,7 @@ public class Zombie extends BasicZombie {
 	}
 	public int getPower() {
 		if(state != ATTACK) {
-			image = imageZombieAttack;
+			image = imageFlagZombieAttack;
 			label.setIcon(image);
 			state = ATTACK;
 		}
@@ -109,12 +82,12 @@ public class Zombie extends BasicZombie {
 		else {//人头分离
 		
 			if(state == ATTACK) {
-				image = imageZombieLostHeadAttack;
-				timer = (int)(Math.random()*150);
+				image = imageFlagZombieLostHeadAttack;
+				timer = (int)(Math.random()*90)+10;
 			}
 			else if((int)(Math.random()*3) == 1) {
-				image = imageZombieLostHead;
-				timer = (int)(Math.random()*150);
+				image = imageFlagZombieLostHead;
+				timer = (int)(Math.random()*120)+10;
 			}else {
 				image = imageZombieDie;
 				timer = TIME_DIE;

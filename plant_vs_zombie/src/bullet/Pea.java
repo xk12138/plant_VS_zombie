@@ -17,8 +17,9 @@ public class Pea extends BasicBullet {
 	public Pea(int posX, int posY, MainController mainController) {
 		super(posX, posY, mainController);
 		// 初始化属性
-		power = 10;
-		speedX = 6;
+		//power = 10;
+		power = 50;
+		speedX = 10;//原来是6
 		speedY = 0;
 		label = new JLabel(getImage());
 		label.setSize(peaImage.getIconWidth(), peaImage.getIconHeight());

@@ -104,6 +104,7 @@ public class MainController implements Runnable {
 		
 		//加载所有僵尸的图片
 		Zombie.loadImage();
+		
 
 		new MainController();
 	}

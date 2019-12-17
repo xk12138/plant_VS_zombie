@@ -1,5 +1,4 @@
 package zombie;
-
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import javax.swing.ImageIcon;
@@ -7,32 +6,28 @@ import javax.swing.JLabel;
 
 import controller.MainController;
 
-public class Zombie extends BasicZombie {
-	public ImageIcon image;
-	private ImageIcon imageMove;
-	
 
+public class ConeheadZombie extends BasicZombie {
+	private ImageIcon image;
+	private ImageIcon imageMove;
+	private ImageIcon imageAttack;
+
+	private int normalHealth;
+	private boolean normal;
 	
 	private void loadOtherImage() {
-		//if((int)(Math.random()*3) == 1)
-			//imageDie = imageLostHead;s
-		//else	
-		
-		int rand = (int)(Math.random()*3);
-		if(rand == 1)
-			imageMove = imageZombieMove2;
-		else if(rand == 2)
-			imageMove = imageZombieMove3;
-		else
-			imageMove = imageZombieMove1;
+		imageMove = imageConeheadZombieMove;
+		imageAttack = imageConeheadZombieAttack;
 	}
 	public ImageIcon getImage() {
 		return image;
 	}
 	
-	public Zombie(int posY, MainController mainController) {
+	public ConeheadZombie(int posY, MainController mainController) {
 		super(posY, mainController);
-		health = 100;
+		normalHealth = 100;
+		normal = false;
+		health = 200;
 		power = 8;
 		attackSpeed = 20;
 		timer = attackSpeed;
@@ -41,24 +36,7 @@ public class Zombie extends BasicZombie {
 		/*动态加载一些一次性图片，选择僵尸个性等*/
 		loadOtherImage();
 		/*选好了*/
-		image = imageZombieStatic;
-		label = new JLabel(getImage());
-		this.posX = 1000;
-		label.setSize(image.getIconWidth(), image.getIconHeight());
-		label.setBounds((int)posX, (int)posY, image.getIconWidth(), image.getIconHeight());
-	}
-	public Zombie(double posX, double posY, MainController mainController) {
-		super(posX, posY, mainController);
-		health = 100;
-		//power = 8;
-		power = 20;
-		attackSpeed = 20;
-		timer = attackSpeed;
-		speedX = 0.5;
-		speedY = 0;
-		/*动态加载一些一次性图片，选择僵尸个性等*/
-		loadOtherImage();
-		image = imageZombieStatic;
+		image = imageConeheadZombieStatic;
 		label = new JLabel(getImage());
 		this.posX = 1000;
 		label.setSize(image.getIconWidth(), image.getIconHeight());
@@ -66,8 +44,15 @@ public class Zombie extends BasicZombie {
 	}
 	
 	public void move() {
+		if(health < normalHealth&&normal == false) {
+			normal = true;
+			imageAttack = imageZombieAttack;
+			imageMove = imageZombieMove1;
+			image = imageMove;
+			label.setIcon(image);
+		}
 		if(state != MOVE) {
-			state = MOVE;
+			state = MOVE;	
 			image = imageMove;
 			label.setIcon(image);
 		}
@@ -83,8 +68,15 @@ public class Zombie extends BasicZombie {
 		label.setBounds((int)posX, (int)posY, image.getIconWidth(), image.getIconHeight());
 	}
 	public int getPower() {
+		if(health < normalHealth&&normal == false) {
+			normal = true;
+			imageAttack = imageZombieAttack;
+			imageMove = imageZombieMove1;
+			image = imageAttack;
+			label.setIcon(image);
+		}
 		if(state != ATTACK) {
-			image = imageZombieAttack;
+			image = imageAttack;
 			label.setIcon(image);
 			state = ATTACK;
 		}

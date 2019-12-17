@@ -6,7 +6,8 @@ public class ZombieController implements Runnable {
 	// connect to MainController
 	public MainController mainController;
 	
-	public int coolDown = 750;
+	//public int coolDown = 750;
+	public int coolDown = 50;
 	public int timer;
 	
 	public int batch = 0;	// 用于控制正在第几波
@@ -51,7 +52,7 @@ public class ZombieController implements Runnable {
 		switch(batch) {
 		case 0:
 			column = (int)(Math.random() * mainController.lineNum);
-			t = new Zombie(80+125*column, mainController);
+			t = new NewspaperZombie(80+125*column, mainController);
 			mainController.lineControllers[column].zombies.add(t);
 			mainController.mainViewer.addLabel(t.label);
 			break;

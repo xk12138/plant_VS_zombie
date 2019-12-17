@@ -7,65 +7,69 @@ import javax.swing.JLabel;
 
 import controller.MainController;
 
-public class Zombie extends BasicZombie {
+public class NewspaperZombie extends BasicZombie {
 	public ImageIcon image;
 	private ImageIcon imageMove;
+	private ImageIcon imageAttack;
 	
-
-	
+	private int normalHealth;
+	private boolean normal;
+	private int actionTimer;
 	private void loadOtherImage() {
-		//if((int)(Math.random()*3) == 1)
-			//imageDie = imageLostHead;s
-		//else	
 		
-		int rand = (int)(Math.random()*3);
-		if(rand == 1)
-			imageMove = imageZombieMove2;
-		else if(rand == 2)
-			imageMove = imageZombieMove3;
-		else
-			imageMove = imageZombieMove1;
+		imageMove = imageNewspaperZombieMove;
+		imageAttack = imageNewspaperZombieAttack;
 	}
 	public ImageIcon getImage() {
 		return image;
 	}
 	
-	public Zombie(int posY, MainController mainController) {
+	public NewspaperZombie(int posY, MainController mainController) {
 		super(posY, mainController);
-		health = 100;
+		normalHealth = 100;
+		normal = false;
+		health = 200;
 		power = 8;
 		attackSpeed = 20;
 		timer = attackSpeed;
 		speedX = 0.5;
 		speedY = 0;
+		actionTimer = 20;
 		/*动态加载一些一次性图片，选择僵尸个性等*/
 		loadOtherImage();
 		/*选好了*/
-		image = imageZombieStatic;
+		image = imageNewspaperZombieStatic;
 		label = new JLabel(getImage());
 		this.posX = 1000;
 		label.setSize(image.getIconWidth(), image.getIconHeight());
 		label.setBounds((int)posX, (int)posY, image.getIconWidth(), image.getIconHeight());
 	}
-	public Zombie(double posX, double posY, MainController mainController) {
-		super(posX, posY, mainController);
-		health = 100;
-		//power = 8;
-		power = 20;
-		attackSpeed = 20;
-		timer = attackSpeed;
-		speedX = 0.5;
-		speedY = 0;
-		/*动态加载一些一次性图片，选择僵尸个性等*/
-		loadOtherImage();
-		image = imageZombieStatic;
-		label = new JLabel(getImage());
-		this.posX = 1000;
-		label.setSize(image.getIconWidth(), image.getIconHeight());
-		label.setBounds((int)posX, (int)posY, image.getIconWidth(), image.getIconHeight());
+	private void action() {
+		if(actionTimer != 0)
+			actionTimer--;
+		else {
+			state = MOVE;
+			normal = true;
+			imageMove = imageNewspaperZombieLostMove;
+			imageAttack = imageNewspaperZombieLostAttack;
+			speedX = 2.5;
+			image = imageMove;
+			label.setIcon(image);
+		}
 	}
-	
 	public void move() {
+		if(state == ACTION) {//变身期间，不操作
+			action();
+			return ;
+		}else {
+		if(health<normalHealth&&normal == false) {//变身准备
+			normal = true;
+			state = ACTION;
+			image = imageNewspaperZombieLostNewspaper;
+			label.setIcon(image);
+			return ;
+		}
+		//正常情况
 		if(state != MOVE) {
 			state = MOVE;
 			image = imageMove;
@@ -81,10 +85,25 @@ public class Zombie extends BasicZombie {
 			posY -= speedY;
 		}
 		label.setBounds((int)posX, (int)posY, image.getIconWidth(), image.getIconHeight());
+			
+		}
+		
 	}
 	public int getPower() {
+		if(state == ACTION) {//变身期间，不操作
+			action();
+			return 0;
+		}
+		if(health<normalHealth&&normal == false) {//变身准备
+			normal = true;
+			state = ACTION;
+			image = imageNewspaperZombieLostNewspaper;
+			label.setIcon(image);
+			return 0;
+		}
+		//正常情况
 		if(state != ATTACK) {
-			image = imageZombieAttack;
+			image = imageAttack;
 			label.setIcon(image);
 			state = ATTACK;
 		}
@@ -109,22 +128,22 @@ public class Zombie extends BasicZombie {
 		else {//人头分离
 		
 			if(state == ATTACK) {
-				image = imageZombieLostHeadAttack;
+				image = imageNewspaperZombieLostHeadAttack;
 				timer = (int)(Math.random()*150);
 			}
 			else if((int)(Math.random()*3) == 1) {
-				image = imageZombieLostHead;
+				image = imageNewspaperZombieLostHead;
 				timer = (int)(Math.random()*150);
 			}else {
-				image = imageZombieDie;
-				timer = TIME_DIE;
+				image = imageNewspaperZombieDie;
+				timer = TIME_NEWSPAPER_DIE;
 			}
 			label.setIcon(image);
 			dieZombies.add(this);
 			Zombie head = new Zombie(posX, posY, mainController);
-			head.image = imageZombieHead;
+			head.image = imageNewspaperZombieHead;
 			head.label.setIcon(head.image);
-			head.timer = TIME_HEAD;
+			head.timer = TIME_NEWSPAPER_HEAD;
 			dieZombies.add(head);
 			mainController.mainViewer.addLabel(head.label);
 		}
@@ -133,3 +152,4 @@ public class Zombie extends BasicZombie {
 	}
 	
 }
+

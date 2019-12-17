@@ -1,6 +1,10 @@
 package controller;
 
 import java.util.concurrent.CopyOnWriteArrayList;
+
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+
 import block.BasicBlock;
 import block.LawnBlock;
 import bullet.BasicBullet;
@@ -13,7 +17,8 @@ public class LineController implements Runnable {
 	public CopyOnWriteArrayList<BasicBlock> blocks;
 	public CopyOnWriteArrayList<BasicBullet> bullets;
 	public CopyOnWriteArrayList<BasicZombie> zombies;
-	
+	public CopyOnWriteArrayList<BasicZombie> dieZombies;
+	 
 	public Thread t;
 	
 	public void start() {
@@ -29,7 +34,7 @@ public class LineController implements Runnable {
 			zombiesMove();
 			bulletsResponse();
 			plantsRefresh();
-			
+			dieZombieRefresh();
 			try {
 				t.sleep(mainController.clock);
 			} catch (InterruptedException e) {
@@ -50,6 +55,7 @@ public class LineController implements Runnable {
 		}
 		bullets = new CopyOnWriteArrayList<BasicBullet>();
 		zombies = new CopyOnWriteArrayList<BasicZombie>();
+		dieZombies = new CopyOnWriteArrayList<BasicZombie>();
 		
 		this.start();
 	}
@@ -80,7 +86,7 @@ public class LineController implements Runnable {
 	
 	public void bulletsResponse() {
 		for(BasicBullet bullet: bullets) {
-			if(bullet.ifBoom(zombies)) {
+			if(bullet.ifBoom(this)) {
 				System.out.println("BOOM!");
 				mainController.mainViewer.removeLabel(bullet.label);
 				bullets.remove(bullet);
@@ -107,5 +113,16 @@ public class LineController implements Runnable {
 	public int pos2index(int pos) {
 		return (int)(pos - 80) / LawnBlock.blockWidth;
 	}
-	
+	public void dieZombieRefresh() {
+		for(BasicZombie zombie:dieZombies) {
+			if(zombie.timer != 10)
+				zombie.timer--;
+			else {
+				System.out.println("≥πµ◊À¿¡À");
+				dieZombies.remove(zombie);
+				mainController.mainViewer.removeLabel(zombie.label);
+			}
+				
+		}
+	}
 }
