@@ -95,6 +95,7 @@ public class LineController implements Runnable {
 			{
 				bullet.move();
 			}
+			
 		}
 	}
 	
@@ -115,7 +116,7 @@ public class LineController implements Runnable {
 	}
 	public void dieZombieRefresh() {
 		for(BasicZombie zombie:dieZombies) {
-			if(zombie.timer != 10)
+			if(zombie.timer > 0)
 				zombie.timer--;
 			else {
 				System.out.println("³¹µ×ËÀÁË");

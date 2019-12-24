@@ -12,7 +12,19 @@ public class FlagZombie extends BasicZombie {
 	public ImageIcon image;
 	private ImageIcon imageMove;
 	
-	
+	public static ImageIcon imageFlagZombieStatic;
+	public static ImageIcon imageFlagZombieMove;
+	public static ImageIcon imageFlagZombieAttack;
+	public static ImageIcon imageFlagZombieLostHead;
+	public static ImageIcon imageFlagZombieLostHeadAttack;
+	public static void loadImage() {
+		imageFlagZombieStatic = new ImageIcon("resource\\images\\zombie\\FlagZombie\\1.gif");
+		imageFlagZombieMove = new ImageIcon("resource\\images\\zombie\\FlagZombie\\FlagZombie.gif");
+		imageFlagZombieAttack = new ImageIcon("resource\\images\\zombie\\FlagZombie\\FlagZombieAttack.gif");
+		imageFlagZombieLostHead = new ImageIcon("resource\\images\\zombie\\FlagZombie\\FlagZombieLostHead.gif");
+		imageFlagZombieLostHeadAttack = new ImageIcon("resource\\images\\zombie\\FlagZombie\\FlagZombieLostHeadAttack.gif");
+		
+	}
 	private void loadOtherImage() {
 		imageMove = imageFlagZombieMove;
 	}

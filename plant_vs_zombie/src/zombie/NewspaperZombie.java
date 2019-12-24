@@ -12,9 +12,36 @@ public class NewspaperZombie extends BasicZombie {
 	private ImageIcon imageMove;
 	private ImageIcon imageAttack;
 	
+	public static ImageIcon imageNewspaperZombieStatic;
+	public static ImageIcon imageNewspaperZombieMove;
+	public static ImageIcon imageNewspaperZombieAttack;
+	public static ImageIcon imageNewspaperZombieLostNewspaper;
+	public static ImageIcon imageNewspaperZombieLostMove;
+	public static ImageIcon imageNewspaperZombieLostAttack;
+	public static ImageIcon imageNewspaperZombieDie;
+	public static ImageIcon imageNewspaperZombieLostHead;
+	public static ImageIcon imageNewspaperZombieLostHeadAttack;
+	public static ImageIcon imageNewspaperZombieHead;
+	
 	private int normalHealth;
 	private boolean normal;
 	private int actionTimer;
+	
+	public final int TIME_NEWSPAPER_DIE = 22;
+	public final int TIME_NEWSPAPER_HEAD = 15;
+	
+	public static void loadImage() {
+		imageNewspaperZombieStatic = new ImageIcon("resource\\images\\zombie\\NewspaperZombie\\1.gif");
+		imageNewspaperZombieMove = new ImageIcon("resource\\images\\zombie\\NewspaperZombie\\HeadWalk1.gif");
+		imageNewspaperZombieAttack = new ImageIcon("resource\\images\\zombie\\NewspaperZombie\\HeadAttack1.gif");
+		imageNewspaperZombieLostNewspaper = new ImageIcon("resource\\images\\zombie\\NewspaperZombie\\LostNewspaper.gif");
+		imageNewspaperZombieLostMove = new ImageIcon("resource\\images\\zombie\\NewspaperZombie\\HeadWalk0.gif");
+		imageNewspaperZombieLostAttack = new ImageIcon("resource\\images\\zombie\\NewspaperZombie\\HeadAttack0.gif");
+		imageNewspaperZombieDie = new ImageIcon("resource\\images\\zombie\\NewspaperZombie\\Die.gif");
+		imageNewspaperZombieLostHead = new ImageIcon("resource\\images\\zombie\\NewspaperZombie\\LostHeadWalk0.gif");
+		imageNewspaperZombieLostHeadAttack = new ImageIcon("resource\\images\\zombie\\NewspaperZombie\\LostHeadAttack0.gif");
+		imageNewspaperZombieHead = new ImageIcon("resource\\images\\zombie\\NewspaperZombie\\Head.gif");
+	}
 	private void loadOtherImage() {
 		
 		imageMove = imageNewspaperZombieMove;
@@ -62,7 +89,7 @@ public class NewspaperZombie extends BasicZombie {
 			action();
 			return ;
 		}else {
-		if(health<normalHealth&&normal == false) {//变身准备
+		if(health<=normalHealth&&normal == false) {//变身准备
 			normal = true;
 			state = ACTION;
 			image = imageNewspaperZombieLostNewspaper;

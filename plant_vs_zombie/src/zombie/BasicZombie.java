@@ -31,8 +31,7 @@ public class BasicZombie {
 	
 	public final int TIME_DIE = 25;
 	public final int TIME_FOOTBALL_DIE = 20;
-	public final int TIME_NEWSPAPER_DIE = 25;
-	public final int TIME_NEWSPAPER_HEAD = 25;
+
 	public final int TIME_HEAD = 18;
 	public final int TIME_BOOM = 38;
 	
@@ -53,89 +52,15 @@ public class BasicZombie {
 	public static ImageIcon imageZombieMove2;
 	public static ImageIcon imageZombieMove3;
 	
-	public static ImageIcon imageConeheadZombieStatic;
-	public static ImageIcon imageConeheadZombieMove;
-	public static ImageIcon imageConeheadZombieAttack;
 	
-	public static ImageIcon imageFlagZombieStatic;
-	public static ImageIcon imageFlagZombieMove;
-	public static ImageIcon imageFlagZombieAttack;
-	public static ImageIcon imageFlagZombieLostHead;
-	public static ImageIcon imageFlagZombieLostHeadAttack;
 	
-	public static ImageIcon imageBucketZombieStatic;
-	public static ImageIcon imageBucketZombieMove;
-	public static ImageIcon imageBucketZombieAttack;
-	
-	public static ImageIcon imageFootballZombieStatic;
-	public static ImageIcon imageFootballZombieDie;
-	public static ImageIcon imageFootballZombieMove;
-	public static ImageIcon imageFootballZombieOrnLostMove;
-	public static ImageIcon imageFootballZombieAttack;
-	public static ImageIcon imageFootballZombieOrnLostAttack;
-	public static ImageIcon imageFootballZombieLostHead;
-	public static ImageIcon imageFootballZombieLostHeadAttack;
-	
-	public static ImageIcon imageNewspaperZombieStatic;
-	public static ImageIcon imageNewspaperZombieMove;
-	public static ImageIcon imageNewspaperZombieAttack;
-	public static ImageIcon imageNewspaperZombieLostNewspaper;
-	public static ImageIcon imageNewspaperZombieLostMove;
-	public static ImageIcon imageNewspaperZombieLostAttack;
-	public static ImageIcon imageNewspaperZombieDie;
-	public static ImageIcon imageNewspaperZombieLostHead;
-	public static ImageIcon imageNewspaperZombieLostHeadAttack;
-	public static ImageIcon imageNewspaperZombieHead;
+
 	
 	
 	
 	public static void loadImage() {
-		imageZombieStatic = new ImageIcon("resource\\images\\zombie\\Zombie\\1.gif");
-		imageZombieMove1 = new ImageIcon("resource\\images\\zombie\\Zombie\\Zombie.gif");
-		imageZombieLostHead = new ImageIcon("resource\\images\\zombie\\Zombie\\ZombieLostHead.gif");
-		imageZombieAttack = new ImageIcon("resource\\images\\zombie\\Zombie\\ZombieAttack.gif");
-		imageZombieLostHeadAttack = new ImageIcon("resource\\images\\zombie\\Zombie\\ZombieLostHeadAttack.gif");
-		imageZombieSlowMove = new ImageIcon("resource\\images\\zombie\\Zombie\\SnowZombie.gif");
-		imageZombieMove2 = new ImageIcon("resource\\images\\zombie\\Zombie\\Zombie2.gif");
-		imageZombieMove3 = new ImageIcon("resource\\images\\zombie\\Zombie\\Zombie3.gif");
-		imageZombieHead = new ImageIcon("resource\\images\\zombie\\Zombie\\ZombieHead.gif");
-		imageZombieBoomDie = new ImageIcon("resource\\images\\zombie\\Zombie\\BoomDie.gif");
-		imageZombieDie = new ImageIcon("resource\\images\\zombie\\Zombie\\ZombieDie.gif");
-		
-		imageConeheadZombieStatic = new ImageIcon("resource\\images\\zombie\\ConeheadZombie\\1.gif");
-		imageConeheadZombieMove = new ImageIcon("resource\\images\\zombie\\ConeheadZombie\\ConeheadZombie.gif");
-		imageConeheadZombieAttack = new ImageIcon("resource\\images\\zombie\\ConeheadZombie\\ConeheadZombieAttack.gif");
-		
-		imageFlagZombieStatic = new ImageIcon("resource\\images\\zombie\\FlagZombie\\1.gif");
-		imageFlagZombieMove = new ImageIcon("resource\\images\\zombie\\FlagZombie\\FlagZombie.gif");
-		imageFlagZombieAttack = new ImageIcon("resource\\images\\zombie\\FlagZombie\\FlagZombieAttack.gif");
-		imageFlagZombieLostHead = new ImageIcon("resource\\images\\zombie\\FlagZombie\\FlagZombieLostHead.gif");
-		imageFlagZombieLostHeadAttack = new ImageIcon("resource\\images\\zombie\\FlagZombie\\FlagZombieLostHeadAttack.gif");
-		
-		imageBucketZombieStatic =  new ImageIcon("resource\\images\\zombie\\BucketheadZombie\\1.gif");
-		imageBucketZombieMove =  new ImageIcon("resource\\images\\zombie\\BucketheadZombie\\BucketheadZombie.gif");
-		imageBucketZombieAttack =  new ImageIcon("resource\\images\\zombie\\BucketheadZombie\\BucketheadZombieAttack.gif");
-		
-		imageFootballZombieStatic = new ImageIcon("resource\\images\\zombie\\FootballZombie\\1.gif");
-		imageFootballZombieAttack = new ImageIcon("resource\\images\\zombie\\FootballZombie\\Attack.gif");
-		imageFootballZombieMove = new ImageIcon("resource\\images\\zombie\\FootballZombie\\FootballZombie.gif");
-		imageFootballZombieOrnLostMove = new ImageIcon("resource\\images\\zombie\\FootballZombie\\FootballZombieOrnLost.gif");
-		imageFootballZombieOrnLostAttack = new ImageIcon("resource\\images\\zombie\\FootballZombie\\FootballZombieOrnLostAttack.gif");
-		imageFootballZombieDie = new ImageIcon("resource\\images\\zombie\\FootballZombie\\Die.gif");
-		imageFootballZombieLostHead = new ImageIcon("resource\\images\\zombie\\FootballZombie\\LostHead.gif");
-		imageFootballZombieLostHeadAttack = new ImageIcon("resource\\images\\zombie\\FootballZombie\\LostHeadAttack.gif");
-
-		imageNewspaperZombieStatic = new ImageIcon("resource\\images\\zombie\\NewspaperZombie\\1.gif");
-		imageNewspaperZombieMove = new ImageIcon("resource\\images\\zombie\\NewspaperZombie\\HeadWalk1.gif");
-		imageNewspaperZombieAttack = new ImageIcon("resource\\images\\zombie\\NewspaperZombie\\HeadAttack1.gif");
-		imageNewspaperZombieLostNewspaper = new ImageIcon("resource\\images\\zombie\\NewspaperZombie\\LostNewspaper.gif");
-		imageNewspaperZombieLostMove = new ImageIcon("resource\\images\\zombie\\NewspaperZombie\\HeadWalk0.gif");
-		imageNewspaperZombieLostAttack = new ImageIcon("resource\\images\\zombie\\NewspaperZombie\\HeadAttack0.gif");
-		imageNewspaperZombieDie = new ImageIcon("resource\\images\\zombie\\NewspaperZombie\\Die.gif");
-		imageNewspaperZombieLostHead = new ImageIcon("resource\\images\\zombie\\NewspaperZombie\\LostHeadWalk0.gif");
-		imageNewspaperZombieLostHeadAttack = new ImageIcon("resource\\images\\zombie\\NewspaperZombie\\LostHeadAttack0.gif");
-		imageNewspaperZombieHead = new ImageIcon("resource\\images\\zombie\\NewspaperZombie\\Head.gif");
-		
+		/*º”‘ÿÕº∆¨*/
+		;
 	}
 	
 	public MainController mainController;

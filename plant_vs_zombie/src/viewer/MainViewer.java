@@ -12,9 +12,13 @@ public class MainViewer extends JFrame {
 	// 界面类属性
 	public Container container;
 	public JLayeredPane layeredPane;
-	public JPanel jp, background, blockPanel;
+	public JPanel jp, blockPanel;
+	
 	
 	public MainController mainController;
+	
+	JLabel jl;
+	
 	public void setMainController(MainController mainController) {
 		this.mainController = mainController;
 	}
@@ -24,20 +28,25 @@ public class MainViewer extends JFrame {
 		this.setIconImage(new ImageIcon("resource\\images\\interface\\SmallLogo.png").getImage());
 		this.container = this.getContentPane();
 		
+		
 		// 增加窗口的内容
 		layeredPane = new JLayeredPane();
+	
 		ImageIcon image = new ImageIcon("resource\\images\\interface\\background1.jpg");
-		background = new JPanel();
-		background.setBounds(0, 0, image.getIconWidth(), image.getIconHeight());
-		JLabel jl = new JLabel(image);
+		//image = new ImageIcon()
+		jl = new JLabel(image);
 		jl.setBounds(0, 0, 1110, 750);
-		background.add(jl);
-		layeredPane.add(background, JLayeredPane.DEFAULT_LAYER);
+	
+		
+		//background.add(jl);
+		//layeredPane.add(background, JLayeredPane.DEFAULT_LAYER);
+		//layeredPane.add(background, 3);
 		
 		// 创建方块层
 		blockPanel = new JPanel();
 		blockPanel.setBounds(0, 0, 1110, 750);
 		blockPanel.setLayout(null);
+		blockPanel.setOpaque(false);
 		layeredPane.add(blockPanel, -1);
 		
 		jp = new JPanel();
@@ -64,8 +73,11 @@ public class MainViewer extends JFrame {
 	}
 	
 	public void addLabel(JLabel label) {
+		jp.remove(jl);
 		jp.add(label);
+		jp.add(jl);
 		jp.repaint();
+		
 	}
 	public void removeLabel(JLabel label) {
 		jp.remove(label);

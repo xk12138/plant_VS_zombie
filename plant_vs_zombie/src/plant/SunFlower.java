@@ -35,7 +35,9 @@ public class SunFlower extends BasicPlant {
 		else {
 			Sun sun = new Sun(posX, posY, posY, mainController);
 			mainController.sunController.suns.add(sun);
+			mainController.mainViewer.remove(label);
 			mainController.mainViewer.addLabel(sun.label);
+			mainController.mainViewer.addLabel(label);
 			timer = attackSpeed;
 		}
 		

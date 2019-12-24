@@ -11,8 +11,22 @@ public class Zombie extends BasicZombie {
 	public ImageIcon image;
 	private ImageIcon imageMove;
 	
-
 	
+	public static void loadImage() {
+		imageZombieStatic = new ImageIcon("resource\\images\\zombie\\Zombie\\1.gif");
+		imageZombieMove1 = new ImageIcon("resource\\images\\zombie\\Zombie\\Zombie.gif");
+		imageZombieLostHead = new ImageIcon("resource\\images\\zombie\\Zombie\\ZombieLostHead.gif");
+		imageZombieAttack = new ImageIcon("resource\\images\\zombie\\Zombie\\ZombieAttack.gif");
+		imageZombieLostHeadAttack = new ImageIcon("resource\\images\\zombie\\Zombie\\ZombieLostHeadAttack.gif");
+		imageZombieSlowMove = new ImageIcon("resource\\images\\zombie\\Zombie\\SnowZombie.gif");
+		imageZombieMove2 = new ImageIcon("resource\\images\\zombie\\Zombie\\Zombie2.gif");
+		imageZombieMove3 = new ImageIcon("resource\\images\\zombie\\Zombie\\Zombie3.gif");
+		imageZombieHead = new ImageIcon("resource\\images\\zombie\\Zombie\\ZombieHead.gif");
+		imageZombieBoomDie = new ImageIcon("resource\\images\\zombie\\Zombie\\BoomDie.gif");
+		imageZombieDie = new ImageIcon("resource\\images\\zombie\\Zombie\\ZombieDie.gif");
+		
+	
+	}
 	private void loadOtherImage() {
 		//if((int)(Math.random()*3) == 1)
 			//imageDie = imageLostHead;s

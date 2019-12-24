@@ -12,9 +12,30 @@ public class FootballZombie extends BasicZombie {
 	private ImageIcon imageMove;
 	private ImageIcon imageAttack;
 	
+	public static ImageIcon imageFootballZombieStatic;
+	public static ImageIcon imageFootballZombieDie;
+	public static ImageIcon imageFootballZombieMove;
+	public static ImageIcon imageFootballZombieOrnLostMove;
+	public static ImageIcon imageFootballZombieAttack;
+	public static ImageIcon imageFootballZombieOrnLostAttack;
+	public static ImageIcon imageFootballZombieLostHead;
+	public static ImageIcon imageFootballZombieLostHeadAttack;
+	
+	
 	private int normalHealth;
 	private boolean normal;
 	
+	public static void loadImage() {
+		imageFootballZombieStatic = new ImageIcon("resource\\images\\zombie\\FootballZombie\\1.gif");
+		imageFootballZombieAttack = new ImageIcon("resource\\images\\zombie\\FootballZombie\\Attack.gif");
+		imageFootballZombieMove = new ImageIcon("resource\\images\\zombie\\FootballZombie\\FootballZombie.gif");
+		imageFootballZombieOrnLostMove = new ImageIcon("resource\\images\\zombie\\FootballZombie\\FootballZombieOrnLost.gif");
+		imageFootballZombieOrnLostAttack = new ImageIcon("resource\\images\\zombie\\FootballZombie\\FootballZombieOrnLostAttack.gif");
+		imageFootballZombieDie = new ImageIcon("resource\\images\\zombie\\FootballZombie\\Die.gif");
+		imageFootballZombieLostHead = new ImageIcon("resource\\images\\zombie\\FootballZombie\\LostHead.gif");
+		imageFootballZombieLostHeadAttack = new ImageIcon("resource\\images\\zombie\\FootballZombie\\LostHeadAttack.gif");
+
+	}
 	private void loadOtherImage() {
 		
 		imageMove = imageFootballZombieMove;

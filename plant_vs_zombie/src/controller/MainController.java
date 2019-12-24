@@ -8,6 +8,11 @@ import plant.PeaShooter;
 import plant.SunFlower;
 import sun.Sun;
 import viewer.*;
+import zombie.BucketZombie;
+import zombie.ConeheadZombie;
+import zombie.FlagZombie;
+import zombie.FootballZombie;
+import zombie.NewspaperZombie;
 import zombie.Zombie;
 
 public class MainController implements Runnable {
@@ -104,7 +109,11 @@ public class MainController implements Runnable {
 		
 		//加载所有僵尸的图片
 		Zombie.loadImage();
-		
+		ConeheadZombie.loadImage();
+		BucketZombie.loadImage();
+		FlagZombie.loadImage();
+		NewspaperZombie.loadImage();
+		FootballZombie.loadImage();
 
 		new MainController();
 	}

@@ -14,9 +14,19 @@ public class BucketZombie extends BasicZombie {
 	private ImageIcon imageMove;
 	private ImageIcon imageAttack;
 
+	public static ImageIcon imageBucketZombieStatic;
+	public static ImageIcon imageBucketZombieMove;
+	public static ImageIcon imageBucketZombieAttack;
+	
 	private int normalHealth;
 	private boolean normal;
 	
+	public static void loadImage() {
+		imageBucketZombieStatic =  new ImageIcon("resource\\images\\zombie\\BucketheadZombie\\1.gif");
+		imageBucketZombieMove =  new ImageIcon("resource\\images\\zombie\\BucketheadZombie\\BucketheadZombie.gif");
+		imageBucketZombieAttack =  new ImageIcon("resource\\images\\zombie\\BucketheadZombie\\BucketheadZombieAttack.gif");
+	
+	}
 	private void loadOtherImage() {
 		imageMove = imageBucketZombieMove;
 		imageAttack = imageBucketZombieAttack;

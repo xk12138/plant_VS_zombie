@@ -12,9 +12,19 @@ public class ConeheadZombie extends BasicZombie {
 	private ImageIcon imageMove;
 	private ImageIcon imageAttack;
 
+	public static ImageIcon imageConeheadZombieStatic;
+	public static ImageIcon imageConeheadZombieMove;
+	public static ImageIcon imageConeheadZombieAttack;
+	
 	private int normalHealth;
 	private boolean normal;
 	
+	public static void loadImage() {
+		imageConeheadZombieStatic = new ImageIcon("resource\\images\\zombie\\ConeheadZombie\\1.gif");
+		imageConeheadZombieMove = new ImageIcon("resource\\images\\zombie\\ConeheadZombie\\ConeheadZombie.gif");
+		imageConeheadZombieAttack = new ImageIcon("resource\\images\\zombie\\ConeheadZombie\\ConeheadZombieAttack.gif");
+		
+	}
 	private void loadOtherImage() {
 		imageMove = imageConeheadZombieMove;
 		imageAttack = imageConeheadZombieAttack;
