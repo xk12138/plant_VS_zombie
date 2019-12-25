@@ -1,5 +1,7 @@
 package bullet;
 
+import javax.swing.ImageIcon;
+
 /*
  * 基础子弹类，包含子弹的所有属性：
  * 子弹的位置： posX, posY
@@ -17,12 +19,15 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import zombie.BasicZombie;
 
 public class BasicBullet {
+	
 	public int posX, posY;
 	public int speedX, speedY;
 	public int power;
 	public JLabel label;
 	public MainController mainController;
 	
+	
+	public int timer;//子弹爆炸动画计时器，平时处于-1，爆炸后改为正数
 
 	// 移除了寒冰减速效果，构造寒冰类子弹的时候重载实现。
 	
@@ -30,10 +35,11 @@ public class BasicBullet {
 		this.posX = posX;
 		this.posY = posY;
 		this.mainController = mainController;
+		this.timer = -1;
 	}
 	
 	// 子弹移动
-	public void move() {
+	public void move(int TorchArray[]) {
 		posX += speedX;
 		posY += speedY;
 	}
@@ -48,24 +54,13 @@ public class BasicBullet {
 	}
 	
 	public boolean ifBoom(LineController lineController) {
-		int start = posX, end = posX + speedX;
-		for(BasicZombie zombie: lineController.zombies) {
-			if(zombie.posX >= start) {
-				if(zombie.posX <= end) {
-					boom(zombie);		//目前只考虑单体输出
-					if(zombie.health <= 0) {
-
-						zombie.die(lineController.dieZombies, false);
-						lineController.zombies.remove(zombie);
-						
-					}
-					return true;
-				}
-				else {
-					return false;
-				}
-			}
-		}
+	
 		return false;
+		/*
+		 * 设定一个区间
+		 * 遍历每一个僵尸是否在区间内
+		 * 若在，子弹爆炸，僵尸承伤，若僵尸承伤后死亡，僵尸死亡函数
+		 * 最后根据子弹是否爆炸返回boolean
+		 * */
 	}
 }

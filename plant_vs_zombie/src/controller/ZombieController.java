@@ -1,5 +1,6 @@
 package controller;
 
+import block.LawnBlock;
 import zombie.*;
 
 public class ZombieController implements Runnable {
@@ -7,10 +8,12 @@ public class ZombieController implements Runnable {
 	public MainController mainController;
 	
 	//public int coolDown = 750;
-	public int coolDown = 150;
+	public int coolDown = 50;
 	public int timer;
 	
 	public int batch = 0;	// 用于控制正在第几波
+	
+	public static int zombieHeightOffset = LineController.heightOffset - 80;
 	
 	public Thread t;
 	
@@ -52,7 +55,7 @@ public class ZombieController implements Runnable {
 		switch(batch) {
 		case 0:
 			column = (int)(Math.random() * mainController.lineNum);
-			t = new NewspaperZombie(80+125*column, mainController);
+			t = new Zombie(zombieHeightOffset + LawnBlock.blockHeight *column, mainController);
 			mainController.lineControllers[column].zombies.add(t);
 			mainController.mainViewer.addLabel(t.label);
 			break;

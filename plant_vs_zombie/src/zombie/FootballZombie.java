@@ -97,6 +97,9 @@ public class FootballZombie extends BasicZombie {
 			image = imageAttack;
 			label.setIcon(image);
 		}
+		if(moderateTimer >= 0)
+			moderateTimer--;
+		
 		if(state != ATTACK) {
 			image = imageAttack;
 			label.setIcon(image);

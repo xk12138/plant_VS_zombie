@@ -2,7 +2,9 @@ package plant;
 
 import javax.swing.JLabel;
 
+import block.LawnBlock;
 import bullet.*;
+import controller.LineController;
 import controller.MainController;
 
 public class BasicPlant {
@@ -12,6 +14,9 @@ public class BasicPlant {
     public int coolDown;//CD
     public int price;   //价格
     public int posX, posY;
+    public int lineNum;//行数，从而知道去哪个行控制器找
+    
+    public int dieTimer;//死亡时间计时器，-1表示不会死亡，非负数表示倒计时，0表示死亡，移除
     
     public JLabel label;
     public MainController mainController;
@@ -22,6 +27,8 @@ public class BasicPlant {
     public BasicPlant(int posX, int posY, MainController mainController) {
     	this.posX = posX;
     	this.posY = posY;
+    	this.lineNum = pos1index(posY);
+    	this.dieTimer = -1;
     	this.mainController = mainController;
     }
 
@@ -35,4 +42,20 @@ public class BasicPlant {
     	
     	return null;
     }
+    public boolean isEaten(int getPower) {
+    	/*
+    	 *  被僵尸攻击了
+    	 *  减血  OR 触发被动技
+    	 *  返回植物是否被吃掉
+    	*/
+    	//最普通模式
+    	health -= getPower;
+    	if(health > 0)
+    		return false;
+    	else
+    		return true;
+    }
+    public int pos1index(int pos) {
+		return (int)(pos - LineController.heightOffset) / LawnBlock.blockHeight;
+	}
 }

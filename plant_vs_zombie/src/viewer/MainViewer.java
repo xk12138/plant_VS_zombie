@@ -5,6 +5,7 @@ import java.awt.*;
 import javax.swing.*;
 
 import block.BasicBlock;
+import card.TorchwoodCard;
 import controller.MainController;
 
 @SuppressWarnings("serial")
@@ -32,15 +33,12 @@ public class MainViewer extends JFrame {
 		// 增加窗口的内容
 		layeredPane = new JLayeredPane();
 	
-		ImageIcon image = new ImageIcon("resource\\images\\interface\\background1.jpg");
+		ImageIcon image = new ImageIcon("resource\\images\\interface\\background1SL.jpg");
 		//image = new ImageIcon()
 		jl = new JLabel(image);
-		jl.setBounds(0, 0, 1110, 750);
+		//jl.setSize(image.getIconWidth(), image.getIconHeight());
+		jl.setBounds(-150, -30, 1710, 750);
 	
-		
-		//background.add(jl);
-		//layeredPane.add(background, JLayeredPane.DEFAULT_LAYER);
-		//layeredPane.add(background, 3);
 		
 		// 创建方块层
 		blockPanel = new JPanel();
@@ -59,6 +57,7 @@ public class MainViewer extends JFrame {
 		this.setLayeredPane(layeredPane);
 		this.setSize(1110, 750);
 		this.setVisible(true);
+		this.setLayout(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setResizable(false);
 	}
@@ -75,6 +74,17 @@ public class MainViewer extends JFrame {
 	public void addLabel(JLabel label) {
 		jp.remove(jl);
 		jp.add(label);
+		
+		for(int i=0;i<5;i++) {
+			for(BasicBlock block: mainController.lineControllers[i].blocks) {
+				if(block.plant != null) {
+					jp.remove(block.plant.label);
+					jp.add(block.plant.label);
+				}
+			}
+		}
+		
+		
 		jp.add(jl);
 		jp.repaint();
 		

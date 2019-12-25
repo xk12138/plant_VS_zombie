@@ -73,6 +73,8 @@ public class FlagZombie extends BasicZombie {
 			label.setIcon(image);
 			state = ATTACK;
 		}
+		if(moderateTimer >= 0)
+			moderateTimer--;
 		
 		if(timer == 0) {
 			timer = attackSpeed;

@@ -21,12 +21,13 @@ public class BasicZombie {
 	public int attackSpeed, timer;
 	public int power;
 	public int health;
-	
+	//寒冰效果
+
 	public final int STATIC = 0;
 	public final int MOVE = 1;
 	public final int ATTACK = 2;
 	public final int DIE = 3;
-	public final int SLOW = 4;
+	//public final int SLOW = 4;
 	public final int ACTION = 5;
 	
 	public final int TIME_DIE = 25;
@@ -54,10 +55,6 @@ public class BasicZombie {
 	
 	
 	
-
-	
-	
-	
 	public static void loadImage() {
 		/*加载图片*/
 		;
@@ -70,21 +67,23 @@ public class BasicZombie {
 	private final int moderateCoolDown = 100;
 	
 	public BasicZombie(int posY, MainController mainController) {
+		moderateTimer = -1;
 		this.posY = posY;
 		this.mainController = mainController;
 	}
 	public BasicZombie(double posX, double posY, MainController mainController) {
+		moderateTimer = -1;
 		this.posY = posY;
 		this.mainController = mainController;
 	}
 	
 	public void move() {
-		if (moderateTimer > 0) {
-			posX -= (speedX / 2);
-			posY -= (speedY / 2);
+		if (moderateTimer >= 0) {
 			moderateTimer--;
+			posX -= (speedX/2);
+			posY -= (speedY/2);
 		}
-		else {
+		else { 
 			posX -= speedX;
 			posY -= speedY;
 		}
@@ -107,6 +106,7 @@ public class BasicZombie {
 	}
 	
 	public int getPower() {
+	
 		if(timer == 0) {
 			timer = attackSpeed;
 			return power;
@@ -121,4 +121,11 @@ public class BasicZombie {
 		
 		mainController.mainViewer.removeLabel(this.label);
 	}
+	public void snowZombie(int snowZombieTime) {
+		/*
+		 * 僵尸被冰冻函数，各基类自行继承，默认为有移速攻速减半效果
+		*/
+			moderateTimer = snowZombieTime;
+	}
+	
 }

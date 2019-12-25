@@ -117,6 +117,8 @@ public class NewspaperZombie extends BasicZombie {
 		
 	}
 	public int getPower() {
+		if(moderateTimer >= 0)
+			moderateTimer--;
 		if(state == ACTION) {//变身期间，不操作
 			action();
 			return 0;

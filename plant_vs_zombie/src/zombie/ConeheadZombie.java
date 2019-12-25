@@ -66,7 +66,7 @@ public class ConeheadZombie extends BasicZombie {
 			image = imageMove;
 			label.setIcon(image);
 		}
-		if (moderateTimer > 0) {
+		if (moderateTimer >= 0) {
 			posX -= (speedX / 2);
 			posY -= (speedY / 2);
 			moderateTimer--;
@@ -85,6 +85,9 @@ public class ConeheadZombie extends BasicZombie {
 			image = imageAttack;
 			label.setIcon(image);
 		}
+		if(moderateTimer >= 0)
+			moderateTimer--;
+		
 		if(state != ATTACK) {
 			image = imageAttack;
 			label.setIcon(image);

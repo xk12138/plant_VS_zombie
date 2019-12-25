@@ -11,7 +11,7 @@ import controller.MainController;
 import card.BasicCard;
 public class LawnBlock extends BasicBlock{
 
-	public static int blockHeight = 125, blockWidth = 100;
+	public static int blockHeight = 120, blockWidth = 97;
 	
 	public LawnBlock(MainController mainController,int line,int column,int posX,int posY) {
 		super(mainController,line,column,posX,posY);

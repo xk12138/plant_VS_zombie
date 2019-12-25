@@ -18,8 +18,13 @@ public class LineController implements Runnable {
 	public CopyOnWriteArrayList<BasicBullet> bullets;
 	public CopyOnWriteArrayList<BasicZombie> zombies;
 	public CopyOnWriteArrayList<BasicZombie> dieZombies;
-	 
+	
+	int[] TorchArray = new int [11];//记录火炬树桩的数组，其中数字表示其横坐标，-1表示空，偏移量为其id
+
 	public Thread t;
+	
+	public static int heightOffset = 110;
+	public static int widthOffset = 80;
 	
 	public void start() {
 		if(t == null) {
@@ -48,11 +53,14 @@ public class LineController implements Runnable {
 		this.mainController = mainController;
 		blocks = new CopyOnWriteArrayList<BasicBlock>();
 		//一行有11格，默认第一格是小推车，最后一格是僵尸出生点
-		int heightOffset = 100;
-		int widthOffset = 80;
+		//heightOffset = 90;
+		//widthOffset = 80;
 		for(int i=0;i<11;i++) {
 			blocks.add(new LawnBlock(mainController,line, i, i*LawnBlock.blockWidth+widthOffset, line*LawnBlock.blockHeight+heightOffset));
+			TorchArray[i] = -1;
 		}
+		//TorchArray[0] = 500;
+		//TorchArray[1] = 800; 
 		bullets = new CopyOnWriteArrayList<BasicBullet>();
 		zombies = new CopyOnWriteArrayList<BasicZombie>();
 		dieZombies = new CopyOnWriteArrayList<BasicZombie>();
@@ -66,12 +74,19 @@ public class LineController implements Runnable {
 			try {
 				BasicBlock targetBlock = blocks.get(colomu);
 				if(targetBlock.plant != null) {
+					if(targetBlock.plant.isEaten(zombie.getPower())) {
+						System.out.println("你的一株植物被吃掉了！");
+						mainController.mainViewer.removeLabel(targetBlock.plant.label);
+						targetBlock.plant = null;
+					}
+					/*
 					targetBlock.plant.health -= zombie.getPower();
 					if(targetBlock.plant.health <= 0) {
 						System.out.println("你的一株植物被吃掉了！");
 						mainController.mainViewer.removeLabel(targetBlock.plant.label);
 						targetBlock.plant = null;
 					}
+					*/
 				}
 				else
 				{
@@ -86,14 +101,20 @@ public class LineController implements Runnable {
 	
 	public void bulletsResponse() {
 		for(BasicBullet bullet: bullets) {
-			if(bullet.ifBoom(this)) {
-				System.out.println("BOOM!");
-				mainController.mainViewer.removeLabel(bullet.label);
-				bullets.remove(bullet);
-			}
-			else
-			{
-				bullet.move();
+			if(bullet.timer == -1) {//正常子弹
+				if(bullet.ifBoom(this)) {
+					System.out.println("BOOM!");
+				}
+				else{
+					bullet.move(TorchArray);
+				}
+			}else {//已经爆炸的子弹
+				if(bullet.timer > 0) {
+					bullet.timer--;
+				}else {
+					mainController.mainViewer.removeLabel(bullet.label);
+					bullets.remove(bullet);
+				}
 			}
 			
 		}
@@ -107,12 +128,16 @@ public class LineController implements Runnable {
 					bullets.add(bullet);
 					mainController.mainViewer.addLabel(bullet.label);
 				}
+				if(block.plant.dieTimer > 0)
+					block.plant.dieTimer--;
+				else if(block.plant.dieTimer == 0)
+					block.plant = null;
 			}
 		}
 	}
 	
 	public int pos2index(int pos) {
-		return (int)(pos - 80) / LawnBlock.blockWidth;
+		return (int)(pos - widthOffset) / LawnBlock.blockWidth+1;
 	}
 	public void dieZombieRefresh() {
 		for(BasicZombie zombie:dieZombies) {
@@ -125,5 +150,21 @@ public class LineController implements Runnable {
 			}
 				
 		}
+	}
+	public void addTorch(int posX) {
+		int i = 0;
+		while(TorchArray[i] != -1)
+			i++;
+		TorchArray[i] = posX;
+		System.out.println("种了一个火炬树桩");
+		for(int j=0;j<11;j++) {
+			System.out.print(TorchArray[j]);
+		}
+	}
+	public void removeTorch(int posX) {
+		int i = 0;
+		while(TorchArray[i] != posX) i++;
+		TorchArray[i] = -1;
+		System.out.println("删了一个火炬树桩");
 	}
 }

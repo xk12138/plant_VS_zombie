@@ -3,9 +3,19 @@ package controller;
 import bullet.Pea;
 import card.BasicCard;
 import card.PeaShooterCard;
+import card.RepeaterCard;
 import card.SunFlowerCard;
+import card.TorchwoodCard;
+import plant.CherryBomb;
+import plant.Jalapeno;
 import plant.PeaShooter;
+import plant.Repeater;
+import plant.SnowPeaShooter;
 import plant.SunFlower;
+import plant.TallNut;
+import plant.Torchwood;
+import plant.WallNut;
+import plant.PotatoMine;
 import sun.Sun;
 import viewer.*;
 import zombie.BucketZombie;
@@ -18,9 +28,9 @@ import zombie.Zombie;
 public class MainController implements Runnable {
 	// connect all controller
 	public CardController cardController;
-	public int cardMaxNum = 6;
+	public int cardMaxNum = 7;
 	public LineController[] lineControllers;
-	public int lineNum = 6;
+	public int lineNum = 5;
 	public SunController sunController;
 	public ZombieController zombieController;
 	
@@ -97,13 +107,20 @@ public class MainController implements Runnable {
 		Pea.loadImage();
 		
 		//加载所有卡片的图片
-		PeaShooterCard.loadImage();
-		SunFlowerCard.loadImage();
 		
+		
+	
 		//加载所有植物的图片
 		PeaShooter.loadImage();
 		SunFlower.loadImage();
-		
+		Repeater.loadImage();
+		SnowPeaShooter.loadImage();
+		TallNut.loadImage();
+		WallNut.loadImage();
+		Torchwood.loadImage();
+		Jalapeno.loadImage();
+		CherryBomb.loadImage();
+		PotatoMine.loadImage();
 		//加载所有太阳的图片
 		Sun.loadImage();
 		

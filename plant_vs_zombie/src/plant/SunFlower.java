@@ -4,17 +4,22 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 import bullet.BasicBullet;
+import card.SunFlowerCard;
 import controller.MainController;
 import sun.Sun;
 
 public class SunFlower extends BasicPlant {
 	private static ImageIcon image;
+	private static ImageIcon imageReady;
 	public static void loadImage() {
 		image = new ImageIcon("resource\\images\\plant\\SunFlower\\SunFlower1.gif");
+		imageReady = new ImageIcon("resource\\images\\plant\\SunFlower\\SunFlower.gif");
+		SunFlowerCard.loadImage();
 	}
 	public static ImageIcon getImage() {
 		return image;
 	}
+	
 	
 	public SunFlower(int posX, int posY, MainController mainController) {
 		super(posX, posY, mainController);
@@ -31,8 +36,14 @@ public class SunFlower extends BasicPlant {
 	public BasicBullet attack(boolean zombieExist) {
 		if(timer != 0) {
 			timer--;
+			if(timer == 30) {
+				label.setIcon(imageReady);
+			}
 		}
 		else {
+			//œ»ªÿµΩ¿‰»¥◊¥Ã¨
+			label.setIcon(image);
+			
 			Sun sun = new Sun(posX, posY, posY, mainController);
 			mainController.sunController.suns.add(sun);
 			mainController.mainViewer.remove(label);

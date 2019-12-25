@@ -50,7 +50,7 @@ public class Zombie extends BasicZombie {
 		power = 8;
 		attackSpeed = 20;
 		timer = attackSpeed;
-		speedX = 0.5;
+		speedX = 0.8;
 		speedY = 0;
 		/*动态加载一些一次性图片，选择僵尸个性等*/
 		loadOtherImage();
@@ -85,14 +85,20 @@ public class Zombie extends BasicZombie {
 			image = imageMove;
 			label.setIcon(image);
 		}
-		if (moderateTimer > 0) {
-			posX -= (speedX / 2);
-			posY -= (speedY / 2);
+		
+		if(moderateTimer >= 0) {
+			label.setIcon(imageZombieSlowMove);
 			moderateTimer--;
+			if(moderateTimer == -1) {
+				imageMove = imageZombieMove1;
+				label.setIcon(imageMove);
+			}
+			posX -= (speedX/2);
+			posY -= (speedY/2);
 		}
 		else {
-			posX -= speedX;
-			posY -= speedY;
+		posX -= speedX;
+		posY -= speedY;
 		}
 		label.setBounds((int)posX, (int)posY, image.getIconWidth(), image.getIconHeight());
 	}
@@ -101,6 +107,11 @@ public class Zombie extends BasicZombie {
 			image = imageZombieAttack;
 			label.setIcon(image);
 			state = ATTACK;
+		}
+		//考虑冰冻
+		if(moderateTimer >= 0) {
+			//label.setIcon(imageZombieSlowMove);
+			moderateTimer--;
 		}
 		
 		if(timer == 0) {
@@ -117,6 +128,7 @@ public class Zombie extends BasicZombie {
 		if(isBoom) {//直接炸死
 			image = imageZombieBoomDie;
 			label.setIcon(image);
+			label.setBounds((int)posX, (int)posY+10, getImage().getIconWidth(), getImage().getIconHeight());
 			timer = TIME_BOOM;
 			dieZombies.add(this);
 		}
@@ -145,5 +157,11 @@ public class Zombie extends BasicZombie {
 		
 		
 	}
-	
+	public void snowZombieRecover() {
+		moderateTimer = -1;
+		attackSpeed *= 2;
+		speedX *= 2;
+		speedY *= 2;
+		label.setIcon(image);
+	}
 }
