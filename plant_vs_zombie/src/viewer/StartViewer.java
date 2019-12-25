@@ -33,14 +33,14 @@ import zombie.Zombie;
 
 @SuppressWarnings("serial")
 public class StartViewer extends JFrame {
-	public ImageIcon startImg = new ImageIcon("resource\\images\\interface\\Selector1H.png");
-	public ImageIcon endImg = new ImageIcon("resource\\images\\interface\\Selector1L.png");
+	public ImageIcon startImg = new ImageIcon("resource\\images\\interface\\Selector1L.png");
+	public ImageIcon endImg = new ImageIcon("resource\\images\\interface\\Selector1H.png");
 	
 	public StartViewer() {
 		super("÷≤ŒÔ¥Û’ΩΩ© ¨");
 		
 		JLabel label = new JLabel(startImg);
-		label.setBounds(575, 120, startImg.getIconWidth(), startImg.getIconHeight());
+		label.setBounds(575, 70, startImg.getIconWidth(), startImg.getIconHeight());
 		label.addMouseListener(new MouseAdapter() {
 			public void mouseEntered(MouseEvent e) {
 				label.setIcon(endImg);
@@ -56,15 +56,15 @@ public class StartViewer extends JFrame {
 		
 		ImageIcon image = new ImageIcon("resource\\images\\interface\\Selector2L.png");
 		JLabel t = new JLabel(image);
-		t.setBounds(575, 180, image.getIconWidth(), image.getIconHeight());
+		t.setBounds(575, 200, image.getIconWidth(), image.getIconHeight());
 		this.add(t);
 		image = new ImageIcon("resource\\images\\interface\\Selector3L.png");
 		t = new JLabel(image);
-		t.setBounds(575, 240, image.getIconWidth(), image.getIconHeight());
+		t.setBounds(575, 300, image.getIconWidth(), image.getIconHeight());
 		this.add(t);
 		image = new ImageIcon("resource\\images\\interface\\Selector4L.png");
 		t = new JLabel(image);
-		t.setBounds(575, 300, image.getIconWidth(), image.getIconHeight());
+		t.setBounds(575, 400, image.getIconWidth(), image.getIconHeight());
 		this.add(t);
 		
 		image = new ImageIcon("resource\\images\\interface\\Surface.png");
