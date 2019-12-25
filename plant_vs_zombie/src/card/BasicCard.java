@@ -43,8 +43,6 @@ public class BasicCard {
 				}
 				else {
 					mainController.currentCard = that;
-					System.out.println("成功购买一个植物");
-					mainController.sumSun -= that.plant.price;
 				}
 			}
 		});

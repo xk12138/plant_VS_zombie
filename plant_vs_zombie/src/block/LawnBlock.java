@@ -20,13 +20,26 @@ public class LawnBlock extends BasicBlock{
 		label.setBounds(posX, posY, blockWidth, blockHeight);
 		label.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				if(plant ==  null && mainController.currentCard != null) {
-					plant = mainController.currentCard.getPlant(posX,posY);
-					mainController.currentCard.setTimer();
-					mainController.currentCard = null;
+				if(mainController.currentCard != null) {
+					if(plant == null) {
+						if(mainController.currentCard.plant.isShovel()) {
+							return;
+						}
+						plant = mainController.currentCard.getPlant(posX,posY);
+						mainController.currentCard.setTimer();
+						mainController.currentCard = null;
 
-					mainController.mainViewer.addLabel(plant.label);
-					System.out.println("植物已被种植");
+						mainController.mainViewer.addLabel(plant.label);
+						mainController.changeSun(-plant.price);
+					}
+					else {
+						if(mainController.currentCard.plant.isShovel()) {
+							mainController.mainViewer.removeLabel(plant.label);
+							plant = null;
+						}
+					}
+				}
+				if(plant ==  null && mainController.currentCard != null) {
 				}
 				System.out.printf("位置（%d, %d）的方块被点击\n", line, column);
 			}
