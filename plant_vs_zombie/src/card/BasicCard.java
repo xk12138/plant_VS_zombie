@@ -13,6 +13,7 @@ import javax.swing.JLabel;
 
 import controller.MainController;
 
+import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -26,18 +27,25 @@ public class BasicCard {
 	
 	public MainController mainController;
 
-	public static int cardHeight = 50,cardWidth = 50;
+	public static int cardHeight = 60,cardWidth = 100;
 	public BasicCard(MainController mainController) {
 		this.mainController = mainController;
 		plant = null;
 		curtain = new JLabel();
-		curtain.setSize(cardWidth, cardHeight);
+		curtain.setSize(0, cardHeight-1);
+		curtain.setBackground(new Color(0, 0, 0, 150));
+		curtain.setOpaque(true);
 	}
 		
 	public void addMouseListener(JLabel label) {
 		BasicCard that = this;
 		label.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
+				if(timer != 0) {
+					System.out.println("该植物正在冷却！");
+					return;
+				}
+				
 				if(mainController.sumSun < that.plant.price) {
 					System.out.printf("你的阳光储量不足，只有%d，需要%d\n", mainController.sumSun, that.plant.price);
 				}
@@ -55,16 +63,25 @@ public class BasicCard {
 		 * */
 		if(timer != 0) {
 			timer--;
-			curtain.setSize((int)((float)timer*cardWidth/coolDown), cardHeight);
+			curtain.setSize((int)((float)timer*cardWidth/coolDown), cardHeight-1);
 		}
 		
 	}
 	
 	public void setTimer() {
 		timer = plant.coolDown;
+		
 	}
 	
 	public BasicPlant getPlant(int posX, int posY) {
 		return null;
+	}
+	
+	public void setBounds(int x, int y) {
+		curtain.setBounds(x, y+1, cardWidth, cardHeight-1);
+		if(label != null) {
+			label.setBounds(x, y, cardWidth, cardHeight);
+		}
+		curtain.setSize((int)((float)timer*cardWidth/coolDown), cardHeight-1);
 	}
 }

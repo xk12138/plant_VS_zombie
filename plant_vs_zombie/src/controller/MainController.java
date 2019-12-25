@@ -109,36 +109,6 @@ public class MainController implements Runnable {
 	}
 	
 	public static void main(String[] args) {
-		//加载所有子弹的图片
-		Pea.loadImage();
-		LawnCleanerCar.loadImage();
-		//加载所有卡片的图片
-		ShovelCard.loadImage();
-		//加载所有植物的图片
-		PeaShooter.loadImage();
-		SunFlower.loadImage();
-		Repeater.loadImage();
-		SnowPeaShooter.loadImage();
-		TallNut.loadImage();
-		WallNut.loadImage();
-		Torchwood.loadImage();
-		Jalapeno.loadImage();
-		CherryBomb.loadImage();
-		PotatoMine.loadImage();
-		
-		LawnCleaner.loadImage();
-		//加载所有太阳的图片
-		Sun.loadImage();
-		
-		//加载所有僵尸的图片
-		Zombie.loadImage();
-		ConeheadZombie.loadImage();
-		BucketZombie.loadImage();
-		FlagZombie.loadImage();
-		NewspaperZombie.loadImage();
-		FootballZombie.loadImage();
-		//控制器图片
-		ZombieController.loadImage();
 
 		new MainController();
 	}

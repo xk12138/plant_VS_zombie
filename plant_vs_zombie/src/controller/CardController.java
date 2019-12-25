@@ -78,7 +78,8 @@ public class CardController implements Runnable {
 	public void addCard(BasicCard card) {
 		cards.add(card);
 		int index = cards.size() - 1;
-		card.label.setBounds(0, 90 + 60*index, 120, 60);
+		card.setBounds(0, 90+60*index);
+		mainController.mainViewer.addLabel(card.curtain);
 		mainController.mainViewer.addLabel(card.label);
 	}
 }
