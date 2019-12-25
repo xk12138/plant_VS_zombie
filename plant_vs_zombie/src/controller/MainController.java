@@ -1,5 +1,6 @@
 package controller;
 
+import bullet.LawnCleanerCar;
 import bullet.Pea;
 import card.BasicCard;
 import card.PeaShooterCard;
@@ -8,6 +9,7 @@ import card.SunFlowerCard;
 import card.TorchwoodCard;
 import plant.CherryBomb;
 import plant.Jalapeno;
+import plant.LawnCleaner;
 import plant.PeaShooter;
 import plant.Repeater;
 import plant.SnowPeaShooter;
@@ -54,13 +56,14 @@ public class MainController implements Runnable {
 
 		mainViewer = new MainViewer();
 		mainViewer.setMainController(this);
-		
-		// 初始化所有控制器
+		//初始化所有控制器
+		cardController = new CardController(this, cardMaxNum);
+		// 初始行控制器
 		lineControllers = new LineController[lineNum];
 		for(int i=0;i<lineNum;i++) {
 			lineControllers[i] = new LineController(i, this); 
 		}
-		cardController = new CardController(this, cardMaxNum);
+		
 		sunController = new SunController(this);
 		zombieController = new ZombieController(this);
 
@@ -105,11 +108,9 @@ public class MainController implements Runnable {
 	public static void main(String[] args) {
 		//加载所有子弹的图片
 		Pea.loadImage();
-		
+		LawnCleanerCar.loadImage();
 		//加载所有卡片的图片
 		
-		
-	
 		//加载所有植物的图片
 		PeaShooter.loadImage();
 		SunFlower.loadImage();
@@ -121,6 +122,8 @@ public class MainController implements Runnable {
 		Jalapeno.loadImage();
 		CherryBomb.loadImage();
 		PotatoMine.loadImage();
+		
+		LawnCleaner.loadImage();
 		//加载所有太阳的图片
 		Sun.loadImage();
 		

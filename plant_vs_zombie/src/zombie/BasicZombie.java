@@ -30,10 +30,10 @@ public class BasicZombie {
 	//public final int SLOW = 4;
 	public final int ACTION = 5;
 	
-	public final int TIME_DIE = 25;
-	public final int TIME_FOOTBALL_DIE = 20;
+	public final int TIME_DIE = 13;
+	public final int TIME_FOOTBALL_DIE = 15;
 
-	public final int TIME_HEAD = 18;
+	public final int TIME_HEAD = 6;
 	public final int TIME_BOOM = 38;
 	
 	public int state = STATIC;
@@ -80,8 +80,7 @@ public class BasicZombie {
 	public void move() {
 		if (moderateTimer >= 0) {
 			moderateTimer--;
-			posX -= (speedX/2);
-			posY -= (speedY/2);
+			
 		}
 		else { 
 			posX -= speedX;

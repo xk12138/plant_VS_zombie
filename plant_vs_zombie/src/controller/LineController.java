@@ -7,7 +7,9 @@ import javax.swing.JLabel;
 
 import block.BasicBlock;
 import block.LawnBlock;
+import block.LawnCarBlock;
 import bullet.BasicBullet;
+import plant.LawnCleaner;
 import zombie.BasicZombie;
 
 public class LineController implements Runnable {
@@ -56,9 +58,13 @@ public class LineController implements Runnable {
 		//heightOffset = 90;
 		//widthOffset = 80;
 		for(int i=0;i<11;i++) {
-			blocks.add(new LawnBlock(mainController,line, i, i*LawnBlock.blockWidth+widthOffset, line*LawnBlock.blockHeight+heightOffset));
+			if(i == 0)
+				blocks.add(new LawnCarBlock(mainController,line,i,i*LawnBlock.blockWidth+widthOffset,line*LawnBlock.blockHeight+heightOffset));
+			else
+				blocks.add(new LawnBlock(mainController,line, i, i*LawnBlock.blockWidth+widthOffset, line*LawnBlock.blockHeight+heightOffset));
 			TorchArray[i] = -1;
 		}
+		blocks.get(0).plant = new LawnCleaner(blocks.get(0).posX,blocks.get(0).posY,mainController);
 		//TorchArray[0] = 500;
 		//TorchArray[1] = 800; 
 		bullets = new CopyOnWriteArrayList<BasicBullet>();
@@ -107,6 +113,10 @@ public class LineController implements Runnable {
 				}
 				else{
 					bullet.move(TorchArray);
+					if(bullet.isAvaliable(1110) == false) {
+						mainController.mainViewer.removeLabel(bullet.label);
+						bullets.remove(bullet);
+					}
 				}
 			}else {//已经爆炸的子弹
 				if(bullet.timer > 0) {
