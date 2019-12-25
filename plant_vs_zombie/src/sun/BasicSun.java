@@ -46,7 +46,7 @@ public class BasicSun {
 		BasicSun that = this;			// Use that to instead of this to avoid ambiguity.
 		label.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e){
-				mainController.sumSun += energy;
+				mainController.changeSun(energy);
 				mainController.mainViewer.removeLabel(label);
 				mainController.sunController.suns.remove(that);
 				System.out.println("The sun is clicked.");

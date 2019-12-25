@@ -58,4 +58,9 @@ public class BasicPlant {
     public int pos1index(int pos) {
 		return (int)(pos - LineController.heightOffset) / LawnBlock.blockHeight;
 	}
+    
+    // 是不是铲子
+    public boolean isShovel() {
+    	return false;
+    }
 }

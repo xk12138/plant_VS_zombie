@@ -10,6 +10,7 @@ import card.JalapenoCard;
 import card.PeaShooterCard;
 import card.PotatoMineCard;
 import card.RepeaterCard;
+import card.ShovelCard;
 import card.SnowPeaShooterCard;
 import card.SunFlowerCard;
 import card.TallNutCard;
@@ -61,6 +62,10 @@ public class CardController implements Runnable {
 		addCard(new SnowPeaShooterCard(mainController));
 		
 		this.maxNum = maxNum;
+		
+		//Ôö¼Ó²ù×Ó
+		addCard(new ShovelCard(mainController));
+		
 		this.start();
 	}
 	
@@ -73,7 +78,7 @@ public class CardController implements Runnable {
 	public void addCard(BasicCard card) {
 		cards.add(card);
 		int index = cards.size() - 1;
-		card.label.setBounds(0, 150 + 60*index, 120, 60);
+		card.label.setBounds(0, 90 + 60*index, 120, 60);
 		mainController.mainViewer.addLabel(card.label);
 	}
 }
