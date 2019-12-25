@@ -39,7 +39,7 @@ public class WallNut extends BasicPlant {
     	this.attackSpeed = 100;
     	coolDown = 80;
     	timer = coolDown;
-    	price = 100;
+    	price = 50;
     	label = new JLabel(getImage());
     	label.setSize(image3.getIconWidth(), image3.getIconHeight());
     	label.setBounds(posX, posY, image3.getIconWidth(), image3.getIconHeight());

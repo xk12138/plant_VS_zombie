@@ -9,7 +9,7 @@ import plant.SnowPeaShooter;
 public class SnowPeaShooterCard extends BasicCard {
 	private static ImageIcon image;
 	public static void loadImage() {
-		image = new ImageIcon("resource\\images\\card\\plants\\SnowPea_01.gif");
+		image = new ImageIcon("resource\\images\\card\\plants\\SnowPea_02.png");
 	}
 	public static ImageIcon getImage() {
 		return image;

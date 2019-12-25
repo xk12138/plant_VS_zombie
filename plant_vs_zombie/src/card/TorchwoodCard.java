@@ -9,7 +9,7 @@ import plant.Torchwood;
 public class TorchwoodCard extends BasicCard {
 	private static ImageIcon image;
 	public static void loadImage() {
-		image = new ImageIcon("resource\\images\\card\\plants\\Torchwood_01.gif");
+		image = new ImageIcon("resource\\images\\card\\plants\\Torchwood_02.png");
 	}
 	public static ImageIcon getImage() {
 		return image;

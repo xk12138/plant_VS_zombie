@@ -9,7 +9,7 @@ import plant.WallNut;
 public class WallNutCard extends BasicCard {
 	private static ImageIcon image;
 	public static void loadImage() {
-		image = new ImageIcon("resource\\images\\card\\plants\\WallNut_01.gif");
+		image = new ImageIcon("resource\\images\\card\\plants\\WallNut_02.png");
 	}
 	public static ImageIcon getImage() {
 		return image;

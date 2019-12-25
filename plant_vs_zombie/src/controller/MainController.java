@@ -7,6 +7,7 @@ import card.PeaShooterCard;
 import card.RepeaterCard;
 import card.SunFlowerCard;
 import card.TorchwoodCard;
+import card.ShovelCard;
 import plant.CherryBomb;
 import plant.Jalapeno;
 import plant.LawnCleaner;
@@ -56,6 +57,7 @@ public class MainController implements Runnable {
 
 		mainViewer = new MainViewer();
 		mainViewer.setMainController(this);
+		mainViewer.initFlagMeter(1);
 		//初始化所有控制器
 		cardController = new CardController(this, cardMaxNum);
 		// 初始行控制器
@@ -67,6 +69,7 @@ public class MainController implements Runnable {
 		sunController = new SunController(this);
 		zombieController = new ZombieController(this);
 
+		changeSun(0);
 		mainViewer.draw();
 		
 		//测试功能区域
@@ -110,7 +113,7 @@ public class MainController implements Runnable {
 		Pea.loadImage();
 		LawnCleanerCar.loadImage();
 		//加载所有卡片的图片
-		
+		ShovelCard.loadImage();
 		//加载所有植物的图片
 		PeaShooter.loadImage();
 		SunFlower.loadImage();
@@ -134,7 +137,13 @@ public class MainController implements Runnable {
 		FlagZombie.loadImage();
 		NewspaperZombie.loadImage();
 		FootballZombie.loadImage();
+		//控制器图片
+		ZombieController.loadImage();
 
 		new MainController();
+	}
+	public void changeSun(int energy) {
+		sumSun += energy;
+		mainViewer.sumSun.setText(String.valueOf(sumSun));
 	}
 }

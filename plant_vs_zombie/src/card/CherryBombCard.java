@@ -9,7 +9,7 @@ import plant.CherryBomb;
 public class CherryBombCard extends BasicCard {
 	private static ImageIcon image;
 	public static void loadImage() {
-		image = new ImageIcon("resource\\images\\card\\plants\\CherryBomb_01.gif");
+		image = new ImageIcon("resource\\images\\card\\plants\\CherryBomb_02.png");
 	}
 	public static ImageIcon getImage() {
 		return image;

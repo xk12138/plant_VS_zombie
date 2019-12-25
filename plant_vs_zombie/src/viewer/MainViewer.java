@@ -73,9 +73,6 @@ public class MainViewer extends JFrame {
 		back.setBounds(0, 0, sunBack.getIconWidth(), sunBack.getIconHeight());
 		jp.add(back);
 		
-		initFlagMeter(1);
-		next_batch();
-		next_batch();
 		
 		// 让窗口显示出来
 		this.setLayeredPane(layeredPane);
@@ -107,7 +104,7 @@ public class MainViewer extends JFrame {
 		jp.remove(label);
 		jp.repaint();
 	}
-
+	
 	public void initFlagMeter(int batch) {
 		// 绘制关卡进度条
 		
@@ -130,10 +127,12 @@ public class MainViewer extends JFrame {
 		
 		ImageIcon process = new ImageIcon("resource\\images\\interface\\FlagMeterLevelProgress.png");
 		JLabel FlagMeterProcess = new JLabel(process);
-		FlagMeterProcess.setBounds(875, 700, process.getIconWidth(), process.getIconHeight());
+		FlagMeterProcess.setBounds(883, 686, process.getIconWidth(), process.getIconHeight());
+		addLabel(FlagMeterProcess);
+		//jp.add(FlagMeterProcess);
 		
 		FlagMeterEmpty = new JLabel(empty);
-		FlagMeterEmpty.setBounds(860, 675, empty.getIconWidth(), empty.getIconHeight());
+		FlagMeterEmpty.setBounds(855, 675, empty.getIconWidth(), empty.getIconHeight());
 		jp.add(FlagMeterEmpty);
 		JLabel FlagMeterFull = new JLabel(full);
 		FlagMeterFull.setBounds(850, 675, full.getIconWidth(), full.getIconHeight());
