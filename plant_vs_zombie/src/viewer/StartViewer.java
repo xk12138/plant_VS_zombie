@@ -41,12 +41,13 @@ public class StartViewer extends JFrame {
 	public Container container;
 	private BasicAudio startAudio; 
 	public StartViewer() {
+		
 		super("÷≤ŒÔ¥Û’ΩΩ© ¨ ");
 		this.setIconImage(new ImageIcon("resource\\images\\interface\\SmallLogo.png").getImage());
 		this.container = this.getContentPane();
 		
 		//ÃÌ“Ù¿÷
-		startAudio = new BasicAudio("resource\\audio\\used\\Faster.wav");
+		startAudio = new BasicAudio("resource\\audio\\used\\Theme.wav");
 		
 		JLabel label = new JLabel(startImg);
 		label.setBounds(575, 60, startImg.getIconWidth(), startImg.getIconHeight());

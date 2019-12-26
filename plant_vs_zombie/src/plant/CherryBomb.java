@@ -48,6 +48,7 @@ public class CherryBomb extends BasicPlant {
 			label.setSize(getImage().getIconWidth(), getImage().getIconHeight());
 	    	label.setBounds(posX-60, posY-80, getImage().getIconWidth(), getImage().getIconHeight());
 	    	//É±ËÀ½©Ê¬
+	    	mainController.backgroundAudio.add("resource\\audio\\used\\cherrybomb.wav");
 	    	for(BasicZombie zombie:mainController.lineControllers[lineNum].zombies) {
 	    		if(zombie.posX > this.posX - 2.2*LawnBlock.blockWidth &&
 	    				zombie.posX < this.posX + LawnBlock.blockWidth*0.8) {

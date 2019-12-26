@@ -3,6 +3,7 @@ package controller;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
+import audio.BasicAudio;
 import block.LawnBlock;
 import zombie.*;
 
@@ -11,7 +12,7 @@ public class ZombieController implements Runnable {
 	public MainController mainController;
 	
 	//public int coolDown = 750;
-	public int coolDown = 300;
+	public int coolDown = 150;
 	public int timer;
 	
 	public int batch = 0;	// 用于控制正在第几波
@@ -31,7 +32,7 @@ public class ZombieController implements Runnable {
 	}
 	public ZombieController(MainController mainController) {
 		this.mainController = mainController;
-		timer = coolDown;
+		timer = coolDown+300;
 		txt = new JLabel(LargeWave);
 		txt.setSize(LargeWave.getIconWidth(),LargeWave.getIconHeight());
 		txt.setBounds(400, 300, LargeWave.getIconWidth(),LargeWave.getIconHeight());
@@ -56,21 +57,24 @@ public class ZombieController implements Runnable {
 			}
 			
 			if(finalOpen == true) {
-				if(timer == 90)
+				if(timer == 90) {
 					mainController.mainViewer.addLabel(txt);
-				else if(timer == 50) {
+					mainController.backgroundAudio.add("resource\\audio\\used\\hugewave.wav");
+				}else if(timer == 50) {
 					mainController.mainViewer.removeLabel(txt);
 					txt.setIcon(FinalWave);
 					txt.setSize(FinalWave.getIconWidth(),FinalWave.getIconHeight());
 					txt.setBounds(500, 300, FinalWave.getIconWidth(),FinalWave.getIconHeight());
 					finalOpen = false;
 					txtOpen = true;
+					mainController.backgroundAudio.add("resource\\audio\\used\\finalwave.wav");
 				}
 			}
 			
 			if(txtOpen == true && timer == 40) {
 				mainController.mainViewer.addLabel(txt);
 				txtOpen = false;
+				mainController.backgroundAudio.add("resource\\audio\\used\\hugewave.wav");
 			}
 			
 			try {
@@ -83,10 +87,11 @@ public class ZombieController implements Runnable {
 	}
 	
 	public void createZombies() {
-		int column;
-		BasicZombie t;
+		
 		switch(batch) {
 		case 0:
+			BasicAudio a = new BasicAudio("resource\\audio\\used\\awooga.wav");
+			a.setLoop(false);
 			addZombie(new Zombie(mainController), 3);
 			break;
 		case 1:
@@ -100,11 +105,10 @@ public class ZombieController implements Runnable {
 			addZombie(new Zombie(mainController), 0);
 			addZombie(new ConeheadZombie(mainController), 3);
 			addZombie(new Zombie(mainController), 4);
-			
-			finalOpen = true;
 			txtOpen = true;
 			break;
 		case 4:			//第一大波
+			
 			addZombie(new FlagZombie(mainController), 1);
 			addZombie(new Zombie(mainController), 0);
 			addZombie(new Zombie(mainController), 1);
@@ -151,6 +155,7 @@ public class ZombieController implements Runnable {
 			txtOpen = true;
 			break;
 		case 8:
+			mainController.backgroundAudio.change("resource\\audio\\used\\FINAL.wav");
 			addZombie(new Zombie(mainController), 0);
 			addZombie(new Zombie(mainController), 1);
 			addZombie(new Zombie(mainController), 2);
@@ -182,17 +187,24 @@ public class ZombieController implements Runnable {
 			addZombie(new ConeheadZombie(mainController), 0);
 			addZombie(new FootballZombie(mainController), 2);
 			addZombie(new BucketZombie(mainController), 3);
+			mainController.mainViewer.removeLabel(txt);
+			while(isClear() == false);
+			mainController.alive = false;
+			System.out.println("game over");
+			mainController.WIN = true;
 			break;
 		default:
-				for(int i=0;i<mainController.lineNum;i++) {
-					if(!mainController.lineControllers[i].zombies.isEmpty())
-						state = 0;
+				boolean state = isClear();
+				if(state == true) {
+					mainController.alive = false;
+					System.out.println("game over");
+					mainController.WIN = true;
 				}
 		}
 		batch++;
 		mainController.mainViewer.removeLabel(txt);
 		mainController.mainViewer.next_batch();
-		System.out.println("成功创建一个僵尸");
+		//System.out.println("成功创建一个僵尸");
 	}
 	
 	private void addZombie(BasicZombie zombie, int line) {

@@ -45,11 +45,14 @@ public class MainController implements Runnable {
 	
 	public int clock;			//每一帧的休眠时间
 	public boolean alive;		//游戏未结束
+	public boolean WIN;         //游戏输赢
 	
 	public BasicCard currentCard;
+	public boolean plantAvailable;
 	
 	//关卡内背景音乐
 	public BasicAudio backgroundAudio = null;
+	public BasicAudio otherAudio = null;
 	
 	public MainController() {
 		clock = 30;
@@ -61,6 +64,7 @@ public class MainController implements Runnable {
 		mainViewer = new MainViewer();
 		mainViewer.setMainController(this);
 		mainViewer.initFlagMeter(2);
+		
 		//初始化所有控制器
 		cardController = new CardController(this, cardMaxNum);
 		// 初始行控制器
@@ -68,6 +72,7 @@ public class MainController implements Runnable {
 		for(int i=0;i<lineNum;i++) {
 			lineControllers[i] = new LineController(i, this); 
 		}
+		plantAvailable = false;
 		
 		sunController = new SunController(this);
 		zombieController = new ZombieController(this);
@@ -89,6 +94,7 @@ public class MainController implements Runnable {
 	@SuppressWarnings("static-access")
 	public void run() {
 		System.out.println("The MainController is running.");
+		//******
 		mainViewer.preVideo();
 		while(alive) {
 			timer--;
@@ -108,6 +114,8 @@ public class MainController implements Runnable {
 				e.printStackTrace();
 			}
 		}
+		
+		mainViewer.afterView(WIN);
 	}
 	
 	public static void main(String[] args) {

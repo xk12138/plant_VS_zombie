@@ -19,7 +19,7 @@ public class ShovelCard extends BasicCard {
 	
 	public ShovelCard(MainController mainController) {
 		super(mainController);
-		
+		isShovel = true;
 		label = new JLabel(getImage());
 		addMouseListener(label);
 		plant = new Shovel(0, 0, mainController);

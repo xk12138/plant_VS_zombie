@@ -111,7 +111,7 @@ public class FlagZombie extends BasicZombie {
 			dieZombies.add(this);
 		}
 		else {//»ÀÕ∑∑÷¿Î
-		
+			mainController.backgroundAudio.add("resource\\audio\\used\\shoop.wav");
 			if(state == ATTACK) {
 				image = imageFlagZombieLostHeadAttack;
 				timer = (int)(Math.random()*90)+10;

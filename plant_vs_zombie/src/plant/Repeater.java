@@ -37,8 +37,10 @@ public class Repeater extends BasicPlant {
 		if(zombieExist) {
 			if(timer == doubleShootTime) {
 				timer--;
+				mainController.backgroundAudio.add("resource\\audio\\used\\kernelpult.wav");
 				bullet = new Pea(posX,posY,mainController,false,false);
 			}else if(timer <= 0) {
+				mainController.backgroundAudio.add("resource\\audio\\used\\kernelpult.wav");
 				timer = attackSpeed;
 				bullet = new Pea(posX,posY,mainController,false,false);
 			}else {

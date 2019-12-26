@@ -76,10 +76,21 @@ public class LineController implements Runnable {
 	public void zombiesMove() {
 		for(BasicZombie zombie: zombies) {
 			int colomu = pos2index(zombie.getPosX());
+			if(colomu == 0) {
+				System.out.println("lose!!");
+				mainController.WIN = false;
+				mainController.alive = false;
+			}
 			try {
 				BasicBlock targetBlock = blocks.get(colomu);
 				if(targetBlock.plant != null) {
-					if(targetBlock.plant.isEaten(zombie.getPower())) {
+					int zombiePower = zombie.getPower();
+					if(zombiePower > 0) {
+						mainController.backgroundAudio.add("resource\\audio\\used\\chomp.wav");
+					}
+					boolean isEaten = targetBlock.plant.isEaten(zombiePower);
+					
+					if(isEaten) {
 						System.out.println("你的一株植物被吃掉了！");
 						mainController.mainViewer.removeLabel(targetBlock.plant.label);
 						targetBlock.plant = null;

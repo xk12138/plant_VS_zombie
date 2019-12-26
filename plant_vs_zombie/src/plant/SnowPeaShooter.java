@@ -35,6 +35,7 @@ public class SnowPeaShooter extends BasicPlant {
 			timer--;
 		}
 		else if(zombieExist) {
+			mainController.backgroundAudio.add("resource\\audio\\used\\kernelpult.wav");
 			timer = attackSpeed;
 			bullet = new Pea(posX, posY, mainController,true,false);
 		}

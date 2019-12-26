@@ -50,7 +50,7 @@ public class Zombie extends BasicZombie {
 		power = 8;
 		attackSpeed = 20;
 		timer = attackSpeed;
-		speedX = 0.8;
+		speedX = 0.5;
 		speedY = 0;
 		/*动态加载一些一次性图片，选择僵尸个性等*/
 		loadOtherImage();
@@ -150,7 +150,7 @@ public class Zombie extends BasicZombie {
 			dieZombies.add(this);
 		}
 		else {//人头分离
-		
+			mainController.backgroundAudio.add("resource\\audio\\used\\shoop.wav");
 			if(state == ATTACK) {
 				image = imageZombieLostHeadAttack;
 				timer = (int)(Math.random()*150);

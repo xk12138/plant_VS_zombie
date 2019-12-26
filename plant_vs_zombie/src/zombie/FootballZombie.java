@@ -142,7 +142,7 @@ public class FootballZombie extends BasicZombie {
 			dieZombies.add(this);
 		}
 		else {//»ÀÕ∑∑÷¿Î
-		
+			mainController.backgroundAudio.add("resource\\audio\\used\\shoop.wav");
 			if(state == ATTACK) {
 				image = imageFootballZombieLostHeadAttack;
 				        

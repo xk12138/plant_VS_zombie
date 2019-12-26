@@ -131,7 +131,7 @@ public class ConeheadZombie extends BasicZombie {
 			dieZombies.add(this);
 		}
 		else {//»ÀÕ∑∑÷¿Î
-		
+			mainController.backgroundAudio.add("resource\\audio\\used\\shoop.wav");
 			if(state == ATTACK) {
 				image = imageZombieLostHeadAttack;
 				timer = (int)(Math.random()*150);

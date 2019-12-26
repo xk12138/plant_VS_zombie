@@ -45,7 +45,7 @@ public class Pea extends BasicBullet {
 		super(posX, posY, mainController);
 		// 初始化属性
 		// power = 10;
-		power = 20;
+		power = 10;
 		speedX = 10;//原来是6
 		speedY = 0;
 		generate = -1;
@@ -89,15 +89,18 @@ public class Pea extends BasicBullet {
 					//子弹自身进入爆炸动画倒计时
 					if(snow == false && fire == false) {
 						//普通豌豆，有爆炸效果，更改图片信息
+						mainController.backgroundAudio.add("resource\\audio\\used\\grassstep.wav");
 						timer = 4;
 						label.setBounds(posX+60, posY-20, peaImageHit.getIconWidth(),peaImageHit.getIconHeight());
 						label.setIcon(peaImageHit);
 					}else if(snow == true) {
 						//冰弹没有爆炸效果图
+						mainController.backgroundAudio.add("resource\\audio\\used\\frozen.wav");
 						zombie.snowZombie(snowZombieTime);
 						timer = 0;
 					}else {
 						//火焰爆炸有效果图
+						mainController.backgroundAudio.add("resource\\audio\\used\\firepea.wav");
 						timer = 4;
 						label.setBounds(posX+60, posY-30, firePeaImageHit.getIconWidth(),firePeaImageHit.getIconHeight());
 						label.setIcon(firePeaImageHit);

@@ -6,9 +6,11 @@ import javax.swing.*;
 
 import audio.BasicAudio;
 import block.BasicBlock;
+import bullet.BasicBullet;
 import card.TorchwoodCard;
 import controller.MainController;
 import plant.LawnCleaner;
+import zombie.BasicZombie;
 import zombie.BucketZombie;
 import zombie.ConeheadZombie;
 import zombie.FlagZombie;
@@ -43,12 +45,118 @@ public class MainViewer extends JFrame {
 	ImageIcon prepare2 = new ImageIcon("resource\\images\\interface\\Prepare2.png");
 	ImageIcon prepare3 = new ImageIcon("resource\\images\\interface\\Prepare3.png");
 	JLabel prepareLabel;
+	//用于打印结束动画
+	ImageIcon letter = new ImageIcon("resource\\images\\interface\\ZombieNote.png");
+	ImageIcon lose = new ImageIcon("resource\\images\\interface\\ZombiesWon.png");
+	JLabel afterLabel;
 	
 	public void setMainController(MainController mainController) {
 		this.mainController = mainController;
 	}
+	public void afterView(boolean win) {
+		mainController.backgroundAudio.change("resource\\audio\\used\\null.wav");
+		if(win == true)
+			winView();
+		else 
+			loseView();
+		mainController.backgroundAudio.change("resource\\audio\\used\\Theme.wav");
+		this.dispose();
+	}
+	private void winView() {
+		mainController.backgroundAudio.add("resource\\audio\\used\\winmusic.wav");
+		JLabel afterLabel = new JLabel(letter);
+		afterLabel.setBounds(200, 150, letter.getIconWidth(), letter.getIconHeight());
+		
+		try {
+			Thread.sleep(500);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		addLabel(afterLabel);
+		repaintLabels();
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		removeLabel(afterLabel);
+	}
+	private void loseView() {
+		mainController.backgroundAudio.add("resource\\audio\\used\\losemusicScream.wav");
+		JLabel afterLabel = new JLabel(lose);
+		afterLabel.setBounds(350, 150, lose.getIconWidth(), lose.getIconHeight());
+		try {
+			Thread.sleep(500);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		for(int i = -150;i < 0;i++) {
+			try {
+				Thread.sleep(5);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			jl.setBounds(i, -30, 1710, 750);
+			for(int j = 0;j<mainController.lineNum;j++) {
+				for(BasicBlock block:mainController.lineControllers[j].blocks) {
+					if(block.plant != null)
+						block.plant.label.setBounds(block.plant.posX+i+150, block.plant.posY, block.plant.label.getIcon().getIconWidth(), block.plant.label.getIcon().getIconHeight());		
+				}
+				for(BasicZombie zombie:mainController.lineControllers[j].zombies) {
+					zombie.label.setBounds((int)zombie.posX+i+150, (int)zombie.posY, zombie.label.getIcon().getIconWidth(), zombie.label.getIcon().getIconHeight());
+				}
+				for(BasicZombie zombie:mainController.lineControllers[j].dieZombies) {
+					zombie.label.setBounds((int)zombie.posX+i+150, (int)zombie.posY, zombie.label.getIcon().getIconWidth(), zombie.label.getIcon().getIconHeight());
+				}
+				for(BasicBullet bullet:mainController.lineControllers[j].bullets) {
+					bullet.label.setBounds(bullet.posX+i+150, bullet.posY, bullet.label.getIcon().getIconWidth(), bullet.label.getIcon().getIconHeight());
+				}
+			}
+		
+		}
+		try {
+			Thread.sleep(500);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		addLabel(afterLabel);
+		repaintLabels();
+		
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public void repaintLabels() {
+		for(int j = 0;j<mainController.lineNum;j++) {
+			for(BasicBlock block:mainController.lineControllers[j].blocks) {
+				if(block.plant != null)
+					repaintLabel(block.plant.label);
+			}
+			for(BasicZombie zombie:mainController.lineControllers[j].zombies) {
+				repaintLabel(zombie.label);
+			}
+			for(BasicZombie zombie:mainController.lineControllers[j].dieZombies) {
+				repaintLabel(zombie.label);
+			}
+			for(BasicBullet bullet:mainController.lineControllers[j].bullets) {
+				repaintLabel(bullet.label);
+			}
+		}
+		removeLabel(jl);
+		addLabel(jl);
+	}
 	public void preVideo() {
-		BasicAudio choice = new BasicAudio("resource\\audio\\used\\choice1.wav");
+		BasicAudio choice = new BasicAudio("resource\\audio\\used\\choice.wav");
 		double flash = 3;
 		JLabel image1 = new JLabel(Zombie.imageZombieStatic);
 		JLabel image2 = new JLabel(ConeheadZombie.imageConeheadZombieStatic);
@@ -72,12 +180,12 @@ public class MainViewer extends JFrame {
 		addLabel(image6);
 		
 		try {
-			Thread.sleep((long)3000);
+			Thread.sleep(1000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		for(int i = -150;i > -500;i--) {
+		for(int i = 0;i > -500;i--) {
 			try {
 				Thread.sleep((long)flash);
 			} catch (InterruptedException e) {
@@ -132,7 +240,7 @@ public class MainViewer extends JFrame {
 		//换音乐
 		choice.stop();
 		BasicAudio duang = new BasicAudio("resource\\audio\\used\\readysetplant.wav");
-		
+		duang.setLoop(false);
 		
 		prepareLabel = new JLabel(prepare1);
 		prepareLabel.setBounds(400, 300, prepare1.getIconWidth(), prepare1.getIconHeight());
@@ -173,8 +281,8 @@ public class MainViewer extends JFrame {
 			e.printStackTrace();
 		}
 		addLabel(prepareLabel);
+		mainController.plantAvailable = true;
 		//draw
-		mainController.backgroundAudio = new BasicAudio("resource\\audio\\used\\LawnGarden1.wav");
 		for(int i=0;i<5;i++) {
 			mainController.lineControllers[i].blocks.get(0).plant 
 			= new LawnCleaner(mainController.lineControllers[i].blocks.get(0).posX,mainController.lineControllers[i].blocks.get(0).posY,mainController);
@@ -186,7 +294,7 @@ public class MainViewer extends JFrame {
 			}
 		}
 		removeLabel(prepareLabel);
-		
+		mainController.backgroundAudio = new BasicAudio("resource\\audio\\used\\LawnGarden.wav");
 		//duang.stop();
 		
 	}
@@ -209,7 +317,7 @@ public class MainViewer extends JFrame {
 		
 		jl = new JLabel(image);
 		//jl.setSize(image.getIconWidth(), image.getIconHeight());
-		jl.setBounds(-150, -30, 1710, 750);
+		jl.setBounds(0, -30, 1710, 750);
 		jp.add(jl);
 		jp.repaint();
 		//开场动画
@@ -264,6 +372,10 @@ public class MainViewer extends JFrame {
 	public void removeLabel(JLabel label) {
 		jp.remove(label);
 		jp.repaint();
+	}
+	public void repaintLabel(JLabel label) {
+		jp.remove(label);
+		jp.add(label);
 	}
 	
 	public void initFlagMeter(int batch) {

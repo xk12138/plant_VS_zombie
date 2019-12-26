@@ -30,6 +30,9 @@ public class BasicAudio {
 	public void stop() {
 		ap.stopPlay();
 	}
+	public void setLoop(boolean loop) {
+		ap.loop = loop;
+	}
 }
 
 
@@ -89,9 +92,6 @@ class AudioPlayer implements Runnable {
 		byte[] abData = new byte[EXTERNAL_BUFFER_SIZE];
 		
 		//System.out.println("开始播放");
-		boolean key = true;
-		while(key == true) {
-			key = loop;
 			try {
 				int i = 0;
 				while(nBytesRead != -1 && running) {
@@ -103,17 +103,21 @@ class AudioPlayer implements Runnable {
 						//System.out.println("读取完毕");
 					}
 				}
+				if(loop == true) {
+					run();
+				}
 			}
 			catch(Exception e) {
 				e.printStackTrace();
 				return;
 			}
-		}
+		
 		System.out.println("播放完成。");
 	}
 	
 	public void stopPlay() {
 		auline.stop();
+		loop = false;
 		running = false;
 	}
 }

@@ -49,6 +49,7 @@ public class BasicSun {
 				mainController.changeSun(energy);
 				mainController.mainViewer.removeLabel(label);
 				mainController.sunController.suns.remove(that);
+				mainController.backgroundAudio.add("resource\\audio\\used\\points.wav");
 				System.out.println("The sun is clicked.");
 				// We need to remove the sun's JLabel from the viewer.
 			}

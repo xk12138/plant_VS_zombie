@@ -20,11 +20,13 @@ public class LawnBlock extends BasicBlock{
 		label.setBounds(posX, posY, blockWidth, blockHeight);
 		label.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
+				if(mainController.plantAvailable == true)
 				if(mainController.currentCard != null) {
 					if(plant == null) {
 						if(mainController.currentCard.plant.isShovel()) {
 							return;
 						}
+						mainController.backgroundAudio.add("resource\\audio\\used\\plant.wav");
 						plant = mainController.currentCard.getPlant(posX,posY);
 						mainController.currentCard.setTimer();
 						mainController.currentCard = null;
@@ -34,6 +36,7 @@ public class LawnBlock extends BasicBlock{
 					}
 					else {
 						if(mainController.currentCard.plant.isShovel()) {
+							mainController.backgroundAudio.add("resource\\audio\\used\\plant.wav");
 							mainController.mainViewer.removeLabel(plant.label);
 							plant = null;
 						}

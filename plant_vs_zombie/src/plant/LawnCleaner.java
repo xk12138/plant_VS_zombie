@@ -35,6 +35,7 @@ public class LawnCleaner extends BasicPlant {
 	public LawnCleanerCar attack(boolean zombieExist) {
 		for(BasicZombie zombie:mainController.lineControllers[lineNum].zombies) {
 			if(zombie.posX < this.posX  && zombie.posX > this.posX - 60) {
+				mainController.backgroundAudio.add("resource\\audio\\used\\pool_cleaner.wav");
 				//LawnCleanerCar car = new LawnCleanerCar(posX,posY,mainController);
 				dieTimer = 0;//告诉行控制器，让行控制器来删除格子里的植物
 				mainController.mainViewer.removeLabel(label);

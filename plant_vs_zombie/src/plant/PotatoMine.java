@@ -65,7 +65,7 @@ public class PotatoMine extends BasicPlant {
 	public boolean isEaten(int getPower) {
     	//被动效果，触发炸弹
 		if(readyTimer == 0) {
-			
+			mainController.backgroundAudio.add("resource\\audio\\used\\potato_mine.wav");
 	    	//杀死僵尸
 	    	for(BasicZombie zombie:mainController.lineControllers[lineNum].zombies) {
 	    		if(zombie.posX > this.posX - 1.6*LawnBlock.blockWidth &&

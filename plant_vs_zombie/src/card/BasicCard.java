@@ -26,10 +26,11 @@ public class BasicCard {
 	public JLabel curtain; // 幕布的图片
 	
 	public MainController mainController;
-
+	public boolean isShovel;
 	public static int cardHeight = 60,cardWidth = 100;
 	public BasicCard(MainController mainController) {
 		this.mainController = mainController;
+		isShovel = false;
 		plant = null;
 		curtain = new JLabel();
 		curtain.setSize(0, cardHeight-1);
@@ -41,6 +42,7 @@ public class BasicCard {
 		BasicCard that = this;
 		label.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
+				if(mainController.plantAvailable == true) {
 				if(timer != 0) {
 					System.out.println("该植物正在冷却！");
 					return;
@@ -50,7 +52,12 @@ public class BasicCard {
 					System.out.printf("你的阳光储量不足，只有%d，需要%d\n", mainController.sumSun, that.plant.price);
 				}
 				else {
+					if(isShovel == true)
+						mainController.backgroundAudio.add("resource\\audio\\used\\shovel.wav");
+					else 
+						mainController.backgroundAudio.add("resource\\audio\\used\\seedlift.wav");
 					mainController.currentCard = that;
+				}
 				}
 			}
 		});

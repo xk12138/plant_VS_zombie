@@ -50,6 +50,7 @@ public class Jalapeno extends BasicPlant {
 			label.setSize(getImage().getIconWidth(), getImage().getIconHeight());
 	    	label.setBounds(0, posY-50, getImage().getIconWidth(), getImage().getIconHeight());
 	    	//…±À¿Ω© ¨
+	    	mainController.backgroundAudio.add("resource\\audio\\used\\jalapeno.wav");
 	    	for(BasicZombie zombie:mainController.lineControllers[lineNum].zombies) {
 	    		zombie.health -= power;
 	    		if(zombie.health <= 0) {

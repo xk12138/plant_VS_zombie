@@ -174,7 +174,7 @@ public class NewspaperZombie extends BasicZombie {
 			dieZombies.add(this);
 		}
 		else {//»ÀÕ∑∑÷¿Î
-		
+			mainController.backgroundAudio.add("resource\\audio\\used\\shoop.wav");
 			if(state == ATTACK) {
 				image = imageNewspaperZombieLostHeadAttack;
 				timer = (int)(Math.random()*150);
