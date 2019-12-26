@@ -45,6 +45,24 @@ public class FootballZombie extends BasicZombie {
 		return image;
 	}
 	
+	public FootballZombie(MainController mainController) {
+		super(mainController);
+		normalHealth = 100;
+		normal = false;
+		health = 200;
+		power = 8;
+		attackSpeed = 20;
+		timer = attackSpeed;
+		speedX = 1;
+		speedY = 0;
+		/*动态加载一些一次性图片，选择僵尸个性等*/
+		loadOtherImage();
+		/*选好了*/
+		image = imageFootballZombieStatic;
+		label = new JLabel(getImage());
+		this.posX = 1000;
+		label.setSize(image.getIconWidth(), image.getIconHeight());
+	}
 	public FootballZombie(int posY, MainController mainController) {
 		super(posY, mainController);
 		normalHealth = 100;

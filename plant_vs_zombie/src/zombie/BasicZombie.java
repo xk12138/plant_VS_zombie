@@ -16,6 +16,10 @@ import controller.MainController;
  * */
 
 public class BasicZombie {
+	public ImageIcon getImage() {
+		return null;
+	}
+	
 	public double posX, posY;
 	public double speedX, speedY;
 	public int attackSpeed, timer;
@@ -66,6 +70,10 @@ public class BasicZombie {
 	public int moderateTimer;
 	private final int moderateCoolDown = 100;
 	
+	public BasicZombie(MainController mainController) {
+		moderateTimer = -1;
+		this.mainController = mainController;
+	}
 	public BasicZombie(int posY, MainController mainController) {
 		moderateTimer = -1;
 		this.posY = posY;
@@ -125,6 +133,12 @@ public class BasicZombie {
 		 * 僵尸被冰冻函数，各基类自行继承，默认为有移速攻速减半效果
 		*/
 			moderateTimer = snowZombieTime;
+	}
+	
+	public void setBounds(int y, int width, int height) {
+		//System.out.println("在y轴为" + String.valueOf(y) + "的位置生成一个僵尸");
+		label.setBounds((int)posX, y, width, height);
+		posY = y;
 	}
 	
 }

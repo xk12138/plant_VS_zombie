@@ -61,6 +61,23 @@ public class Zombie extends BasicZombie {
 		label.setSize(image.getIconWidth(), image.getIconHeight());
 		label.setBounds((int)posX, (int)posY, image.getIconWidth(), image.getIconHeight());
 	}
+	
+	public Zombie(MainController mainController) {
+		super(mainController);
+		health = 100;
+		//power = 8;
+		power = 20;
+		attackSpeed = 20;
+		timer = attackSpeed;
+		speedX = 0.5;
+		speedY = 0;
+		/*动态加载一些一次性图片，选择僵尸个性等*/
+		loadOtherImage();
+		image = imageZombieStatic;
+		label = new JLabel(getImage());
+		this.posX = 1000;
+		label.setSize(image.getIconWidth(), image.getIconHeight());
+	}
 	public Zombie(double posX, double posY, MainController mainController) {
 		super(posX, posY, mainController);
 		health = 100;

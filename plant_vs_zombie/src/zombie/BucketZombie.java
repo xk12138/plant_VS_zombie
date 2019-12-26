@@ -35,6 +35,24 @@ public class BucketZombie extends BasicZombie {
 		return image;
 	}
 	
+	public BucketZombie(MainController mainController) {
+		super(mainController);
+		normalHealth = 100;
+		normal = false;
+		health = 400;
+		power = 8;
+		attackSpeed = 20;
+		timer = attackSpeed;
+		speedX = 0.5;
+		speedY = 0;
+		/*动态加载一些一次性图片，选择僵尸个性等*/
+		loadOtherImage();
+		/*选好了*/
+		image = imageBucketZombieStatic;
+		label = new JLabel(getImage());
+		this.posX = 1000;
+		label.setSize(image.getIconWidth(), image.getIconHeight());
+	}
 	public BucketZombie(int posY, MainController mainController) {
 		super(posY, mainController);
 		normalHealth = 100;
@@ -52,6 +70,7 @@ public class BucketZombie extends BasicZombie {
 		label = new JLabel(getImage());
 		this.posX = 1000;
 		label.setSize(image.getIconWidth(), image.getIconHeight());
+		
 		label.setBounds((int)posX, (int)posY, image.getIconWidth(), image.getIconHeight());
 	}
 	
