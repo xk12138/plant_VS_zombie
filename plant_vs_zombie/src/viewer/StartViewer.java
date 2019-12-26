@@ -1,5 +1,6 @@
 package viewer;
 
+import java.awt.Container;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -36,11 +37,15 @@ public class StartViewer extends JFrame {
 	public ImageIcon startImg = new ImageIcon("resource\\images\\interface\\Selector1L.png");
 	public ImageIcon endImg = new ImageIcon("resource\\images\\interface\\Selector1H.png");
 	
+	public Container container;
+	
 	public StartViewer() {
-		super("植物大战僵尸");
+		super("植物大战僵尸 ");
+		this.setIconImage(new ImageIcon("resource\\images\\interface\\SmallLogo.png").getImage());
+		this.container = this.getContentPane();
 		
 		JLabel label = new JLabel(startImg);
-		label.setBounds(575, 70, startImg.getIconWidth(), startImg.getIconHeight());
+		label.setBounds(575, 60, startImg.getIconWidth(), startImg.getIconHeight());
 		label.addMouseListener(new MouseAdapter() {
 			public void mouseEntered(MouseEvent e) {
 				label.setIcon(endImg);
@@ -56,7 +61,7 @@ public class StartViewer extends JFrame {
 		
 		ImageIcon image = new ImageIcon("resource\\images\\interface\\Selector2L.png");
 		JLabel t = new JLabel(image);
-		t.setBounds(575, 200, image.getIconWidth(), image.getIconHeight());
+		t.setBounds(575, 190, image.getIconWidth(), image.getIconHeight());
 		this.add(t);
 		image = new ImageIcon("resource\\images\\interface\\Selector3L.png");
 		t = new JLabel(image);

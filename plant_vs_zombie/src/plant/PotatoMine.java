@@ -41,7 +41,7 @@ public class PotatoMine extends BasicPlant {
     	this.attackSpeed = 100;
     	coolDown = 80;
     	timer = coolDown;
-    	price = 100;
+    	price = 25;
     	label = new JLabel(getImage());
     	label.setSize(getImage().getIconWidth(), getImage().getIconHeight());
     	label.setBounds(posX, posY, getImage().getIconWidth(), getImage().getIconHeight());

@@ -23,7 +23,7 @@ public class SnowPeaShooter extends BasicPlant {
     	this.attackSpeed = 100;
     	coolDown = 80;
     	timer = coolDown;
-    	price = 175;
+    	price = 50;
     	label = new JLabel(getImage());
     	label.setSize(image.getIconWidth(), image.getIconHeight());
     	label.setBounds(posX, posY, image.getIconWidth(), image.getIconHeight());

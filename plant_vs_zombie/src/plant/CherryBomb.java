@@ -36,7 +36,7 @@ public class CherryBomb extends BasicPlant {
     	dieTimer = 40;
     	coolDown = 80;
     	timer = coolDown;
-    	price = 100;
+    	price = 150;
     	label = new JLabel(getImage());
     	label.setSize(getImage().getIconWidth(), getImage().getIconHeight());
     	label.setBounds(posX, posY, getImage().getIconWidth(), getImage().getIconHeight());

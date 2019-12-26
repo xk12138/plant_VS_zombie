@@ -11,7 +11,7 @@ public class ZombieController implements Runnable {
 	public MainController mainController;
 	
 	//public int coolDown = 750;
-	public int coolDown = 300;
+	public int coolDown = 500;
 	public int timer;
 	
 	public int batch = 0;	// 用于控制正在第几波
@@ -26,8 +26,8 @@ public class ZombieController implements Runnable {
 	
 	public Thread t;
 	public static void loadImage() {
-		LargeWave = new ImageIcon("resource\\images\\interface\\LargeWave.gif");
-		FinalWave = new ImageIcon("resource\\images\\interface\\FinalWave.gif");
+		LargeWave = new ImageIcon("resource\\images\\interface\\LargeWave.png");
+		FinalWave = new ImageIcon("resource\\images\\interface\\FinalWave.png");
 	}
 	public ZombieController(MainController mainController) {
 		this.mainController = mainController;
@@ -56,9 +56,9 @@ public class ZombieController implements Runnable {
 			}
 			
 			if(finalOpen == true) {
-				if(timer == 90)
+				if(timer == 110)
 					mainController.mainViewer.addLabel(txt);
-				else if(timer == 50) {
+				else if(timer == 60) {
 					mainController.mainViewer.removeLabel(txt);
 					txt.setIcon(FinalWave);
 					txt.setSize(FinalWave.getIconWidth(),FinalWave.getIconHeight());
@@ -68,7 +68,7 @@ public class ZombieController implements Runnable {
 				}
 			}
 			
-			if(txtOpen == true && timer == 40) {
+			if(txtOpen == true && timer == 50) {
 				mainController.mainViewer.addLabel(txt);
 				txtOpen = false;
 			}
@@ -96,18 +96,18 @@ public class ZombieController implements Runnable {
 			mainController.mainViewer.addLabel(txt);
 			//for(int j=0;j<10000;j++);
 			column = (int)(Math.random() * mainController.lineNum);
-			t = new Zombie(zombieHeightOffset + LawnBlock.blockHeight *column, mainController);
+			t = new ConeheadZombie(zombieHeightOffset + LawnBlock.blockHeight *column, mainController);
 			mainController.lineControllers[column].zombies.add(t);
 			mainController.mainViewer.addLabel(t.label);
 			//mainController.mainViewer.removeLabel(txt);
 			break;
 		case 2:
 			column = (int)(Math.random() * mainController.lineNum);
-			t = new Zombie(zombieHeightOffset + LawnBlock.blockHeight *column, mainController);
+			t = new NewspaperZombie(zombieHeightOffset + LawnBlock.blockHeight *column, mainController);
 			mainController.lineControllers[column].zombies.add(t);
 			mainController.mainViewer.addLabel(t.label);
 			column = (int)(Math.random() * mainController.lineNum);
-			t = new Zombie(zombieHeightOffset + LawnBlock.blockHeight *column, mainController);
+			t = new BucketZombie(zombieHeightOffset + LawnBlock.blockHeight *column, mainController);
 			mainController.lineControllers[column].zombies.add(t);
 			mainController.mainViewer.addLabel(t.label);
 			//mainController.mainViewer.removeLabel(txt);
@@ -115,7 +115,7 @@ public class ZombieController implements Runnable {
 			break;
 		case 3:
 			column = (int)(Math.random() * mainController.lineNum);
-			t = new ConeheadZombie(zombieHeightOffset + LawnBlock.blockHeight *column, mainController);
+			t = new FootballZombie(zombieHeightOffset + LawnBlock.blockHeight *column, mainController);
 			mainController.lineControllers[column].zombies.add(t);
 			mainController.mainViewer.addLabel(t.label);
 			

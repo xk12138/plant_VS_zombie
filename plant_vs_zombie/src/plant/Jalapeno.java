@@ -36,7 +36,7 @@ public class Jalapeno extends BasicPlant {
     	dieTimer = 35;
     	coolDown = 80;
     	timer = coolDown;
-    	price = 100;
+    	price = 125;
     	fireLine = null;
     	label = new JLabel(getImage());
     	label.setSize(getImage().getIconWidth(), getImage().getIconHeight());

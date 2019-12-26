@@ -31,7 +31,7 @@ import zombie.Zombie;
 public class MainController implements Runnable {
 	// connect all controller
 	public CardController cardController;
-	public int cardMaxNum = 7;
+	public int cardMaxNum = 8;
 	public LineController[] lineControllers;
 	public int lineNum = 5;
 	public SunController sunController;
@@ -72,8 +72,6 @@ public class MainController implements Runnable {
 		changeSun(0);
 		mainViewer.draw();
 		
-		//≤‚ ‘π¶ƒ‹«¯”Ú
-		currentCard = new PeaShooterCard(this);
 		
 		start();
 	}
@@ -88,6 +86,7 @@ public class MainController implements Runnable {
 	@SuppressWarnings("static-access")
 	public void run() {
 		System.out.println("The MainController is running.");
+		mainViewer.preVideo();
 		while(alive) {
 			timer--;
 			if(timer == 0) {

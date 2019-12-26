@@ -39,7 +39,7 @@ public class TallNut extends BasicPlant {
     	this.attackSpeed = 100;
     	coolDown = 80;
     	timer = coolDown;
-    	price = 150;
+    	price = 125;
     	label = new JLabel(getImage());
     	label.setSize(image3.getIconWidth(), image3.getIconHeight());
     	label.setBounds(posX, posY-40, image3.getIconWidth(), image3.getIconHeight());

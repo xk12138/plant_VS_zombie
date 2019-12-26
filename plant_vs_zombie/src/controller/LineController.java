@@ -64,7 +64,6 @@ public class LineController implements Runnable {
 				blocks.add(new LawnBlock(mainController,line, i, i*LawnBlock.blockWidth+widthOffset, line*LawnBlock.blockHeight+heightOffset));
 			TorchArray[i] = -1;
 		}
-		blocks.get(0).plant = new LawnCleaner(blocks.get(0).posX,blocks.get(0).posY,mainController);
 		//TorchArray[0] = 500;
 		//TorchArray[1] = 800; 
 		bullets = new CopyOnWriteArrayList<BasicBullet>();
