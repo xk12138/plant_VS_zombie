@@ -11,50 +11,52 @@ import javax.sound.sampled.SourceDataLine;
 
 
 
-public class BaseAudio extends Thread {
+public class BaseAudio {
 	public AudioPlayer ap;
-	public BaseAudio() {
-		ap = new AudioPlayer("resource\\audio\\LawnGarden.wav");
+	
+	public BaseAudio(String name) {
+		ap = new AudioPlayer(name);
+	}
+		
+	public void change(String name) {
+		ap.stopPlay();
+		ap = new AudioPlayer(name);
 	}
 	
-	public void run() {
-		System.out.println("播放器控制器开始启动");
-		ap.run();
-		System.out.println("播放器开始计时");
-		try {
-			this.sleep(5000);
-			ap.stopPlay();
-		} 
-		catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	public static void main(String[] args) {
-		BaseAudio b = new BaseAudio();
-		b.run();
+	public void add(String name) {
+		new AudioPlayer(name);
 	}
 }
 
-class AudioPlayer extends Thread {
+
+class AudioPlayer implements Runnable {
 	public String name;
-	public final int EXTERNAL_BUFFER_SIZE = 10000000;
+	public final int EXTERNAL_BUFFER_SIZE = 65536;
 	SourceDataLine auline = null;
 	boolean running = true;
+	Thread t;
 	
 	public AudioPlayer(String name) {
 		this.name = name;
+		start();
+	}
+	
+	public void start() {
+		if(t == null) {
+			t = new Thread(this);
+			t.start();
+		}
 	}
 	
 	public void run() {
-		System.out.println("播放器开始启动");
+		//System.out.println("播放器开始启动");
 		File soundFile = new File(name);
 		if(!soundFile.exists()) {
 			System.err.println("资源文件未能找到:" + name);
 			return;
 		}
 		
-		System.out.println("资源文件加载完成。");
+		//System.out.println("资源文件加载完成。");
 		AudioInputStream ais = null;
 		try {
 			ais = AudioSystem.getAudioInputStream(soundFile);
@@ -64,7 +66,7 @@ class AudioPlayer extends Thread {
 			return;
 		}
 		
-		System.out.println("AudioInputStream创建完成。");
+		//System.out.println("AudioInputStream创建完成。");
 		AudioFormat format = ais.getFormat();
 		DataLine.Info info = new DataLine.Info(SourceDataLine.class, format);
 		
@@ -76,19 +78,22 @@ class AudioPlayer extends Thread {
 			e.printStackTrace();
 			return;
 		}
-		System.out.println("Auline创建完成。");
+		//System.out.println("Auline创建完成。");
 		
 		auline.start();
 		int nBytesRead = 0;
 		byte[] abData = new byte[EXTERNAL_BUFFER_SIZE];
 		
-		System.out.println("开始播放");
+		//System.out.println("开始播放");
 		try {
-			if(nBytesRead != -1 && running) {
+			int i = 0;
+			while(nBytesRead != -1 && running) {
 				nBytesRead = ais.read(abData, 0, abData.length);
-				System.out.println("读取完毕");
+				//System.out.println("读取完毕:");
 				if(nBytesRead >= 0) {
+					//System.out.println(nBytesRead);
 					auline.write(abData, 0, nBytesRead);
+					//System.out.println("读取完毕");
 				}
 			}
 		}
@@ -100,6 +105,7 @@ class AudioPlayer extends Thread {
 	}
 	
 	public void stopPlay() {
+		auline.stop();
 		running = false;
 	}
 }
