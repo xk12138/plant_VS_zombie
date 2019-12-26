@@ -1,5 +1,6 @@
 package controller;
 
+import audio.BasicAudio;
 import bullet.LawnCleanerCar;
 import bullet.Pea;
 import card.BasicCard;
@@ -36,7 +37,6 @@ public class MainController implements Runnable {
 	public int lineNum = 5;
 	public SunController sunController;
 	public ZombieController zombieController;
-	
 	public MainViewer mainViewer;
 	public Thread t;
 	
@@ -48,6 +48,9 @@ public class MainController implements Runnable {
 	
 	public BasicCard currentCard;
 	
+	//关卡内背景音乐
+	public BasicAudio backgroundAudio = null;
+	
 	public MainController() {
 		clock = 30;
 		sumSun = 5000;
@@ -57,7 +60,7 @@ public class MainController implements Runnable {
 
 		mainViewer = new MainViewer();
 		mainViewer.setMainController(this);
-		mainViewer.initFlagMeter(1);
+		mainViewer.initFlagMeter(2);
 		//初始化所有控制器
 		cardController = new CardController(this, cardMaxNum);
 		// 初始行控制器

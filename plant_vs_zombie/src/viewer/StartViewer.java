@@ -8,6 +8,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+import audio.BasicAudio;
 import bullet.LawnCleanerCar;
 import bullet.Pea;
 import card.ShovelCard;
@@ -38,11 +39,14 @@ public class StartViewer extends JFrame {
 	public ImageIcon endImg = new ImageIcon("resource\\images\\interface\\Selector1H.png");
 	
 	public Container container;
-	
+	private BasicAudio startAudio; 
 	public StartViewer() {
 		super("÷≤ŒÔ¥Û’ΩΩ© ¨ ");
 		this.setIconImage(new ImageIcon("resource\\images\\interface\\SmallLogo.png").getImage());
 		this.container = this.getContentPane();
+		
+		//ÃÌ“Ù¿÷
+		startAudio = new BasicAudio("resource\\audio\\used\\Faster.wav");
 		
 		JLabel label = new JLabel(startImg);
 		label.setBounds(575, 60, startImg.getIconWidth(), startImg.getIconHeight());
@@ -54,6 +58,7 @@ public class StartViewer extends JFrame {
 				label.setIcon(startImg);
 			}
 			public void mouseClicked(MouseEvent e) {
+				startAudio.stop();
 				new MainController();
 			}
 		});

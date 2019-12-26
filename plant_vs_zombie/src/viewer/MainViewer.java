@@ -4,6 +4,7 @@ import java.awt.*;
 
 import javax.swing.*;
 
+import audio.BasicAudio;
 import block.BasicBlock;
 import card.TorchwoodCard;
 import controller.MainController;
@@ -47,6 +48,7 @@ public class MainViewer extends JFrame {
 		this.mainController = mainController;
 	}
 	public void preVideo() {
+		BasicAudio choice = new BasicAudio("resource\\audio\\used\\choice1.wav");
 		double flash = 3;
 		JLabel image1 = new JLabel(Zombie.imageZombieStatic);
 		JLabel image2 = new JLabel(ConeheadZombie.imageConeheadZombieStatic);
@@ -127,6 +129,11 @@ public class MainViewer extends JFrame {
 		removeLabel(image5);
 		removeLabel(image6);
 		
+		//ªª“Ù¿÷
+		choice.stop();
+		BasicAudio duang = new BasicAudio("resource\\audio\\used\\readysetplant.wav");
+		
+		
 		prepareLabel = new JLabel(prepare1);
 		prepareLabel.setBounds(400, 300, prepare1.getIconWidth(), prepare1.getIconHeight());
 		addLabel(prepareLabel);
@@ -167,6 +174,7 @@ public class MainViewer extends JFrame {
 		}
 		addLabel(prepareLabel);
 		//draw
+		mainController.backgroundAudio = new BasicAudio("resource\\audio\\used\\LawnGarden1.wav");
 		for(int i=0;i<5;i++) {
 			mainController.lineControllers[i].blocks.get(0).plant 
 			= new LawnCleaner(mainController.lineControllers[i].blocks.get(0).posX,mainController.lineControllers[i].blocks.get(0).posY,mainController);
@@ -178,6 +186,8 @@ public class MainViewer extends JFrame {
 			}
 		}
 		removeLabel(prepareLabel);
+		
+		//duang.stop();
 		
 	}
 	public MainViewer() {
