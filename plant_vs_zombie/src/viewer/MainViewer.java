@@ -1,6 +1,8 @@
 package viewer;
 
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.*;
 
@@ -59,7 +61,6 @@ public class MainViewer extends JFrame {
 			winView();
 		else 
 			loseView();
-		mainController.backgroundAudio.change("resource\\audio\\used\\Theme.wav");
 		this.dispose();
 	}
 	private void winView() {
@@ -341,6 +342,14 @@ public class MainViewer extends JFrame {
 		back.setBounds(0, 0, sunBack.getIconWidth(), sunBack.getIconHeight());
 		jp.add(back);
 		
+		
+		// 窗口被关闭时释放所有资源
+		this.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent e) {
+				super.windowClosing(e);
+				mainController.backgroundAudio.stop();
+			}
+		});
 		
 		// 让窗口显示出来
 		this.setLayeredPane(layeredPane);

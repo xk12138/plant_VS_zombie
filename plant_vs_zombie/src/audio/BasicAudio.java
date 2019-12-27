@@ -62,36 +62,38 @@ class AudioPlayer implements Runnable {
 			System.err.println("资源文件未能找到:" + name);
 			return;
 		}
-		
 		//System.out.println("资源文件加载完成。");
-		AudioInputStream ais = null;
-		try {
-			ais = AudioSystem.getAudioInputStream(soundFile);
-		}
-		catch(Exception e) {
-			e.printStackTrace();
-			return;
-		}
 		
-		//System.out.println("AudioInputStream创建完成。");
-		AudioFormat format = ais.getFormat();
-		DataLine.Info info = new DataLine.Info(SourceDataLine.class, format);
-		
-		try {
-			auline = (SourceDataLine)AudioSystem.getLine(info);
-			auline.open(format);
-		}
-		catch(Exception e) {
-			e.printStackTrace();
-			return;
-		}
-		//System.out.println("Auline创建完成。");
-		
-		auline.start();
-		int nBytesRead = 0;
-		byte[] abData = new byte[EXTERNAL_BUFFER_SIZE];
-		
-		//System.out.println("开始播放");
+		// 开始循环播放
+		do {
+			AudioInputStream ais = null;
+			try {
+				ais = AudioSystem.getAudioInputStream(soundFile);
+			}
+			catch(Exception e) {
+				e.printStackTrace();
+				return;
+			}
+			
+			//System.out.println("AudioInputStream创建完成。");
+			AudioFormat format = ais.getFormat();
+			DataLine.Info info = new DataLine.Info(SourceDataLine.class, format);
+			
+			try {
+				auline = (SourceDataLine)AudioSystem.getLine(info);
+				auline.open(format);
+			}
+			catch(Exception e) {
+				e.printStackTrace();
+				return;
+			}
+			//System.out.println("Auline创建完成。");
+			
+			auline.start();
+			int nBytesRead = 0;
+			byte[] abData = new byte[EXTERNAL_BUFFER_SIZE];
+			
+			//System.out.println("开始播放");
 			try {
 				int i = 0;
 				while(nBytesRead != -1 && running) {
@@ -103,16 +105,19 @@ class AudioPlayer implements Runnable {
 						//System.out.println("读取完毕");
 					}
 				}
-				if(loop == true) {
-					run();
-				}
 			}
 			catch(Exception e) {
 				e.printStackTrace();
 				return;
 			}
-		
-		System.out.println("播放完成。");
+			try {
+				auline.close();
+				ais.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		} while(loop == true);
+			
 	}
 	
 	public void stopPlay() {
