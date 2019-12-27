@@ -49,7 +49,7 @@ public class FootballZombie extends BasicZombie {
 		super(mainController);
 		normalHealth = 100;
 		normal = false;
-		health = 200;
+		health = 400;
 		power = 8;
 		attackSpeed = 20;
 		timer = attackSpeed;
@@ -67,7 +67,7 @@ public class FootballZombie extends BasicZombie {
 		super(posY, mainController);
 		normalHealth = 100;
 		normal = false;
-		health = 200;
+		health = 400;
 		power = 8;
 		attackSpeed = 20;
 		timer = attackSpeed;

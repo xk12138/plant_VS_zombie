@@ -39,7 +39,7 @@ public class BucketZombie extends BasicZombie {
 		super(mainController);
 		normalHealth = 100;
 		normal = false;
-		health = 400;
+		health = 300;
 		power = 8;
 		attackSpeed = 20;
 		timer = attackSpeed;
@@ -57,7 +57,7 @@ public class BucketZombie extends BasicZombie {
 		super(posY, mainController);
 		normalHealth = 100;
 		normal = false;
-		health = 400;
+		health = 300;
 		power = 8;
 		attackSpeed = 20;
 		timer = attackSpeed;

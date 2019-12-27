@@ -22,8 +22,8 @@ public class Repeater extends BasicPlant {
 	public Repeater(int posX, int posY, MainController mainController) {
 		super(posX, posY, mainController);
 		this.health = 100;
-    	this.attackSpeed = 100;
-    	coolDown = 80;
+    	this.attackSpeed = 60;
+    	coolDown = 200;
     	timer = coolDown;
     	price = 200;
     	label = new JLabel(getImage());

@@ -34,7 +34,7 @@ public class Jalapeno extends BasicPlant {
 		this.health = 100;
     	this.attackSpeed = 100;
     	dieTimer = 35;
-    	coolDown = 80;
+    	coolDown = 750;
     	timer = coolDown;
     	price = 125;
     	fireLine = null;

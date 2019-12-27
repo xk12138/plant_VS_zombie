@@ -19,7 +19,7 @@ public class PotatoMine extends BasicPlant {
 	
 	private PotatoMine text = null;
 	
-	private int readyTimer = 90;//准备计时器，到0说明可爆炸
+	private int readyTimer = 240;//准备计时器，到0说明可爆炸
 	public static void loadImage() {
 		image1 = new ImageIcon("resource\\images\\plant\\PotatoMine\\PotatoMineNotReady.gif");
 		imageReady = new ImageIcon("resource\\images\\plant\\PotatoMine\\PotatoMine.gif");
@@ -39,7 +39,7 @@ public class PotatoMine extends BasicPlant {
 		super(posX, posY, mainController);
 		this.health = 100;
     	this.attackSpeed = 100;
-    	coolDown = 80;
+    	coolDown = 725;
     	timer = coolDown;
     	price = 25;
     	label = new JLabel(getImage());

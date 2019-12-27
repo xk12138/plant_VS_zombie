@@ -24,9 +24,9 @@ public class SunFlower extends BasicPlant {
 	public SunFlower(int posX, int posY, MainController mainController) {
 		super(posX, posY, mainController);
 		this.health = 100;
-		this.coolDown = 300;
-		this.timer = 600;
-		this.attackSpeed = 700;
+		this.coolDown = 200;
+		this.timer = 100;
+		this.attackSpeed = 650;
 		this.price = 50;
 		label = new JLabel(getImage());
 		label.setSize(image.getIconWidth(), image.getIconHeight());

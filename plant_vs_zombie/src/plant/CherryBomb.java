@@ -34,7 +34,7 @@ public class CherryBomb extends BasicPlant {
 		this.health = 100;
     	this.attackSpeed = 100;
     	dieTimer = 40;
-    	coolDown = 80;
+    	coolDown = 750;
     	timer = coolDown;
     	price = 150;
     	label = new JLabel(getImage());

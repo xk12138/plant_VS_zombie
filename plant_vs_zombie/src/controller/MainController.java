@@ -56,9 +56,9 @@ public class MainController implements Runnable {
 	
 	public MainController() {
 		clock = 30;
-		sumSun = 5000;
+		sumSun = 50;
 		coolDown = 300;
-		timer = 1;
+		timer = 300;
 		alive = true;
 
 		mainViewer = new MainViewer();

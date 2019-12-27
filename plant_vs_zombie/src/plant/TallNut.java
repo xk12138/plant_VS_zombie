@@ -37,7 +37,7 @@ public class TallNut extends BasicPlant {
 		this.health = totalHealth;
 		this.state = 3;
     	this.attackSpeed = 100;
-    	coolDown = 80;
+    	coolDown = 600;
     	timer = coolDown;
     	price = 125;
     	label = new JLabel(getImage());

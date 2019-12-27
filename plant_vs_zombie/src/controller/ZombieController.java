@@ -12,7 +12,7 @@ public class ZombieController implements Runnable {
 	public MainController mainController;
 	
 	//public int coolDown = 750;
-	public int coolDown = 150;
+	public int coolDown = 750;
 	public int timer;
 	
 	public int batch = 0;	// 用于控制正在第几波
@@ -32,7 +32,7 @@ public class ZombieController implements Runnable {
 	}
 	public ZombieController(MainController mainController) {
 		this.mainController = mainController;
-		timer = coolDown+300;
+		timer = coolDown+250;
 		txt = new JLabel(LargeWave);
 		txt.setSize(LargeWave.getIconWidth(),LargeWave.getIconHeight());
 		txt.setBounds(400, 300, LargeWave.getIconWidth(),LargeWave.getIconHeight());

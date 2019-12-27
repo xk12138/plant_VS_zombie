@@ -12,7 +12,7 @@ public class WallNut extends BasicPlant {
 	private static ImageIcon image2;
 	private static ImageIcon image1;
 	
-	final private static int totalHealth = 100;
+	final private static int totalHealth = 500;
 	
 	private int state;
 	/*
@@ -37,7 +37,7 @@ public class WallNut extends BasicPlant {
 		this.health = totalHealth;
 		this.state = 3;
     	this.attackSpeed = 100;
-    	coolDown = 80;
+    	coolDown = 600;
     	timer = coolDown;
     	price = 50;
     	label = new JLabel(getImage());

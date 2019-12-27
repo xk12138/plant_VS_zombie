@@ -22,7 +22,7 @@ public class Torchwood extends BasicPlant {
 	public Torchwood(int posX, int posY, MainController mainController) {
 		super(posX, posY, mainController);
 		this.health = 100;
-    	coolDown = 80;
+    	coolDown = 200;
     	timer = coolDown;
     	price = 175;
     	label = new JLabel(getImage());
