@@ -57,10 +57,12 @@ public class MainViewer extends JFrame {
 	}
 	public void afterView(boolean win) {
 		mainController.backgroundAudio.change("resource\\audio\\used\\null.wav");
+		//mainController.backgroundAudio.stop();
 		if(win == true)
 			winView();
 		else 
 			loseView();
+		StartViewer.startAudio.change("resource\\audio\\used\\Theme.wav");
 		this.dispose();
 	}
 	private void winView() {
@@ -288,7 +290,7 @@ public class MainViewer extends JFrame {
 			mainController.lineControllers[i].blocks.get(0).plant 
 			= new LawnCleaner(mainController.lineControllers[i].blocks.get(0).posX,mainController.lineControllers[i].blocks.get(0).posY,mainController);
 			try {
-				Thread.sleep((long)100);
+				Thread.sleep((long)200);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -296,7 +298,7 @@ public class MainViewer extends JFrame {
 		}
 		removeLabel(prepareLabel);
 		mainController.backgroundAudio = new BasicAudio("resource\\audio\\used\\LawnGarden.wav");
-		//duang.stop();
+		duang.stop();
 		
 	}
 	public MainViewer() {
@@ -347,7 +349,9 @@ public class MainViewer extends JFrame {
 		this.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
 				super.windowClosing(e);
+				StartViewer.startAudio.change("resource\\audio\\used\\Theme.wav");
 				mainController.backgroundAudio.stop();
+				
 			}
 		});
 		

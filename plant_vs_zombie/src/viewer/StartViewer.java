@@ -42,7 +42,7 @@ public class StartViewer extends JFrame {
 	public ImageIcon endImg = new ImageIcon("resource\\images\\interface\\Selector1H.png");
 	
 	public Container container;
-	private BasicAudio startAudio; 
+	public static BasicAudio startAudio; 
 	public StartViewer() {
 		
 		super("÷≤ŒÔ¥Û’ΩΩ© ¨ ");
@@ -62,7 +62,7 @@ public class StartViewer extends JFrame {
 				label.setIcon(startImg);
 			}
 			public void mouseClicked(MouseEvent e) {
-				startAudio.stop();
+				startAudio.change("resource\\audio\\used\\null.wav");
 				new MainController();
 			}
 		});
